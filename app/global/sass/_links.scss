@@ -70,12 +70,4 @@ button, .button{
 		padding:4px 15px;
 	}
 
-	&.subscribe {
-		margin-right: 15px;
-
-		@media screen and (max-width: $mobile) {
-			margin-right: 5px;			
-		}
-	}
-
 }

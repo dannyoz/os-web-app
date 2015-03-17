@@ -108,3 +108,36 @@
 	/* =========================================*/
 }
 
+@mixin container($width:1000,$padding:false){
+
+	.container{
+
+		margin:0 auto;
+		max-width:$width;
+
+		@if $padding{
+			padding:0 $padding;
+		}
+
+		&.relative{
+			position: relative;
+		}
+	}
+
+}
+
+@mixin centring{
+
+	.centre{
+		@include centre;
+	}
+
+	.centre-x{
+		@include centre(x);
+	}
+
+	.centre-y{
+		@include centre(y);
+	}
+}
+

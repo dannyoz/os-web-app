@@ -22,10 +22,35 @@ module.exports = function(grunt) {
                     'app/libs/angular-route.js',
                     'app/libs/init.js',
                     'app/app.js',
+                    'app/templates.js',
                     'app/global/**/*.js',
                     'app/views/**/*.js'
                 ],
                 dest: 'app/main.js',
+            }
+        },
+
+        ngtemplates: {
+            app: {
+                options: {
+                    module: "dod",
+                    bootstrap: function(module, script) {
+                        return 'dod.run(["$templateCache", function($templateCache) {' + script + '}])';
+                    },
+                    htmlmin: {
+                        collapseBooleanAttributes:      true,
+                        collapseWhitespace:             true,
+                        removeAttributeQuotes:          true,
+                        removeEmptyAttributes:          true,
+                        removeRedundantAttributes:      true,
+                        removeScriptTypeAttributes:     true,
+                        removeStyleLinkTypeAttributes:  true
+                    }
+                },
+                src: [
+                    'app/views/**/*.html'
+                ],
+                dest: 'app/templates.js'
             }
         },
 
@@ -60,12 +85,12 @@ module.exports = function(grunt) {
                 }
             },
 
-            html: {
-                files:[
-                    'app/**/*.html'
-                ],
-                tasks: ['copy']
-            },
+            // html: {
+            //     files:[
+            //         'app/**/*.html'
+            //     ],
+            //     tasks: ['copy']
+            // },
 
             livereload: {
                 options: { livereload: true },
@@ -88,21 +113,21 @@ module.exports = function(grunt) {
             }
         },
 
-        copy: {
-            main: {
-                expand: true, 
-                flatten: true,
-                cwd: 'app', 
-                src: [
-                    '**.html',
-                    '*/*.html',
-                    '*/*/*.html',
-                    '*/*/*/*.html'
-                    ], 
-                dest: 'build/views/', 
-                filter: 'isFile'
-            },
-        },
+        // copy: {
+        //     main: {
+        //         expand: true, 
+        //         flatten: true,
+        //         cwd: 'app', 
+        //         src: [
+        //             '**.html',
+        //             '*/*.html',
+        //             '*/*/*.html',
+        //             '*/*/*/*.html'
+        //             ], 
+        //         dest: 'build/views/', 
+        //         filter: 'isFile'
+        //     },
+        // },
 
         express: {
             options: {
@@ -126,8 +151,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-angular-templates');
 
     // RUN GRUNT 
-    grunt.registerTask('default', ['concat', 'uglify', 'watch', 'compass']);
+    grunt.registerTask('default', ['concat', 'ngtemplates', 'uglify', 'watch', 'compass']);
 
 };

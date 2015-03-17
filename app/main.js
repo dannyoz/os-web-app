@@ -26965,18 +26965,41 @@ var app = {
 };
 
 
-var ngApp = angular.module('app', ['ngRoute']);
+var dod = angular.module('dod', ['ngRoute']);
 
-ngApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+dod.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
  	
  	$routeProvider
-        .when('/', {
-        	templateUrl: '/views/home.html'
-        })
 
-        .when('/styleguide', {
-        	templateUrl: '/views/styleguide.html'
-        });
+                .when('/', {
+                	templateUrl: 'app/views/home/home.html',
+                        controller : 'home'
+                })
+
+                .when('/about', {
+                        templateUrl: 'app/views/about/about.html',
+                        controller : 'about'
+                })
+
+                .when('/art', {
+                        templateUrl: 'app/views/art/art.html',
+                        controller : 'art'
+                })
+
+                .when('/contact', {
+                        templateUrl: 'app/views/contact/contact.html',
+                        controller : 'contact'
+                })
+
+                .when('/websites', {
+                        templateUrl: 'app/views/websites/websites.html',
+                        controller : 'websites'
+                })
+
+                .when('/styleguide', {
+                	templateUrl: 'app/views/styleguide/styleguide.html'
+                });
+
         
 	$locationProvider.html5Mode({
 		enabled: true,
@@ -26984,6 +27007,60 @@ ngApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	});
 
 }]);
-ngApp.controller('home',['$scope', function ($scope) {
-	$scope.test = "derp";
+dod.run(["$templateCache", function($templateCache) {  'use strict';
+
+  $templateCache.put('app/views/about/about.html',
+    "<section>about</section>"
+  );
+
+
+  $templateCache.put('app/views/art/art.html',
+    "<section>art</section>"
+  );
+
+
+  $templateCache.put('app/views/contact/contact.html',
+    "<section>contact</section>"
+  );
+
+
+  $templateCache.put('app/views/home/home.html',
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+  );
+
+
+  $templateCache.put('app/views/styleguide/styleguide.html',
+    "<div class=container><section><h1 class=section-heading id=headings>Headings</h1><hr><h1>Heading 1</h1><p class=columns>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis tsuscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h2>Heading 2</h2><p class=columns>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h3>Heading 3</h3><p class=columns>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h4>Heading 4</h4><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h5>Heading 5</h5><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h6>Heading 6</h6><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p></section><section><h1 class=section-heading id=paragraph>Paragraph</h1><div class=\"grid-8 grid-divide-right\"><p>Lorem ipsum dolor sit amet, <a href=# title=\"This is a hyperlink\">this is a hyperlink</a> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p>Lorem ipsum dolor sit amet, <strong>this text is strong</strong> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p>Lorem ipsum dolor sit amet, <em>this text is emphasized</em> consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p><img alt=\"Placeholder Image and Some Alt Text\" src=http://placehold.it/350x150 title=\"A title element for this placeholder image.\"></p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p><blockquote><p>This is a blockquote. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><cite>-Author</cite></blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p><h5>Paragraph with css3 columns</h5><p class=columns>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p></div><div class=\"grid-3 push-1\"><h4 id=text-elements>Text Elements</h4><p>The <a href=#>a element</a> example</p><p>The <abbr>abbr element</abbr> and an <abbr title=Abbreviation>abbr</abbr> element with title examples</p><p>The <acronym title=\"A Cowboy Ran One New York Marathon\">ACRONYM</acronym> element example</p><p>The <b>b element</b> example</p><p>The <cite>cite element</cite> example</p><p>The <code>code element</code> example</p><p>The <em>em element</em> example</p><p>The <del>del element</del> example</p><p>The <dfn>dfn element</dfn> and <dfn title=\"Title text\">dfn element with title</dfn> examples</p><p>The <i>i element</i> example</p><p>The <ins>ins element</ins> example</p><p>The <kbd>kbd element</kbd> example</p><p>The <mark>mark element</mark> example</p><p>The <q>q element</q> example</p><p>The <q>q element <q>inside</q> a q element</q> example</p><p>The <s>s element</s> example</p><p>The <samp>samp element</samp> example</p><p>The <small>small element</small> example</p><p>The <span>span element</span> example</p><p>The <strong>strong element</strong> example</p><p>The <sub>sub element</sub> example</p><p>The <sup>sup element</sup> example</p><p>The <u>u element</u> example</p><p>The <var>var element</var> example</p></div></section><section><h1 class=section-heading id=grid>Grid</h1><hr><p>Fluid grid based on percentages. Uses the <code>@include grid</code> sass mixin.</p><div class=grid-row><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div></div><div class=grid-row><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div></div><div class=grid-row><div class=\"grid-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 2</span></div><div class=\"grid-7 grid-example panel padded rounded-5px\"><span class=centre>Grid 7</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div></div><div class=grid-row><div class=\"grid-12 grid-example panel padded rounded-5px\"><span class=centre>Grid 12</span></div></div><div class=grid-row><div class=\"grid-4 push-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 4 | push 2</span></div><div class=\"grid-4 pull-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 4 | pull 2</span></div></div></section></div>"
+  );
+
+
+  $templateCache.put('app/views/websites/websites.html',
+    "<section>websites</section>"
+  );
+}])
+dod.controller('about',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('about');
+}]);
+dod.controller('art',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('art');
+}]);
+
+dod.controller('contact',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('contact');
+}]);
+dod.controller('home',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('home');
+}]);
+dod.controller('websites',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('websites');
 }]);

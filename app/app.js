@@ -1,15 +1,38 @@
-var ngApp = angular.module('app', ['ngRoute']);
+var dod = angular.module('dod', ['ngRoute']);
 
-ngApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+dod.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
  	
  	$routeProvider
-        .when('/', {
-        	templateUrl: '/views/home.html'
-        })
 
-        .when('/styleguide', {
-        	templateUrl: '/views/styleguide.html'
-        });
+                .when('/', {
+                	templateUrl: 'app/views/home/home.html',
+                        controller : 'home'
+                })
+
+                .when('/about', {
+                        templateUrl: 'app/views/about/about.html',
+                        controller : 'about'
+                })
+
+                .when('/art', {
+                        templateUrl: 'app/views/art/art.html',
+                        controller : 'art'
+                })
+
+                .when('/contact', {
+                        templateUrl: 'app/views/contact/contact.html',
+                        controller : 'contact'
+                })
+
+                .when('/websites', {
+                        templateUrl: 'app/views/websites/websites.html',
+                        controller : 'websites'
+                })
+
+                .when('/styleguide', {
+                	templateUrl: 'app/views/styleguide/styleguide.html'
+                });
+
         
 	$locationProvider.html5Mode({
 		enabled: true,

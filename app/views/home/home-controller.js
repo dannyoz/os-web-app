@@ -1,3 +1,5 @@
-ngApp.controller('home',['$scope', function ($scope) {
-	$scope.test = "derp";
+dod.controller('home',['$scope', function ($scope) {
+	"use strict";
+	
+	console.log('home');
 }]);
