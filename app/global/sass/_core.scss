@@ -9,7 +9,7 @@ body{
 	font-weight:100;
 }
 
-@include open-sans(h1 h3 h4 h5 h6 p);
+@include open-sans(h1 h3 h4 h5 h6 p button);
 
 // ===============================================================
 // CORE STYLES config - see mixins/_core.scss for implementation
