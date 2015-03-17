@@ -5,11 +5,10 @@ body{
 	background:$theme-bg-colour;
 	color:$theme-text-colour;
 	text-align:center;
-
 	font-weight:100;
 }
 
-@include open-sans(h1 h3 h4 h5 h6 p button);
+@include open-sans(h1 h3 h4 h5 h6 p);
 
 // ===============================================================
 // CORE STYLES config - see mixins/_core.scss for implementation
