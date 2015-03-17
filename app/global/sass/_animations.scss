@@ -1,0 +1,167 @@
+/*
+##############################################################
+EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
+##############################################################
+
+		//FADE IN -----------------------------------------------
+
+		@include transKeyframes(fadeIn,0% 100%,scale,0.8 1,fadeIn);
+
+		//FADE OUT -----------------------------------------------
+
+		@include transKeyframes(fadeOut,0% 100%,scale,1 0.8,fadeOut);
+
+		//FLICKER IN -----------------------------------------------
+
+		@include keyframes (flickerIn) {
+		  0% {   opacity:0;}
+		  5% {   opacity:0.5;}
+		  10% { opacity:0.3;}
+		  100% { opacity:1;}
+		}
+
+
+		//WIBBLE ---------------------------------------------------
+
+		$wibbleAmount: 2px;
+
+		@include keyframes(wibble) {
+		  0%   {margin-top:0}
+		  33%  {margin-top:$wibbleAmount}
+		  66%  {margin-top:-$wibbleAmount}
+		  100% {margin-top:0}
+		}
+
+*/
+
+@include transKeyframes(fadeIn,0% 100%,scale,0.8 1,fadeIn);
+@include transKeyframes(fade,0% 100%,scale,1 1,fadeIn);
+@include transKeyframes(slideUp,0% 100%,translateY,50px 0,fadeIn);
+@include transKeyframes(slideleft,0% 100%,translateX,50px 0,fadeIn);
+
+
+//FLIPS
+//##############################################################
+
+
+@-webkit-keyframes flips {
+	0%    {-webkit-transform:rotate3d(0, 1, 0, 90deg);  }//
+	8.3%  {-webkit-transform:rotate3d(0, 1, 1, 0deg);   }
+	16.6% {-webkit-transform:rotate3d(1, 0, 0, 90deg);  }//
+	24.9% {-webkit-transform:rotate3d(0, 1, 1, 360deg); }
+	33%   {-webkit-transform:rotate3d(0, 1, 0, 90deg);  }//
+	41.3% {-webkit-transform:rotate3d(0, 1, 1, 360deg); }
+	49.9% {-webkit-transform:rotate3d(1, 0, 0, 90deg);  }//
+	58.2% {-webkit-transform:rotate3d(0, 1, 1, 360deg); }
+	66.6% {-webkit-transform:rotate3d(0, 1, 0, 90deg);  }//
+	74.8% {-webkit-transform:rotate3d(0, 1, 1, 360deg); }
+	83.2% {-webkit-transform:rotate3d(1, 0, 0, 90deg);  }//
+	91.4% {-webkit-transform:rotate3d(0, 1, 1, 0deg);   }
+	100%  {-webkit-transform:rotate3d(0, 1, 0, 90deg);  }//
+}
+
+@-moz-keyframes flips {
+	0%    {-moz-transform:rotate3d(0, 1, 0, 90deg);  }//
+	8.3%  {-moz-transform:rotate3d(0, 1, 1, 0deg);   }
+	16.6% {-moz-transform:rotate3d(1, 0, 0, 90deg);  }//
+	24.9% {-moz-transform:rotate3d(0, 1, 1, 360deg); }
+	33%   {-moz-transform:rotate3d(0, 1, 0, 90deg);  }//
+	41.3% {-moz-transform:rotate3d(0, 1, 1, 360deg); }
+	49.9% {-moz-transform:rotate3d(1, 0, 0, 90deg);  }//
+	58.2% {-moz-transform:rotate3d(0, 1, 1, 360deg); }
+	66.6% {-moz-transform:rotate3d(0, 1, 0, 90deg);  }//
+	74.8% {-moz-transform:rotate3d(0, 1, 1, 360deg); }
+	83.2% {-moz-transform:rotate3d(1, 0, 0, 90deg);  }//
+	91.4% {-moz-transform:rotate3d(0, 1, 1, 0deg);   }
+	100%  {-moz-transform:rotate3d(0, 1, 0, 90deg);  }//
+}
+
+@-ms-keyframes flips {
+	0%    {-ms-transform:rotate3d(0, 1, 0, 90deg);  }//
+	8.3%  {-ms-transform:rotate3d(0, 1, 1, 0deg);   }
+	16.6% {-ms-transform:rotate3d(1, 0, 0, 90deg);  }//
+	24.9% {-ms-transform:rotate3d(0, 1, 1, 360deg); }
+	33%   {-ms-transform:rotate3d(0, 1, 0, 90deg);  }//
+	41.3% {-ms-transform:rotate3d(0, 1, 1, 360deg); }
+	49.9% {-ms-transform:rotate3d(1, 0, 0, 90deg);  }//
+	58.2% {-ms-transform:rotate3d(0, 1, 1, 360deg); }
+	66.6% {-ms-transform:rotate3d(0, 1, 0, 90deg);  }//
+	74.8% {-ms-transform:rotate3d(0, 1, 1, 360deg); }
+	83.2% {-ms-transform:rotate3d(1, 0, 0, 90deg);  }//
+	91.4% {-ms-transform:rotate3d(0, 1, 1, 0deg);   }
+	100%  {-ms-transform:rotate3d(0, 1, 0, 90deg);  }//
+}
+
+@keyframes flips {
+	0%    {transform:rotate3d(0, 1, 0, 90deg);  }//
+	8.3%  {transform:rotate3d(0, 1, 1, 0deg);   }
+	16.6% {transform:rotate3d(1, 0, 0, 90deg);  }//
+	24.9% {transform:rotate3d(0, 1, 1, 360deg); }
+	33%   {transform:rotate3d(0, 1, 0, 90deg);  }//
+	41.3% {transform:rotate3d(0, 1, 1, 360deg); }
+	49.9% {transform:rotate3d(1, 0, 0, 90deg);  }//
+	58.2% {transform:rotate3d(0, 1, 1, 360deg); }
+	66.6% {transform:rotate3d(0, 1, 0, 90deg);  }//
+	74.8% {transform:rotate3d(0, 1, 1, 360deg); }
+	83.2% {transform:rotate3d(1, 0, 0, 90deg);  }//
+	91.4% {transform:rotate3d(0, 1, 1, 0deg);   }
+	100%  {transform:rotate3d(0, 1, 0, 90deg);  }//
+}
+
+
+//PAGE TURNS 
+//##############################################################
+
+$pageShade : #fff;
+
+@-webkit-keyframes pageTurnLeft {
+    0% {background-color:white;}
+    10% {-webkit-transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+    25% {-webkit-transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+    50% {-webkit-transform:translateX(-25%) rotate3d(0, 1, 0, -60deg)  }
+    100% {-webkit-transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+}
+
+@-moz-keyframes pageTurnLeft {
+    0% {background-color:white;}
+    10% {-moz-transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+    25% {-moz-transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+    50% {-moz-transform:translateX(-24%) rotate3d(0, 1, 0, -60deg)  }
+    100% {-moz-transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+}
+
+@keyframes pageTurnLeft {
+	0% {background-color:white;}
+	10% {transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+	25% {transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+	50% {transform:translateX(-24%) rotate3d(0, 1, 0, -60deg)  }
+	100% {transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+}
+
+
+@-webkit-keyframes pageTurnRight {
+
+	0%   {-webkit-transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+	50%  {-webkit-transform:translateX(-25%) rotate3d(0, 1, 0, -60deg)  }
+	75%  {-webkit-transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+	90%  {-webkit-transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+  	100% {-webkit-transform:translateX(0) rotate3d(0, 1, 0, 0deg);background-color:white;}
+}
+
+@-moz-keyframes pageTurnRight {
+
+	0%   {-moz-transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+	50%  {-moz-transform:translateX(-25%) rotate3d(0, 1, 0, -60deg)  }
+	75%  {-moz-transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+	90%  {-moz-transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+  	100% {-moz-transform:translateX(0) rotate3d(0, 1, 0, 0deg);background-color:white;}
+}
+
+@keyframes pageTurnRight {
+
+	0%   {transform:translateX(-75%) rotate3d(0, 1, 0, -90deg); background-color:$pageShade}
+	50%  {transform:translateX(-25%) rotate3d(0, 1, 0, -60deg)  }
+	75%  {transform:translateX(-6%) rotate3d(0, 1, 0, -30deg)  }
+	90%  {transform:translateX(0) rotate3d(0, 1, 0, -12deg)  }
+  	100% {transform:translateX(0) rotate3d(0, 1, 0, 0deg);background-color:white;}
+}
