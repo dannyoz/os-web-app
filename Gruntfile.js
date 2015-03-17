@@ -85,15 +85,15 @@ module.exports = function(grunt) {
                 }
             },
 
-            // html: {
-            //     files:[
-            //         'app/**/*.html'
-            //     ],
-            //     tasks: ['copy']
-            // },
+            html: {
+                files:[
+                    'app/**/*.html'
+                ],
+                tasks: ['ngtemplates']
+            },
 
             livereload: {
-                options: { livereload: true },
+                options: { livereload: 35729 },
                 files: [
                     'build/css/*.css',
                     'build/js/*.js',
