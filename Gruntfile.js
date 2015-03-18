@@ -85,6 +85,13 @@ module.exports = function(grunt) {
                 }
             },
 
+            json: {
+                files:[
+                    'app/apis/*.json'
+                ],
+                tasks: ['copy:json']
+            },
+
             html: {
                 files:[
                     'app/**/*.html'
@@ -113,21 +120,34 @@ module.exports = function(grunt) {
             }
         },
 
-        // copy: {
-        //     main: {
-        //         expand: true, 
-        //         flatten: true,
-        //         cwd: 'app', 
-        //         src: [
-        //             '**.html',
-        //             '*/*.html',
-        //             '*/*/*.html',
-        //             '*/*/*/*.html'
-        //             ], 
-        //         dest: 'build/views/', 
-        //         filter: 'isFile'
-        //     },
-        // },
+        copy: {
+            html: {
+                expand: true, 
+                flatten: true,
+                cwd: 'app', 
+                src: [
+                    '**.html',
+                    '*/*.html',
+                    '*/*/*.html',
+                    '*/*/*/*.html'
+                    ], 
+                dest: 'build/views/', 
+                filter: 'isFile'
+            },
+            json : {
+                expand: true, 
+                flatten: true,
+                cwd: 'app', 
+                src: [
+                    '**.json',
+                    '*/*.json',
+                    '*/*/*.json',
+                    '*/*/*/*.json'
+                    ], 
+                dest: 'build/api/', 
+                filter: 'isFile'
+            }
+        },
 
         express: {
             options: {

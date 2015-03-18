@@ -26984,7 +26984,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=centre></div>"
   );
 
 
@@ -27002,6 +27002,31 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
     "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 }])
+dod.factory('api', ['$http', '$q', function ($http, $q){
+
+	var endpoints = {
+		home : '/api/main.json'
+	};
+	
+	var getHomePage = function(){
+
+		var defer = $q.defer();
+
+		$http.jsonp(endpoints.home+"?callback=JSON_CALLBACK").success(function (result){
+			defer.resolve(result);
+		}).error(function (result){
+			console.log('error', result);
+		});
+
+		return defer.promise
+	};
+
+
+	return {
+		getHomePage : getHomePage
+	}
+
+}]);
 dod.controller('about',['$scope', function ($scope) {
 	"use strict";
 	
@@ -27023,10 +27048,14 @@ dod.controller('contact',['$scope', function ($scope) {
 	
 	console.log('contact');
 }]);
-dod.controller('home',['$scope', function ($scope) {
+dod.controller('home',['$scope', 'api', function ($scope, api) {
 	"use strict";
 	
 	console.log('home derp');
+
+	api.getHomePage().then(function(result){
+		console.log(result);
+	});
 }]);
 dod.controller('websiteSingle',['$scope', function ($scope) {
 	"use strict";

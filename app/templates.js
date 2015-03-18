@@ -21,7 +21,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=centre></div>"
   );
 
 
