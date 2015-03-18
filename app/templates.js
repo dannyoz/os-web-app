@@ -1,27 +1,27 @@
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/views/about/about.html',
-    "<section>about</section>"
+    "<div class=centre><p>about</p></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<section>art</section>"
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<section>art single</section>"
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<section>contact</section>"
+    "<div class=centre><form><fieldset><input name=Name placeholder=\"Name\"></fieldset><fieldset><input type=email name=Email placeholder=\"Email\"></fieldset><fieldset><input name=Subject placeholder=\"Subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 placeholder=Message></textarea></fieldset><fieldset><button>Send</button></fieldset></form></div>"
   );
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=centre><ul><li><a href=/art>Art</a></li><li><a href=/websites>Websites</a></li><li><a href=/about></a>about</li><li><a href=/contact>consdsdt</a></li></ul></div>"
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 
 
@@ -31,11 +31,11 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/single/website-single.html',
-    "<section>website single</section>"
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<section>websites</section>"
+    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
   );
 }])
