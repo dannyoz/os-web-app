@@ -97,16 +97,20 @@ module.exports = function(grunt) {
                     'app/**/*.html'
                 ],
                 tasks: ['ngtemplates']
-            },
-
-            livereload: {
-                options: { livereload: 35729 },
-                files: [
-                    'build/css/*.css',
-                    'build/js/*.js',
-                    'build/views/*.html'
-                    ],
             }
+
+            // livereload: {
+            //     options: { livereload: 35729 },
+            //     files: [
+            //         'app/**/*.js',
+            //         'app/**/*.html',
+            //         'app/**/*.json',
+            //         'app/**/*.scss',
+            //         'build/css/*.css',
+            //         'build/js/*.js',
+            //         'build/views/*.html'
+            //         ],
+            // }
         },
 
         compass: {                  

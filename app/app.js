@@ -1,52 +1,78 @@
 var dod = angular.module('dod', ['ngRoute']);
 
-dod.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
  	
  	$routeProvider
 
-                .when('/', {
-                	templateUrl: 'app/views/home/home.html',
-                        controller : 'home'
-                })
+        .when('/', {
+        	templateUrl: 'app/views/home/home.html',
+                controller : 'home'
+        })
 
-                .when('/about', {
-                        templateUrl: 'app/views/about/about.html',
-                        controller : 'about'
-                })
+        .when('/about', {
+                templateUrl: 'app/views/about/about.html',
+                controller : 'about'
+        })
 
-                .when('/art', {
-                        templateUrl: 'app/views/art/art.html',
-                        controller : 'art'
-                })
+        .when('/art', {
+                templateUrl: 'app/views/art/art.html',
+                controller : 'art'
+        })
 
-                .when('/art/:artwork', {
-                        templateUrl: 'app/views/art/single/art-single.html',
-                        controller : 'artSingle'
-                })
+        .when('/art/:artwork', {
+                templateUrl: 'app/views/art/single/art-single.html',
+                controller : 'artSingle'
+        })
 
-                .when('/contact', {
-                        templateUrl: 'app/views/contact/contact.html',
-                        controller : 'contact'
-                })
+        .when('/contact', {
+                templateUrl: 'app/views/contact/contact.html',
+                controller : 'contact'
+        })
 
-                .when('/websites', {
-                        templateUrl: 'app/views/websites/websites.html',
-                        controller : 'websites'
-                })
+        .when('/websites', {
+                templateUrl: 'app/views/websites/websites.html',
+                controller : 'websites'
+        })
 
-                .when('/websites/:website', {
-                        templateUrl: 'app/views/websites/single/website-single.html',
-                        controller : 'websiteSingle'
-                })
+        .when('/websites/:website', {
+                templateUrl: 'app/views/websites/single/website-single.html',
+                controller : 'websiteSingle'
+        })
 
-                .when('/styleguide', {
-                	templateUrl: 'app/views/styleguide/styleguide.html'
-                });
+        .when('/styleguide', {
+        	templateUrl: 'app/views/styleguide/styleguide.html'
+        });
 
         
 	$locationProvider.html5Mode({
 		enabled: true,
 		requireBase: false
 	});
+
+}]);
+
+
+//Loading content
+dod.run([
+    '$rootScope',
+    '$timeout',
+    'content',
+    'api', 
+    function ($rootScope, $timeout, content, api){
+
+    console.log('request made to api');
+
+    api.getContent('data').then(function (result){
+
+        $timeout(function(){
+
+            content.data  = result;
+            content.ready = true;
+
+            $rootScope.$broadcast('appReady', result);
+
+        },1000);
+
+    });
 
 }]);

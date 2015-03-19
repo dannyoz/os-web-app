@@ -26911,48 +26911,48 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(window, window.angular);
 var dod = angular.module('dod', ['ngRoute']);
 
-dod.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
  	
  	$routeProvider
 
-                .when('/', {
-                	templateUrl: 'app/views/home/home.html',
-                        controller : 'home'
-                })
+        .when('/', {
+        	templateUrl: 'app/views/home/home.html',
+                controller : 'home'
+        })
 
-                .when('/about', {
-                        templateUrl: 'app/views/about/about.html',
-                        controller : 'about'
-                })
+        .when('/about', {
+                templateUrl: 'app/views/about/about.html',
+                controller : 'about'
+        })
 
-                .when('/art', {
-                        templateUrl: 'app/views/art/art.html',
-                        controller : 'art'
-                })
+        .when('/art', {
+                templateUrl: 'app/views/art/art.html',
+                controller : 'art'
+        })
 
-                .when('/art/:artwork', {
-                        templateUrl: 'app/views/art/single/art-single.html',
-                        controller : 'artSingle'
-                })
+        .when('/art/:artwork', {
+                templateUrl: 'app/views/art/single/art-single.html',
+                controller : 'artSingle'
+        })
 
-                .when('/contact', {
-                        templateUrl: 'app/views/contact/contact.html',
-                        controller : 'contact'
-                })
+        .when('/contact', {
+                templateUrl: 'app/views/contact/contact.html',
+                controller : 'contact'
+        })
 
-                .when('/websites', {
-                        templateUrl: 'app/views/websites/websites.html',
-                        controller : 'websites'
-                })
+        .when('/websites', {
+                templateUrl: 'app/views/websites/websites.html',
+                controller : 'websites'
+        })
 
-                .when('/websites/:website', {
-                        templateUrl: 'app/views/websites/single/website-single.html',
-                        controller : 'websiteSingle'
-                })
+        .when('/websites/:website', {
+                templateUrl: 'app/views/websites/single/website-single.html',
+                controller : 'websiteSingle'
+        })
 
-                .when('/styleguide', {
-                	templateUrl: 'app/views/styleguide/styleguide.html'
-                });
+        .when('/styleguide', {
+        	templateUrl: 'app/views/styleguide/styleguide.html'
+        });
 
         
 	$locationProvider.html5Mode({
@@ -26961,35 +26961,61 @@ dod.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	});
 
 }]);
+
+
+//Loading content
+dod.run([
+    '$rootScope',
+    '$timeout',
+    'content',
+    'api', 
+    function ($rootScope, $timeout, content, api){
+
+    console.log('request made to api');
+
+    api.getContent('data').then(function (result){
+
+        $timeout(function(){
+
+            content.data  = result;
+            content.ready = true;
+
+            $rootScope.$broadcast('appReady', result);
+
+        },1000);
+
+    });
+
+}]);
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/views/about/about.html',
-    "<div class=centre><p>about</p></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
   );
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=centre>art single</div>"
   );
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=centre><form><fieldset><input name=Name placeholder=\"Name\"></fieldset><fieldset><input type=email name=Email placeholder=\"Email\"></fieldset><fieldset><input name=Subject placeholder=\"Subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 placeholder=Message></textarea></fieldset><fieldset><button>Send</button></fieldset></form></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><form><fieldset><input name=Name placeholder=\"Name\"></fieldset><fieldset><input type=email name=Email placeholder=\"Email\"></fieldset><fieldset><input name=Subject placeholder=\"Subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 placeholder=Message></textarea></fieldset><fieldset><button>Send</button></fieldset></form></div></div>"
   );
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=centre></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
   );
 
 
-  $templateCache.put('app/views/styleguide/styleguide.html',
-    "<div class=container><section><h1 class=section-heading id=headings>Headings</h1><hr><h1>Heading 1</h1><p class=columns>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis tsuscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h2>Heading 2</h2><p class=columns>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h3>Heading 3</h3><p class=columns>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h4>Heading 4</h4><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h5>Heading 5</h5><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p><h6>Heading 6</h6><p>Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p></section><section><h1 class=section-heading id=paragraph>Paragraph</h1><div class=\"grid-8 grid-divide-right\"><p>Lorem ipsum dolor sit amet, <a href=# title=\"This is a hyperlink\">this is a hyperlink</a> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p>Lorem ipsum dolor sit amet, <strong>this text is strong</strong> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p>Lorem ipsum dolor sit amet, <em>this text is emphasized</em> consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><p><img alt=\"Placeholder Image and Some Alt Text\" src=http://placehold.it/350x150 title=\"A title element for this placeholder image.\"></p><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p><blockquote><p>This is a blockquote. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p><cite>-Author</cite></blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p><h5>Paragraph with css3 columns</h5><p class=columns>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.</p></div><div class=\"grid-3 push-1\"><h4 id=text-elements>Text Elements</h4><p>The <a href=#>a element</a> example</p><p>The <abbr>abbr element</abbr> and an <abbr title=Abbreviation>abbr</abbr> element with title examples</p><p>The <acronym title=\"A Cowboy Ran One New York Marathon\">ACRONYM</acronym> element example</p><p>The <b>b element</b> example</p><p>The <cite>cite element</cite> example</p><p>The <code>code element</code> example</p><p>The <em>em element</em> example</p><p>The <del>del element</del> example</p><p>The <dfn>dfn element</dfn> and <dfn title=\"Title text\">dfn element with title</dfn> examples</p><p>The <i>i element</i> example</p><p>The <ins>ins element</ins> example</p><p>The <kbd>kbd element</kbd> example</p><p>The <mark>mark element</mark> example</p><p>The <q>q element</q> example</p><p>The <q>q element <q>inside</q> a q element</q> example</p><p>The <s>s element</s> example</p><p>The <samp>samp element</samp> example</p><p>The <small>small element</small> example</p><p>The <span>span element</span> example</p><p>The <strong>strong element</strong> example</p><p>The <sub>sub element</sub> example</p><p>The <sup>sup element</sup> example</p><p>The <u>u element</u> example</p><p>The <var>var element</var> example</p></div></section><section><h1 class=section-heading id=grid>Grid</h1><hr><p>Fluid grid based on percentages. Uses the <code>@include grid</code> sass mixin.</p><div class=grid-row><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div></div><div class=grid-row><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div><div class=\"grid-4 grid-example panel padded rounded-5px\"><span class=centre>Grid 4</span></div></div><div class=grid-row><div class=\"grid-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 2</span></div><div class=\"grid-7 grid-example panel padded rounded-5px\"><span class=centre>Grid 7</span></div><div class=\"grid-3 grid-example panel padded rounded-5px\"><span class=centre>Grid 3</span></div></div><div class=grid-row><div class=\"grid-12 grid-example panel padded rounded-5px\"><span class=centre>Grid 12</span></div></div><div class=grid-row><div class=\"grid-4 push-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 4 | push 2</span></div><div class=\"grid-4 pull-2 grid-example panel padded rounded-5px\"><span class=centre>Grid 4 | pull 2</span></div></div></section></div>"
+  $templateCache.put('app/views/loading/loading.html',
+    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>loading</p></div>"
   );
 
 
@@ -26999,71 +27025,128 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
   );
 }])
 dod.factory('api', ['$http', '$q', function ($http, $q){
 
-	var endpoints = {
-		home : '/api/main.json'
-	};
+	var prefix = '/api/',
+		suffix ='.json?callback=JSON_CALLBACK';
+
 	
-	var getHomePage = function(){
+	var getContent = function(name){
 
-		var defer = $q.defer();
+		var defer = $q.defer(),
+			url   = prefix+name+suffix;
 
-		$http.jsonp(endpoints.home+"?callback=JSON_CALLBACK").success(function (result){
+		$http.jsonp(url).success(function (result){
 			defer.resolve(result);
-		}).error(function (result){
-			console.log('error', result);
 		});
 
 		return defer.promise
 	};
 
-
 	return {
-		getHomePage : getHomePage
+		getContent : getContent
 	}
 
 }]);
-dod.controller('about',['$scope', function ($scope) {
+dod.factory('content',function(){
+
+	return {
+		data  : {},
+		ready : false
+	}
+
+});
+dod.controller('about',['$scope', 'content' , function ($scope, content) {
 	"use strict";
-	
-	console.log('about');
+
+	//Use cached data if request is already made
+	$scope.page  = content.data.about;
+	$scope.ready = content.ready;
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.page  = content.data.about;
+		$scope.ready = content.ready;
+	});
+
 }]);
-dod.controller('art',['$scope', function ($scope) {
+dod.controller('art',['$scope', 'content', function ($scope, content) {
 	"use strict";
 	
-	console.log('art');
+	//Use cached data if request is already made
+	$scope.page  = content.data.art;
+	$scope.ready = content.ready;
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.page  = content.data.art;
+		$scope.ready = content.ready;
+	});
+
 }]);
 dod.controller('artSingle',['$scope', function ($scope) {
 	"use strict";
 	
 	console.log('art single');
 }]);
-
-dod.controller('contact',['$scope', function ($scope) {
+dod.controller('contact',['$scope', 'content', function ($scope, content) {
 	"use strict";
 	
-	console.log('contact');
-}]);
-dod.controller('home',['$scope', 'api', function ($scope, api) {
-	"use strict";
-	
-	console.log('home derp');
+	//Use cached data if request is already made
+	$scope.page  = content.data.contact;
+	$scope.ready = content.ready;
 
-	api.getHomePage().then(function(result){
-		console.log(result);
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.page  = content.data.contact;
+		$scope.ready = content.ready;
 	});
+
+}]);
+dod.controller('home',['$scope', 'content', function ($scope, content) {
+	"use strict";
+
+	//Use cached data if request is already made
+	$scope.page  = content.data.home;
+	$scope.ready = content.ready;
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.page  = content.data.home;
+		$scope.ready = content.ready;
+	});
+
+}]);
+dod.controller('loading',['$scope', 'content', function ($scope, content) {
+	"use strict";
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.ready = content.ready;
+
+		console.log('loaded');
+	});
+
 }]);
 dod.controller('websiteSingle',['$scope', function ($scope) {
 	"use strict";
 	
 	console.log('websiteSingle');
 }]);
-dod.controller('websites',['$scope', function ($scope) {
+dod.controller('websites',['$scope', 'content', function ($scope, content) {
 	"use strict";
 	
-	console.log('websites');
+	//Use cached data if request is already made
+	$scope.page  = content.data.websites;
+	$scope.ready = content.ready;
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.page  = content.data.websites;
+		$scope.ready = content.ready;
+	});
+
 }]);

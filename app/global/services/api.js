@@ -1,25 +1,23 @@
 dod.factory('api', ['$http', '$q', function ($http, $q){
 
-	var endpoints = {
-		home : '/api/main.json'
-	};
+	var prefix = '/api/',
+		suffix ='.json?callback=JSON_CALLBACK';
+
 	
-	var getHomePage = function(){
+	var getContent = function(name){
 
-		var defer = $q.defer();
+		var defer = $q.defer(),
+			url   = prefix+name+suffix;
 
-		$http.jsonp(endpoints.home+"?callback=JSON_CALLBACK").success(function (result){
+		$http.jsonp(url).success(function (result){
 			defer.resolve(result);
-		}).error(function (result){
-			console.log('error', result);
 		});
 
 		return defer.promise
 	};
 
-
 	return {
-		getHomePage : getHomePage
+		getContent : getContent
 	}
 
 }]);

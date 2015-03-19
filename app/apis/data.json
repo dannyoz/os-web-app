@@ -1,0 +1,19 @@
+angular.callbacks._0({
+
+	"home" : {
+		"heading" : "home"
+	},
+	"about" : {
+		"heading" : "about"
+	},
+	"art" : {
+		"heading" : "art"
+	},
+	"websites" : {
+		"heading" : "websites"
+	},
+	"contact" : {
+		"heading" : "contact"
+	}
+	
+});

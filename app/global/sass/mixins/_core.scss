@@ -141,3 +141,16 @@
 	}
 }
 
+@mixin transitions($transitions) {
+	
+	@for $i from 1 through length($transitions) {
+			
+		$transition : nth($transitions,$i);
+
+		.transition-#{$i}{
+			@include single-transition(all,$transition,ease)
+		}
+
+	}
+}
+
