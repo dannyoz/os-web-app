@@ -1,0 +1,60 @@
+$nav-colour : #171717;
+$nav-width  : 300px;
+$icon-size  : 50px;
+
+nav{
+
+	background:$nav-colour;
+	width:$nav-width;
+	position: absolute;
+	height:100%;
+	left:-$nav-width;
+
+	#hamburger{
+
+		display: block;
+		width: $icon-size;
+		height:$icon-size;
+		position:absolute;
+		right: 0;
+		margin-right: -$icon-size;
+
+	}
+
+	#nav-holder{
+
+		margin-top: $icon-size;
+
+		li{
+
+			position:relative;
+			margin-left:-20px;
+			opacity: 0;
+
+			a{
+
+				display: block;
+				padding: 10px;
+				@extend .open-sans;
+			}
+
+			@include single-transition(all,0.6s,cubic-bezier(.39,-0.35,.4,1.36));
+		}
+	}
+
+	&.show{
+
+		left:0;
+
+		#hamburger{
+
+			margin-right: 0;
+		}
+
+		#nav-holder li{
+
+			margin-left: 50px;
+			opacity: 1;
+		}
+	}
+}

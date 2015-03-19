@@ -1,5 +1,21 @@
 angular.callbacks._0({
 
+	"navigation" : [{
+		"title" : "Home",
+		"url" : "/"
+	},{
+		"title" : "Artwork",
+		"url" : "/art"
+	},{
+		"title" : "Websites",
+		"url" : "/websites"
+	},{
+		"title" : "About me",
+		"url" : "/about"
+	},{
+		"title" : "Contact me",
+		"url" : "/contact"
+	}],
 	"home" : {
 		"heading" : "home"
 	},

@@ -26963,6 +26963,7 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 
+
 //Loading content
 dod.run([
     '$rootScope',
@@ -26983,19 +26984,24 @@ dod.run([
             $rootScope.$broadcast('appReady', result);
 
         },1000);
-
+        
     });
 
 }]);
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
+  $templateCache.put('app/global/navigation/navigation.html',
+    "<nav class=transition-3 ng-class={show:showNav}><div id=hamburger class=transition-3 ng-click=\"showNav = !showNav\">menu</div><div id=nav-holder><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a ng-href={{::link.url}} ng-bind=::link.title></a></li></ul></div></nav>"
+  );
+
+
   $templateCache.put('app/views/about/about.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 
 
@@ -27010,7 +27016,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 
 
@@ -27025,9 +27031,24 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><a href=\"/\">home</a> <a href=/about>about</a> <a href=/art>art</a> <a href=/websites>websites</a> <a href=/contact>contact</a></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 }])
+dod.controller('navigation',['$scope', 'content', function ($scope, content) {
+	"use strict";
+
+	//Use cached data if request is already made
+	$scope.nav     = content.data.navigation;
+	$scope.ready   = content.ready;
+	$scope.showNav = false;
+
+	//Use event listener for initial api request
+	$scope.$on('appReady', function (data){
+		$scope.nav   = content.data.navigation;
+		$scope.ready = content.ready;
+	});
+
+}]);
 dod.factory('api', ['$http', '$q', function ($http, $q){
 
 	var prefix = '/api/',

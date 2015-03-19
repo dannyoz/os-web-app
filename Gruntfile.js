@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                     'app/libs/angular-route.js',
                     'app/libs/init.js',
                     'app/app.js',
+                    'app/preloader.js',
                     'app/templates.js',
                     'app/global/**/*.js',
                     'app/views/**/*.js'
@@ -48,6 +49,7 @@ module.exports = function(grunt) {
                     }
                 },
                 src: [
+                    'app/global/**/*.html',
                     'app/views/**/*.html'
                 ],
                 dest: 'app/templates.js'
