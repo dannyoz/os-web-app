@@ -26974,7 +26974,9 @@ dod.run([
 
     console.log('request made to api');
 
-    api.getContent('data').then(function (result){
+    api.getContent('data').success(function (result){
+
+        console.log(result);
 
         $timeout(function(){
 
@@ -27011,7 +27013,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><form><fieldset><input name=Name placeholder=\"Name\"></fieldset><fieldset><input type=email name=Email placeholder=\"Email\"></fieldset><fieldset><input name=Subject placeholder=\"Subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 placeholder=Message></textarea></fieldset><fieldset><button>Send</button></fieldset></form></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><form><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
   );
 
 
@@ -27049,7 +27051,7 @@ dod.controller('navigation',['$scope', 'content', function ($scope, content) {
 	});
 
 }]);
-dod.factory('api', ['$http', '$q', function ($http, $q){
+dod.factory('api', ['$http', function ($http){
 
 	var prefix = '/api/',
 		suffix ='.json?callback=JSON_CALLBACK';
@@ -27057,14 +27059,9 @@ dod.factory('api', ['$http', '$q', function ($http, $q){
 	
 	var getContent = function(name){
 
-		var defer = $q.defer(),
-			url   = prefix+name+suffix;
+		var url = prefix+name+suffix;
+		return $http.jsonp(url);
 
-		$http.jsonp(url).success(function (result){
-			defer.resolve(result);
-		});
-
-		return defer.promise
 	};
 
 	return {
@@ -27113,18 +27110,33 @@ dod.controller('artSingle',['$scope', function ($scope) {
 	
 	console.log('art single');
 }]);
-dod.controller('contact',['$scope', 'content', function ($scope, content) {
+dod.controller('contact',['$scope', 'content', 'api', function ($scope, content, api) {
 	"use strict";
 	
 	//Use cached data if request is already made
-	$scope.page  = content.data.contact;
-	$scope.ready = content.ready;
+	$scope.page     = content.data.contact;
+	$scope.messages = content.data.messages;
+	$scope.ready    = content.ready;
 
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
-		$scope.page  = content.data.contact;
-		$scope.ready = content.ready;
+		$scope.page     = content.data.contact;
+		$scope.messages = content.data.messages;
+		$scope.ready    = content.ready;
 	});
+
+	$scope.message = {
+		name : "Name",
+		subject : "Subject",
+		email : "e-mail",
+		text : "Message"
+	}
+
+	$scope.sendMessage = function(msg){
+
+		console.log($scope.messages);
+		
+	};
 
 }]);
 dod.controller('home',['$scope', 'content', function ($scope, content) {

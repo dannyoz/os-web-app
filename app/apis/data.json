@@ -20,16 +20,27 @@ angular.callbacks._0({
 		"heading" : "home"
 	},
 	"about" : {
-		"heading" : "about"
+		"heading" : "About me",
+		"subheading" : "Derpminster"
 	},
 	"art" : {
-		"heading" : "art"
+		"heading" : "art",
+		"subheading" : "Derpminster"
 	},
 	"websites" : {
-		"heading" : "websites"
+		"heading" : "websites",
+		"subheading" : "Derpminster"
 	},
 	"contact" : {
-		"heading" : "contact"
-	}
+		"heading" : "contact",
+		"subheading" : "Derpminster"
+	},
+	"messages" : [{
+		"name" : "derplan smiff",
+		"date" : "Fri Mar 20 2015 16:25:34 GMT+0000 (GMT Standard Time)",
+		"subject" : "Test msg",
+		"email" : "derplan@derp.de.rp",
+		"text" : "I wuv you"
+	}]
 	
 });

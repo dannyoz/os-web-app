@@ -1,4 +1,4 @@
-dod.factory('api', ['$http', '$q', function ($http, $q){
+dod.factory('api', ['$http', function ($http){
 
 	var prefix = '/api/',
 		suffix ='.json?callback=JSON_CALLBACK';
@@ -6,14 +6,9 @@ dod.factory('api', ['$http', '$q', function ($http, $q){
 	
 	var getContent = function(name){
 
-		var defer = $q.defer(),
-			url   = prefix+name+suffix;
+		var url = prefix+name+suffix;
+		return $http.jsonp(url);
 
-		$http.jsonp(url).success(function (result){
-			defer.resolve(result);
-		});
-
-		return defer.promise
 	};
 
 	return {

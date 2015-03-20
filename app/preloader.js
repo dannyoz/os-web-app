@@ -8,7 +8,9 @@ dod.run([
 
     console.log('request made to api');
 
-    api.getContent('data').then(function (result){
+    api.getContent('data').success(function (result){
+
+        console.log(result);
 
         $timeout(function(){
 

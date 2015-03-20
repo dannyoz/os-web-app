@@ -21,7 +21,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><form><fieldset><input name=Name placeholder=\"Name\"></fieldset><fieldset><input type=email name=Email placeholder=\"Email\"></fieldset><fieldset><input name=Subject placeholder=\"Subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 placeholder=Message></textarea></fieldset><fieldset><button>Send</button></fieldset></form></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><form><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
   );
 
 
