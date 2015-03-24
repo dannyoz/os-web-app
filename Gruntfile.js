@@ -161,7 +161,12 @@ module.exports = function(grunt) {
             },
             dev: {
                 options: {
-                    script: 'build/server.js'
+                    script: 'dev-server.js'
+                }
+            },
+            cms: {
+                options: {
+                    script: 'cms-server.js'
                 }
             }
         }
@@ -180,6 +185,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
 
     // RUN GRUNT 
-    grunt.registerTask('default', ['concat', 'ngtemplates', 'uglify', 'watch', 'compass']);
+    grunt.registerTask('default', ['express:dev', 'express:cms','concat', 'ngtemplates', 'uglify', 'watch', 'compass']);
 
 };
