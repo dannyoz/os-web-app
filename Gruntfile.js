@@ -20,7 +20,6 @@ module.exports = function(grunt) {
                 src: [
                     'app/libs/angular.js',
                     'app/libs/angular-route.js',
-                    'app/libs/init.js',
                     'app/app.js',
                     'app/preloader.js',
                     'app/templates.js',
@@ -28,6 +27,18 @@ module.exports = function(grunt) {
                     'app/views/**/*.js'
                 ],
                 dest: 'app/main.js',
+            },
+            cms: {
+                src: [
+                    'cms/app/libs/angular.js',
+                    'cms/app/libs/angular-route.js',
+                    'cms/app/app.js',
+                    'cms/app/preloader.js',
+                    'cms/app/templates.js',
+                    'cms/app/global/**/*.js',
+                    'cms/app/views/**/*.js'
+                ],
+                dest: 'cms/js/main.js',
             }
         },
 
@@ -53,6 +64,28 @@ module.exports = function(grunt) {
                     'app/views/**/*.html'
                 ],
                 dest: 'app/templates.js'
+            },
+            cms: {
+                options: {
+                    module: "app",
+                    bootstrap: function(module, script) {
+                        return 'app.run(["$templateCache", function($templateCache) {' + script + '}])';
+                    },
+                    htmlmin: {
+                        collapseBooleanAttributes:      true,
+                        collapseWhitespace:             true,
+                        removeAttributeQuotes:          true,
+                        removeEmptyAttributes:          true,
+                        removeRedundantAttributes:      true,
+                        removeScriptTypeAttributes:     true,
+                        removeStyleLinkTypeAttributes:  true
+                    }
+                },
+                src: [
+                    'cms/app/global/**/*.html',
+                    'cms/app/views/**/*.html'
+                ],
+                dest: 'cms/app/templates.js'
             }
         },
 
@@ -60,6 +93,10 @@ module.exports = function(grunt) {
             build: {
                 src: 'app/main.js',
                 dest: 'build/js/main.min.js'
+            },
+            cms : {
+                src: 'cms/js/main.js',
+                dest: 'cms/js/main.min.js'
             }
         },
 
@@ -68,7 +105,9 @@ module.exports = function(grunt) {
                 files: [
                     'app/*.js',
                     'app/global/**/*.js',
-                    'app/views/**/*.js'
+                    'app/views/**/*.js',
+                    'cms/app/global/**/*.js',
+                    'cms/app/views/**/*.js'
                 ],
                 tasks: ['concat', 'uglify'],
                 options: {
@@ -79,7 +118,9 @@ module.exports = function(grunt) {
             css: {
                 files: [
                     'app/global/**/*.scss',
-                    'app/views/**/*.scss'
+                    'app/views/**/*.scss',
+                    'cms/app/global/**/*.scss',
+                    'cms/app/views/**/*.scss'
                 ],
                 tasks: ['compass'],
                 options: {
@@ -123,7 +164,15 @@ module.exports = function(grunt) {
                     noLineComments : true,
                     environment: 'development'
                 }
-            }
+            },
+            cms: {                
+                options: {          
+                    sassDir: 'cms/app',
+                    cssDir: 'cms/css',
+                    noLineComments : true,
+                    environment: 'development'
+                }
+            } 
         },
 
         copy: {
