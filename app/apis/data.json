@@ -17,7 +17,12 @@ angular.callbacks._0({
 		"url" : "/contact"
 	}],
 	"home" : {
-		"heading" : "home"
+		"heading" : "Dan Osborne",
+		"subheading" : "Front end developer | Artist",
+		"cta" : {
+			"url" : "/websites",
+			"text" : "See my work"
+		}
 	},
 	"about" : {
 		"heading" : "About me",
