@@ -41,6 +41,11 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
         .when('/styleguide', {
         	templateUrl: 'app/views/styleguide/styleguide.html'
+        })
+
+        .otherwise({
+                templateUrl: 'app/views/404/404.html',
+                controller : 'home'
         });
 
         

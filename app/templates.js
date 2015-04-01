@@ -5,18 +5,23 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('app/views/404/404.html',
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><section>404 bruv</section></div>"
+  );
+
+
   $templateCache.put('app/views/about/about.html',
     "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><div ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)>{{artwork}} <img ng-src={{::data.thumbnail}}></div></div></div>"
   );
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div class=centre>art single</div>"
+    "<div class=centre>{{work.title}}</div>"
   );
 
 
@@ -26,7 +31,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><h1>{{::page.heading}}</h1><h2>{{::page.subheading}}</h2></div></div>"
+    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><h1>{{::page.heading}}</h1><h2>{{::page.subheading}}</h2></div></div>"
   );
 
 
@@ -36,11 +41,11 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/single/website-single.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=centre>{{site.title}}</div>"
   );
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><div ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website)>{{website}} <img ng-src={{::data.thumbnail}}></div></div></div>"
   );
 }])

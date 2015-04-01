@@ -26952,6 +26952,11 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
         .when('/styleguide', {
         	templateUrl: 'app/views/styleguide/styleguide.html'
+        })
+
+        .otherwise({
+                templateUrl: 'app/views/404/404.html',
+                controller : 'home'
         });
 
         
@@ -26997,18 +27002,23 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('app/views/404/404.html',
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><section>404 bruv</section></div>"
+  );
+
+
   $templateCache.put('app/views/about/about.html',
     "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><div ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)>{{artwork}} <img ng-src={{::data.thumbnail}}></div></div></div>"
   );
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div class=centre>art single</div>"
+    "<div class=centre>{{work.title}}</div>"
   );
 
 
@@ -27018,7 +27028,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><h1>{{::page.heading}}</h1><h2>{{::page.subheading}}</h2></div></div>"
+    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><h1>{{::page.heading}}</h1><h2>{{::page.subheading}}</h2></div></div>"
   );
 
 
@@ -27028,14 +27038,84 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/single/website-single.html',
-    "<div class=centre><h1>Site Under construction</h1><h3>Please check back soon!!!</h3></div>"
+    "<div class=centre>{{site.title}}</div>"
   );
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><div ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website)>{{website}} <img ng-src={{::data.thumbnail}}></div></div></div>"
   );
 }])
+dod.directive('dodEvents', function(){
+	return {
+		restrict : "A",
+		link : function(scope, element, attrs){
+
+			var $window  = angular.element(window),
+				isSwipe  = false,
+				distance = 0,
+				touch    = {
+					start : {},
+					end : {}
+				};
+
+
+			$window.on('touchstart', function (e){
+				//console.log(e);
+				touch.start.X = e.touches[0].pageX;
+				touch.start.Y = e.touches[0].pageY;
+			});
+
+			$window.on('touchmove', function (e){
+				distance ++
+				touch.end.X = e.touches[0].pageX;
+				touch.end.Y = e.touches[0].pageY;
+			});
+
+			$window.on('touchend', function (e){
+
+				//console.log(touch.end,touch.start, distance)
+
+				var Xdiff = Math.abs(touch.end.X - touch.start.X),
+			 		Ydiff = Math.abs(touch.end.Y - touch.start.Y),
+			 		direction = "";
+
+			 	//Detect axis
+				if(Xdiff > Ydiff){
+					//horizontal
+					if(touch.start.X > touch.end.X){
+						direction = "right";
+					} else{
+						direction = "left";
+					}
+
+				} else {
+					//vertical
+					if(touch.start.Y > touch.end.Y){
+						direction = "down";
+					} else{
+						direction = "up";
+					}
+				}
+
+				if(distance > 1){
+					console.log(direction);
+				} else {
+					console.log("click");
+				}
+
+				//Resets
+				distance = 0;
+				touch    = {
+					start : {},
+					end : {}
+				};
+
+
+			});
+		}
+	}
+});
 dod.controller('navigation',['$scope', 'content', function ($scope, content) {
 	"use strict";
 
@@ -27054,18 +27134,26 @@ dod.controller('navigation',['$scope', 'content', function ($scope, content) {
 dod.factory('api', ['$http', function ($http){
 
 	var prefix = '/api/',
-		suffix ='.json?callback=JSON_CALLBACK';
+		suffix ='.json';
 
 	
 	var getContent = function(name){
 
 		var url = prefix+name+suffix;
-		return $http.jsonp(url);
+		return $http.get(url);
 
-	};
+	}, 
+	postMessage = function(msg){
+
+		var url = "/post-message";
+
+		return $http.post(url,msg);
+
+	}
 
 	return {
-		getContent : getContent
+		getContent : getContent,
+		postMessage : postMessage
 	}
 
 }]);
@@ -27081,8 +27169,10 @@ dod.controller('about',['$scope', 'content' , function ($scope, content) {
 	"use strict";
 
 	//Use cached data if request is already made
-	$scope.page  = content.data.about;
-	$scope.ready = content.ready;
+	if(content.ready){	
+		$scope.page  = content.data.about;
+		$scope.ready = content.ready;
+	}
 
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
@@ -27091,40 +27181,77 @@ dod.controller('about',['$scope', 'content' , function ($scope, content) {
 	});
 
 }]);
-dod.controller('art',['$scope', 'content', function ($scope, content) {
-	"use strict";
-	
-	//Use cached data if request is already made
-	$scope.page  = content.data.art;
-	$scope.ready = content.ready;
+dod.controller('art',[
+	'$scope',
+	'$location',  
+	'content', 
+	function ($scope, $location, content) {
+		"use strict";
+		
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.page  = content.data.art;
+			$scope.ready = content.ready;
+		}
 
-	//Use event listener for initial api request
-	$scope.$on('appReady', function (data){
-		$scope.page  = content.data.art;
-		$scope.ready = content.ready;
-	});
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.page  = content.data.art;
+			$scope.ready = content.ready;
+		});
 
-}]);
-dod.controller('artSingle',['$scope', function ($scope) {
-	"use strict";
-	
-	console.log('art single');
-}]);
+		$scope.showWork = function(path){
+			$location.path('/art/' + path);
+		};
+
+	}]);
+dod.controller('artSingle',[
+	'$scope',
+	'$location',
+	'content', 
+	function ($scope, $location, content) {
+		"use strict";
+		
+		var pathname = location.pathname,
+			work     = pathname.replace("/art/", "");
+
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.work  = content.data.art.list[work];
+			$scope.ready = content.ready;
+
+			if(!$scope.work){
+				$location.path('/404');
+			}
+		}
+
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.work  = content.data.art.list[work];
+			$scope.ready = content.ready;
+
+			if(!$scope.work){
+				$location.path('/404');
+			}
+		});
+
+	}]);
 dod.controller('contact',['$scope', 'content', 'api', function ($scope, content, api) {
 	"use strict";
 	
 	//Use cached data if request is already made
-	$scope.page     = content.data.contact;
-	$scope.messages = content.data.messages;
-	$scope.ready    = content.ready;
+	if(content.ready){	
+		$scope.page     = content.data.contact;
+		$scope.ready    = content.ready;
+	}
 
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
 		$scope.page     = content.data.contact;
-		$scope.messages = content.data.messages;
 		$scope.ready    = content.ready;
 	});
 
+	$scope.messageStatus = "pending"
 	$scope.message = {
 		name : "Name",
 		subject : "Subject",
@@ -27134,7 +27261,32 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 	$scope.sendMessage = function(msg){
 
-		console.log($scope.messages);
+		api.getContent('messages').success(function (data){
+
+			$scope.messages = data.messages;
+			$scope.messages.push($scope.message);
+
+			var obj = angular.copy($scope.messages);
+
+			console.log($scope.messages);
+
+			api.postMessage(obj).success(function (result){
+				
+				$scope.messageStatus = "sent"
+
+			}).error(function (data, status, headers, config){
+
+				$scope.messageStatus = "error"
+
+				console.log("Post error : " , data);
+				console.log("status : " , status);
+				console.log("headers : " , headers);
+				console.log("config : " , config);
+			});
+
+		});
+
+		
 		
 	};
 
@@ -27143,8 +27295,10 @@ dod.controller('home',['$scope', 'content', function ($scope, content) {
 	"use strict";
 
 	//Use cached data if request is already made
-	$scope.page  = content.data.home;
-	$scope.ready = content.ready;
+	if(content.ready){	
+		$scope.page  = content.data.home;
+		$scope.ready = content.ready;
+	}
 
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
@@ -27164,22 +27318,59 @@ dod.controller('loading',['$scope', 'content', function ($scope, content) {
 	});
 
 }]);
-dod.controller('websiteSingle',['$scope', function ($scope) {
-	"use strict";
-	
-	console.log('websiteSingle');
-}]);
-dod.controller('websites',['$scope', 'content', function ($scope, content) {
-	"use strict";
-	
-	//Use cached data if request is already made
-	$scope.page  = content.data.websites;
-	$scope.ready = content.ready;
+dod.controller('websiteSingle',[
+	'$scope',
+	'$location', 
+	'content', 
+	function ($scope, $location, content) {
+		"use strict";
 
-	//Use event listener for initial api request
-	$scope.$on('appReady', function (data){
-		$scope.page  = content.data.websites;
-		$scope.ready = content.ready;
-	});
+		var pathname = location.pathname,
+			website  = pathname.replace("/websites/", "");
 
-}]);
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.site  = content.data.websites.list[website];
+			$scope.ready = content.ready;
+
+			if(!$scope.site){
+				$location.path('/404');
+			}
+		}
+
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.site  = content.data.websites.list[website];
+			$scope.ready = content.ready;
+
+			if(!$scope.site){
+				$location.path('/404');
+			}
+		});
+
+
+	}]);
+dod.controller('websites',[
+	'$scope',
+	'$location', 
+	'content', 
+	function ($scope, $location, content) {
+		"use strict";
+		
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.page  = content.data.websites;
+			$scope.ready = content.ready;
+		}
+
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.page  = content.data.websites;
+			$scope.ready = content.ready;
+		});
+
+		$scope.showSite = function(path){
+			$location.path('/websites/' + path);
+		};
+
+	}]);

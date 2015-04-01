@@ -1,4 +1,4 @@
-angular.callbacks._0({
+{
 
 	"navigation" : [{
 		"title" : "Home",
@@ -17,8 +17,8 @@ angular.callbacks._0({
 		"url" : "/contact"
 	}],
 	"home" : {
-		"heading" : "Dan Osborne",
-		"subheading" : "Front end developer | Artist",
+		"heading" : "Headline",
+		"subheading" : "Goes here",
 		"cta" : {
 			"url" : "/websites",
 			"text" : "See my work"
@@ -30,11 +30,35 @@ angular.callbacks._0({
 	},
 	"art" : {
 		"heading" : "art",
-		"subheading" : "Derpminster"
+		"subheading" : "Derpminster",
+		"list" : {
+			"lara-croft" : {
+				"title" : "Lara Croft",
+				"thumbnail" : "http://placehold.it/250x150",
+				"info" : "Byrne dean is grate"
+			},
+			"b-movie-makers-from-another-world" : {
+				"title" : "B-movie makers from another world",
+				"thumbnail" : "http://placehold.it/250x150",
+				"info" : "So is aardvaerk"
+			}
+		}
 	},
 	"websites" : {
 		"heading" : "websites",
-		"subheading" : "Derpminster"
+		"subheading" : "Derpminster",
+		"list" : {
+			"byrne-dean" : {
+				"title" : "Byrne Dean",
+				"thumbnail" : "http://placehold.it/250x150",
+				"info" : "Byrne dean is grate"
+			},
+			"aardvark-media" : {
+				"title" : "Aardvark Media",
+				"thumbnail" : "http://placehold.it/250x150",
+				"info" : "So is aardvaerk"
+			}
+		}
 	},
 	"contact" : {
 		"heading" : "contact",
@@ -48,4 +72,4 @@ angular.callbacks._0({
 		"text" : "I wuv you"
 	}]
 	
-});
+}

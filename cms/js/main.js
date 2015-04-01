@@ -22682,7 +22682,7 @@ app.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, glo
 app.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
-		"devapi"  : "http://localhost:3000/api/data.json?callback=JSON_CALLBACK",
+		"devapi"  : "http://localhost:3000/api/data.json",
 		"devpost" : "http://localhost:3000/test/"
 	};
 
@@ -22690,8 +22690,9 @@ app.factory('api',['$http', '$q', function ($http, $q){
 
 		var defer = $q.defer();
 
-		$http.jsonp(endpoints.devapi).success(function (result){
+		$http.get(endpoints.devapi).success(function (result){
 			defer.resolve(result);
+			
 		}).error(function (data, status, headers, config){
 			console.log("Get error : " , data);
 			console.log("status : " , status);
@@ -22712,7 +22713,7 @@ app.factory('api',['$http', '$q', function ($http, $q){
 			console.log("status : " , status);
 			console.log("headers : " , headers);
 			console.log("config : " , config);
-		});;
+		});
 	};
 
 	return {

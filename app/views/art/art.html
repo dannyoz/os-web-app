@@ -3,6 +3,11 @@
 	<div class="centre">
 
 		<p>{{::page.heading}}</p>
+
+		<div ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
+			{{artwork}}
+			<img ng-src="{{::data.thumbnail}}">
+		</div>
 		
 	</div>
 

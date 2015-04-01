@@ -129,15 +129,33 @@
 @mixin centring{
 
 	.centre{
+		
 		@include centre;
+
+		&.text{
+
+			text-align: center;
+		}
 	}
 
 	.centre-x{
+
 		@include centre(x);
+
+		&.text{
+
+			text-align: center;
+		}
 	}
 
 	.centre-y{
+
 		@include centre(y);
+
+		&.text{
+
+			text-align: center;
+		}
 	}
 }
 

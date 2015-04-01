@@ -5,6 +5,7 @@ body{
 	background:$theme-bg-colour;
 	color:$theme-text-colour;
 	font-weight:100;
+	font-family: "Roboto", arial, sans-serif;
 }
 
 @include container(1200,20px);
