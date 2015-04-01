@@ -22540,16 +22540,21 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 })(window, window.angular);
-var app = angular.module('app', ['ngRoute']);
+var cms = angular.module('cms', ['ngRoute']);
 
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
  	
  	$routeProvider
 
         .when('/', {
-        	templateUrl: 'app/views/publish/publish.html',
-            controller : 'publish'
+        	templateUrl: 'app/views/splash/splash.html',
+            controller : 'splash'
+        })
+
+        .when('/editor', {
+            templateUrl: 'app/views/editor/editor.html',
+            controller : 'editor'
         })
 
         .when('/styleguide', {
@@ -22563,10 +22568,15 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     });
     
 }]);
-app.run(["$templateCache", function($templateCache) {  'use strict';
+cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/nav/nav.html',
     "<nav><ul><li><a href=# class=item1>Lorem ipsum.</a></li><li><a href=# class=item2>Perferendis, accusantium.</a></li><li><a href=# class=item3>Unde, quam.</a></li><li><a href=# class=item4>Quos, recusandae.</a></li><li><a href=# class=item5>Dolore, corrupti.</a></li></ul></nav>"
+  );
+
+
+  $templateCache.put('cms/app/views/editor/editor.html',
+    "<aside>Left nav</aside><section>Main section</section>"
   );
 
 
@@ -22576,6 +22586,11 @@ app.run(["$templateCache", function($templateCache) {  'use strict';
     "\t\t\t\r" +
     "\n" +
     "\t\t</textarea><button ng-click=api.post(data);>Post</button> <button ng-click=getData();>Get</button></div></section>"
+  );
+
+
+  $templateCache.put('cms/app/views/splash/splash.html',
+    "<div class=centre><h1>DOD CMS</h1><button class=\"large rounded-10px\" ng-click=\"env('dev')\">Dev site</button></div>"
   );
 
 
@@ -22670,7 +22685,7 @@ app.run(["$templateCache", function($templateCache) {  'use strict';
     "</pre><p>Monospace Text wrapped in \"pre\" tags</p><pre><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p></pre><hr>"
   );
 }])
-app.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, global) {
+cms.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, global) {
 
 	// Check to see if feed has loaded
     $scope.$watch(function(){
@@ -22679,7 +22694,7 @@ app.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, glo
 
 }]);
 
-app.factory('api',['$http', '$q', function ($http, $q){
+cms.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
 		"devapi"  : "http://localhost:3000/api/data.json",
@@ -22722,7 +22737,26 @@ app.factory('api',['$http', '$q', function ($http, $q){
 	}
 
 }]);
-app.controller('publish',['$scope','api',function ($scope,api){
+cms.factory('data',function () {
+	"use strict";
+
+	return {};
+});
+cms.controller('editor',[
+	'$scope',
+	'$location',
+	'data', 
+	function ($scope, $location, data){
+		"use strict";
+
+		$scope.json = data.json
+
+		if(!$scope.json){
+			$location.path('/');
+		}
+
+	}]);
+cms.controller('publish',['$scope','api',function ($scope,api){
 	$scope.data = "data goes here";
 	$scope.api = api;
 
@@ -22735,3 +22769,23 @@ app.controller('publish',['$scope','api',function ($scope,api){
 	};
 
 }]);
+cms.controller('splash',[
+	"$scope",
+	"$location",
+	"api",
+	"data", 
+	function ($scope,$location,api,data){
+		"use strict";
+
+		console.log('splash');
+
+		$scope.env = function(env){
+
+			api.get().then(function (result){
+				data.json = result;
+
+				$location.path('/editor');
+			});
+		}
+
+	}]);

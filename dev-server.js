@@ -154,13 +154,13 @@ var SampleApp = function() {
         
         self.app.post('/test', function(req, res){
 
-            var topSlice    = "angular.callbacks._0(",
+            var topSlice    = "",
                 filling     = JSON.stringify(req.body),
-                bottomSlice = ");",
+                bottomSlice = "",
                 sandwich    = topSlice+filling+bottomSlice,
                 response    = {};
 
-            fs.writeFile("api/test.json", sandwich, function(err) {
+            fs.writeFile("build/api/data.json", sandwich, function(err) {
 
                 if(err) {
 

@@ -67,9 +67,9 @@ module.exports = function(grunt) {
             },
             cms: {
                 options: {
-                    module: "app",
+                    module: "cms",
                     bootstrap: function(module, script) {
-                        return 'app.run(["$templateCache", function($templateCache) {' + script + '}])';
+                        return 'cms.run(["$templateCache", function($templateCache) {' + script + '}])';
                     },
                     htmlmin: {
                         collapseBooleanAttributes:      true,

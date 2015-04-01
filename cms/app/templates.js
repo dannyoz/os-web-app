@@ -1,7 +1,12 @@
-app.run(["$templateCache", function($templateCache) {  'use strict';
+cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/nav/nav.html',
     "<nav><ul><li><a href=# class=item1>Lorem ipsum.</a></li><li><a href=# class=item2>Perferendis, accusantium.</a></li><li><a href=# class=item3>Unde, quam.</a></li><li><a href=# class=item4>Quos, recusandae.</a></li><li><a href=# class=item5>Dolore, corrupti.</a></li></ul></nav>"
+  );
+
+
+  $templateCache.put('cms/app/views/editor/editor.html',
+    "<aside>Left nav</aside><section>Main section</section>"
   );
 
 
@@ -11,6 +16,11 @@ app.run(["$templateCache", function($templateCache) {  'use strict';
     "\t\t\t\r" +
     "\n" +
     "\t\t</textarea><button ng-click=api.post(data);>Post</button> <button ng-click=getData();>Get</button></div></section>"
+  );
+
+
+  $templateCache.put('cms/app/views/splash/splash.html',
+    "<div class=centre><h1>DOD CMS</h1><button class=\"large rounded-10px\" ng-click=\"env('dev')\">Dev site</button></div>"
   );
 
 

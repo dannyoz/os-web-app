@@ -1,4 +1,4 @@
-app.controller('publish',['$scope','api',function ($scope,api){
+cms.controller('publish',['$scope','api',function ($scope,api){
 	$scope.data = "data goes here";
 	$scope.api = api;
 

@@ -1,4 +1,4 @@
-app.factory('api',['$http', '$q', function ($http, $q){
+cms.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
 		"devapi"  : "http://localhost:3000/api/data.json",

@@ -1,13 +1,18 @@
-var app = angular.module('app', ['ngRoute']);
+var cms = angular.module('cms', ['ngRoute']);
 
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
  	
  	$routeProvider
 
         .when('/', {
-        	templateUrl: 'app/views/publish/publish.html',
-            controller : 'publish'
+        	templateUrl: 'app/views/splash/splash.html',
+            controller : 'splash'
+        })
+
+        .when('/editor', {
+            templateUrl: 'app/views/editor/editor.html',
+            controller : 'editor'
         })
 
         .when('/styleguide', {
