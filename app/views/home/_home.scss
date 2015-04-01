@@ -1,12 +1,34 @@
 #home{
 
+	// @include background-image(radial-gradient(#242424,#151515));
+	// @include fitParent;
+
 	h1{
+
+		text-transform:uppercase;
 		color:$primary-orange;
-		letter-spacing: 0.2em;
+		letter-spacing: 0.1em;
 		font:{
 
-			size : 4em;
+			size : 3.6em;
+			weight:700;
+		}
+
+		&::first-letter{
+
+			font-size: 1.5em;
+		}
+	}
+
+	h2{
+
+		text-transform:uppercase;
+		letter-spacing: 0.7em;
+		color:#ddd;
+		font: {
+			size : 1.6em;
 			weight:100;
+			family: "Roboto", arial, sans-serif;
 		}
 	}
 
