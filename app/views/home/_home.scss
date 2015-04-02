@@ -9,26 +9,27 @@
 		color:$primary-orange;
 		letter-spacing: 0.1em;
 		font:{
-
+			
+			family : "museo-slab", sans-serif;
 			size : 3.6em;
-			weight:700;
+			weight:100;
 		}
 
-		&::first-letter{
+		// &::first-letter{
 
-			font-size: 1.5em;
-		}
+		// 	font-size: 1.5em;
+		// }
 	}
 
 	h2{
 
 		text-transform:uppercase;
-		letter-spacing: 0.7em;
+		letter-spacing: 0.4em;
 		color:#ddd;
 		font: {
-			size : 1.6em;
+			size : 1.9em;
 			weight:100;
-			family: "Roboto", arial, sans-serif;
+			family: "prenton-ultra-condensed", arial, sans-serif;
 		}
 	}
 

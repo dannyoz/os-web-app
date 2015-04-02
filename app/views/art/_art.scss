@@ -1,0 +1,104 @@
+$grid-padding: 1%;
+$grid-y-padding: 10px;
+$horiz-width : 50% - $grid-padding;
+
+#art{
+
+	.art-thumb{
+
+		@include grid-col(6,24,$grid-padding);
+		overflow: hidden;
+		margin-bottom: $grid-y-padding;
+		position: relative;
+		background:#444;
+
+		img{
+			
+			display: block;
+			width:100%;
+			opacity: 0;
+
+			&.second{
+
+				margin-top:10px;
+			}
+
+		}
+
+		.overlay{
+			
+			opacity: 0;
+			@extend .transition-2;
+			@include background-image(radial-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)));
+			@include fitParent;
+		}
+
+		&:nth-of-type(13n+9){
+
+			clear: left;
+		}
+
+
+		&:nth-of-type(13n+3), &:nth-of-type(13n+8), &:nth-of-type(13n+11){
+			
+			.second{
+
+				display: none;
+			}
+
+			margin-right:0;
+		}
+
+		&:nth-of-type(13n+4), &:nth-of-type(13n+7), &:nth-of-type(13n+12){
+			
+			.second{
+
+				display: none;
+			}
+		}
+
+		&:nth-of-type(13n+2), &:nth-of-type(13n+6), &:nth-of-type(13n+10){
+
+			@include grid-col(12,24,$grid-padding);
+
+			img{
+				float: left;
+				width:$horiz-width;
+				margin-top:0;
+			}
+		}
+
+		&:nth-of-type(13n+5),&:nth-of-type(13n+13){
+
+			@include grid-col-last(12,24,$grid-padding);
+
+			img{
+				float: left;
+				width:$horiz-width;
+				margin-top:0;
+			}
+
+		}
+
+		
+
+		&:hover{
+
+			img{
+				
+				@extend .transition-3;
+				@include scale(1.5);
+			}
+
+			.overlay {
+
+				opacity: 1;
+			}
+		}
+
+		@media (max-width : 720px){
+
+			@include grid-col(12,24,3%);
+		}
+	}
+}

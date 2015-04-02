@@ -22576,7 +22576,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<aside>Left nav</aside><section>Main section</section>"
+    "<aside>Left nav</aside><section>Main section {{json}}</section>"
   );
 
 
