@@ -26972,29 +26972,67 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 //Loading content
 dod.run([
     '$rootScope',
+    '$http',
     '$timeout',
     'content',
     'api', 
-    function ($rootScope, $timeout, content, api){
+    function ($rootScope, $http, $timeout, content, api){
 
-    console.log('request made to api');
+        //console.log('request made to api');
+        $rootScope.$broadcast('loadingMsg', "Loading...");
 
-    api.getContent('data').success(function (result){
+        api.getContent('data').success(function (result){
 
-        console.log(result);
+            console.log(result);
 
-        $timeout(function(){
+            loadImages(result.images, result)
+            
+        });
 
-            content.data  = result;
-            content.ready = true;
+        function loadImages(images,result) {
 
-            $rootScope.$broadcast('appReady', result);
+            $rootScope.$broadcast('loadingMsg', "Loading Media...");
 
-        },1000);
-        
-    });
+            var totalReq = 0,
+                remaining = 0;
 
-}]);
+            angular.forEach(images,function (img){
+                if (img.preload) {
+                    totalReq ++
+                    get(img.path);
+                };
+            });
+
+            function get(url){
+
+                $http.get(url).success(function (data){
+
+                    remaining ++
+                    new Image().src = url
+
+                    var count = {
+                        "total" : totalReq,
+                        "remaining" :remaining
+                    }   
+
+                    $rootScope.$broadcast('remaining', count);
+
+                    if(totalReq == remaining){
+
+                        $timeout(function(){
+
+                            content.data  = result;
+                            content.ready = true;
+
+                            $rootScope.$broadcast('appReady', result);
+
+                        },500);
+                    }
+                });
+            }
+        }
+
+    }]);
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/navigation/navigation.html',
@@ -27013,7 +27051,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list dod-grid=page.list><div class=art-thumb ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first ng-src={{::data.thumbnail}}> <img class=second ng-src={{::data.thumbnail}}><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
+    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list dod-grid=page.list><div class=art-thumb ng-attr-style=background-image:url({{getThumb(data.media.thumbnail)}}); ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
   );
 
 
@@ -27033,7 +27071,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/loading/loading.html',
-    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>loading</p></div>"
+    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>{{msg}}</p><p>{{percent}}%</p></div>"
   );
 
 
@@ -27214,19 +27252,25 @@ dod.controller('art',[
 		
 		//Use cached data if request is already made
 		if(content.ready){	
-			$scope.page  = content.data.art;
-			$scope.ready = content.ready;
+			$scope.page   = content.data.art;
+			$scope.images = content.data.images;
+			$scope.ready  = content.ready;
 		}
 
 		//Use event listener for initial api request
 		$scope.$on('appReady', function (data){
-			$scope.page  = content.data.art;
-			$scope.ready = content.ready;
+			$scope.page   = content.data.art;
+			$scope.images = content.data.images;
+			$scope.ready  = content.ready;
 		});
 
 		$scope.showWork = function(path){
 			$location.path('/art/' + path);
 		};
+
+		$scope.getThumb = function(index){
+			return $scope.images[index].path;
+		}
 
 	}]);
 dod.controller('artSingle',[
@@ -27339,6 +27383,14 @@ dod.controller('loading',['$scope', 'content', function ($scope, content) {
 		$scope.ready = content.ready;
 
 		console.log('loaded');
+	});
+
+	$scope.$on('loadingMsg', function (msg,val){
+		$scope.msg = val;
+	});
+
+	$scope.$on('remaining', function (o,count){
+		$scope.percent = 100/count.total * count.remaining;
 	});
 
 }]);

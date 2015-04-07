@@ -35,78 +35,43 @@
 		"list" : {
 			"lara-croft" : {
 				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
+				"info" : "Byrne dean is grate",
+				"media" : {
+					"thumbnail" : 1,
+					"main-image" : 1
+				}
 			},
 			"b-movie-makers-from-another-world" : {
 				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
+				"info" : "So is aardvaerk",
+				"media" : {
+					"thumbnail" : 0,
+					"main-image" : 1
+				}
 			},
 			"zombie-simpsons-mrs-krabapple" : {
 				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
+				"info" : "Byrne dean is grate",
+				"media" : {
+					"thumbnail" : 1,
+					"main-image" : 1
+				}
 			},
 			"alien-isolation" : {
 				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
+				"info" : "So is aardvaerk",
+				"media" : {
+					"thumbnail" : 2,
+					"main-image" : 1
+				}
 			},
 			"liquigirl" : {
 				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
-			},
-			"moar-art" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"stuffs" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
-			},
-			"moar-stuffs" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"derpy" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"declan" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
-			},
-			"smiff" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"moar-stusddd" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"derpyffd" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
-			},
-			"declandfdf" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "Byrne dean is grate"
-			},
-			"smifffff" : {
-				"title" : "Title goes here",
-				"thumbnail" : "http://placehold.it/350x350",
-				"info" : "So is aardvaerk"
+				"info" : "Byrne dean is grate",
+				"media" : {
+					"thumbnail" : 3,
+					"main-image" : 1
+				}
 			}
 		}
 	},
@@ -129,5 +94,22 @@
 	"contact" : {
 		"heading" : "contact",
 		"subheading" : "Derpminster"
-	}
+	},
+	"images" : [{
+		"title" : "image-1",
+		"path" : "/img/1.png",
+		"preload" : true
+	},{
+		"title" : "image-2",
+		"path" : "/img/2.png",
+		"preload" : true
+	},{
+		"title" : "image-3",
+		"path" : "/img/3.png",
+		"preload" : true
+	},{
+		"title" : "image-4",
+		"path" : "/img/4.png",
+		"preload" : true
+	}]
 }

@@ -16,7 +16,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list dod-grid=page.list><div class=art-thumb ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first ng-src={{::data.thumbnail}}> <img class=second ng-src={{::data.thumbnail}}><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
+    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list dod-grid=page.list><div class=art-thumb ng-attr-style=background-image:url({{getThumb(data.media.thumbnail)}}); ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
   );
 
 
@@ -36,7 +36,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/loading/loading.html',
-    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>loading</p></div>"
+    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>{{msg}}</p><p>{{percent}}%</p></div>"
   );
 
 

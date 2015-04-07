@@ -11,6 +11,8 @@ $horiz-width : 50% - $grid-padding;
 		margin-bottom: $grid-y-padding;
 		position: relative;
 		background:#444;
+		background-position:50% 50%;
+		background-size:cover;
 
 		img{
 			

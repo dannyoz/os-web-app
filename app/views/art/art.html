@@ -10,9 +10,10 @@
 
 		<div class="grid-row" ng-if="page.list" dod-grid="page.list">
 
-			<div class="art-thumb" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
-				<img class="first" ng-src="{{::data.thumbnail}}">
-				<img class="second" ng-src="{{::data.thumbnail}}">
+			<div class="art-thumb" ng-attr-style="background-image:url({{getThumb(data.media.thumbnail)}});" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
+
+				<img class="first" src="/img/spacer.png">
+				<img class="second" src="/img/spacer.png">
 				<div class="overlay">
 					<div class="centre">
 						<p ng-bind="::data.title"></p>
