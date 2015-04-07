@@ -26,7 +26,38 @@
 	},
 	"about" : {
 		"heading" : "About me",
-		"subheading" : "Derpminster"
+		"subheading" : "Derpminster",
+		"intro" : "lorem ipsum",
+		"skills" : [
+			"HTML5",
+			"css",
+			"Javascript",
+			"Angular.js",
+			"jQuery",
+			"Sass",
+			"Grunt",
+			"Node.js",
+			"Karma",
+			"Jasmine",
+			"Photoshope",
+			"UI design",
+			"UX",
+			"SEO",
+			"Agile"
+		],
+		"most-likely-to-say" : [
+			"The fold is a myth",
+			"Bootstrap is over-rated",
+			"Sublime text rocks!",
+			"Don't use jQuery in an Angular app",
+			"IE8 is not a real thing"
+		],
+		"least-likely-to-say" : [
+			"Lets build it in .NET",
+			"Misko whovery?",
+			"Sure, we can retro-fit responsive design",
+			"Spanmds hjgv bht rnbre 656.7"
+		]
 	},
 	"art" : {
 		"heading" : "Heading",
@@ -37,7 +68,7 @@
 				"title" : "Title goes here",
 				"info" : "Byrne dean is grate",
 				"media" : {
-					"thumbnail" : 1,
+					"thumbnail" : "/img/1.jpg",
 					"main-image" : 1
 				}
 			},
@@ -45,7 +76,7 @@
 				"title" : "Title goes here",
 				"info" : "So is aardvaerk",
 				"media" : {
-					"thumbnail" : 0,
+					"thumbnail" : "/img/2.jpg",
 					"main-image" : 1
 				}
 			},
@@ -53,7 +84,7 @@
 				"title" : "Title goes here",
 				"info" : "Byrne dean is grate",
 				"media" : {
-					"thumbnail" : 1,
+					"thumbnail" : "/img/3.jpg",
 					"main-image" : 1
 				}
 			},
@@ -61,7 +92,7 @@
 				"title" : "Title goes here",
 				"info" : "So is aardvaerk",
 				"media" : {
-					"thumbnail" : 2,
+					"thumbnail" : "/img/4.jpg",
 					"main-image" : 1
 				}
 			},
@@ -69,7 +100,7 @@
 				"title" : "Title goes here",
 				"info" : "Byrne dean is grate",
 				"media" : {
-					"thumbnail" : 3,
+					"thumbnail" : "/img/5.jpg",
 					"main-image" : 1
 				}
 			}
@@ -82,12 +113,22 @@
 			"byrne-dean" : {
 				"title" : "Byrne Dean",
 				"thumbnail" : "http://placehold.it/250x150",
-				"info" : "Byrne dean is grate"
+				"info" : "Byrne dean is grate",
+				"tags" : [
+					"HTML5",
+					"jQuery",
+					"Sass"
+				]
 			},
 			"aardvark-media" : {
 				"title" : "Aardvark Media",
 				"thumbnail" : "http://placehold.it/250x150",
-				"info" : "So is aardvaerk"
+				"info" : "So is aardvaerk",
+				"tags" : [
+					"HTML5",
+					"jQuery",
+					"Sass"
+				]
 			}
 		}
 	},
@@ -97,19 +138,19 @@
 	},
 	"images" : [{
 		"title" : "image-1",
-		"path" : "/img/1.png",
+		"path" : "/img/1.jpg",
 		"preload" : true
 	},{
 		"title" : "image-2",
-		"path" : "/img/2.png",
+		"path" : "/img/2.jpg",
 		"preload" : true
 	},{
 		"title" : "image-3",
-		"path" : "/img/3.png",
+		"path" : "/img/3.jpg",
 		"preload" : true
 	},{
 		"title" : "image-4",
-		"path" : "/img/4.png",
+		"path" : "/img/4.jpg",
 		"preload" : true
 	}]
 }

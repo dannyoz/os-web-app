@@ -1,18 +1,46 @@
-dod.controller('navigation',['$scope', 'content', function ($scope, content) {
-	"use strict";
+dod.controller('navigation',[
+	'$scope', 
+	'$timeout',
+	'content', 
+	function ($scope, $timeout, content) {
+		"use strict";
 
-	//Use cached data if request is already made
-	if(content.ready){	
-		$scope.nav     = content.data.navigation;
-		$scope.ready   = content.ready;
-	}
-	
-	$scope.showNav = false;
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.nav     = content.data.navigation;
+			$scope.ready   = content.ready;
+		}
+		
+		$scope.showNav = false;
+		$scope.openNav = false;
 
-	//Use event listener for initial api request
-	$scope.$on('appReady', function (data){
-		$scope.nav   = content.data.navigation;
-		$scope.ready = content.ready;
-	});
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.nav   = content.data.navigation;
+			$scope.ready = content.ready;
+		});
 
-}]);
+		$scope.toggleNav = function(){
+
+			if(!$scope.showNav){
+				$scope.showNav = true;
+				$scope.openNav = true;
+			}
+
+			else {
+
+				$scope.hideNav();
+			}
+			
+		}
+
+		$scope.hideNav = function(){
+
+			$scope.openNav = false
+
+			$timeout(function(){
+				$scope.showNav = false
+			},500);
+		}
+
+	}]);

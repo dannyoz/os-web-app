@@ -1,7 +1,7 @@
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav}><div id=hamburger class=transition-3 ng-click=\"showNav = !showNav\">menu</div><div id=nav-holder><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a ng-href={{::link.url}} ng-bind=::link.title></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();>menu</div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a ng-href={{::link.url}} ng-bind=::link.title></a></li></ul></div></nav>"
   );
 
 
@@ -11,12 +11,12 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/about/about.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><p>{{::page.heading}}</p></div></div>"
   );
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list dod-grid=page.list><div class=art-thumb ng-attr-style=background-image:url({{getThumb(data.media.thumbnail)}}); ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
+    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row ng-if=page.list><div class=art-thumb ng-attr-style=background-image:url({{data.media.thumbnail}}); ng-repeat=\"(artwork,data) in page.list\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::data.title></p></div></div></div></div></div></div>"
   );
 
 
@@ -46,6 +46,6 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=centre><p>{{::page.heading}}</p><div ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website)>{{website}} <img ng-src={{::data.thumbnail}}></div></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><div class=grid-row><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading></h2><p ng-bind=::page.intro></p></div><div class=grid-row><div class=website ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website)>{{website}} <img ng-src={{::data.thumbnail}}></div></div></div></div>"
   );
 }])

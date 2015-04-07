@@ -1,10 +1,10 @@
-<nav class="transition-3" ng-class="{show:showNav}">
+<nav class="transition-3" ng-class="{show:showNav,open:openNav}">
 
-	<div id="hamburger" class="transition-3" ng-click="showNav = !showNav">
+	<div id="hamburger" class="transition-3" ng-click="toggleNav();">
 		menu
 	</div>
 
-	<div id="nav-holder">
+	<div id="nav-holder" ng-click="hideNav();">
 		
 		<ul>
 			<li ng-repeat="link in nav" ng-attr-style="transition-delay:{{$index*0.1}}s">

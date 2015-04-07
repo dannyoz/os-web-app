@@ -8,9 +8,9 @@
 			<p ng-bind="::page.intro"></p>
 		</div>
 
-		<div class="grid-row" ng-if="page.list" dod-grid="page.list">
+		<div class="grid-row" ng-if="page.list">
 
-			<div class="art-thumb" ng-attr-style="background-image:url({{getThumb(data.media.thumbnail)}});" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
+			<div class="art-thumb" ng-attr-style="background-image:url({{data.media.thumbnail}});" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
 
 				<img class="first" src="/img/spacer.png">
 				<img class="second" src="/img/spacer.png">

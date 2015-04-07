@@ -14,8 +14,18 @@ dod.run([
 
             console.log(result);
 
-            loadImages(result.images, result)
+            //Sluggish
+            //loadImages(result.images, result)
             
+            $timeout(function(){
+
+                content.data  = result;
+                content.ready = true;
+
+                $rootScope.$broadcast('appReady', result);
+
+            },500);
+
         });
 
         function loadImages(images,result) {

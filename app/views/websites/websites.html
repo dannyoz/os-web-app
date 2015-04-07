@@ -1,12 +1,21 @@
 <div class="page transition-5" ng-class="{show:ready,hide:!ready}">
 
-	<div class="centre">
+	<div class="container">
 
-		<p>{{::page.heading}}</p>
+		<div class="grid-row">
+			<h1 ng-bind="::page.heading"></h1>
+			<h2 ng-bind="::page.subheading"></h2>
+			<p ng-bind="::page.intro"></p>
+		</div>
 
-		<div ng-repeat="(website,data) in page.list" ng-click="showSite(website)">
-			{{website}}
-			<img ng-src="{{::data.thumbnail}}">
+		
+		<div class="grid-row">
+			
+			<div class="website" ng-repeat="(website,data) in page.list" ng-click="showSite(website)">
+				{{website}}
+				<img ng-src="{{::data.thumbnail}}">
+			</div>
+
 		</div>
 		
 	</div>

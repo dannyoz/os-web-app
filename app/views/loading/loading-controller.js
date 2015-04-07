@@ -1,6 +1,8 @@
 dod.controller('loading',['$scope', 'content', function ($scope, content) {
 	"use strict";
 
+	$scope.msg = "Loading...";
+
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
 		$scope.ready = content.ready;

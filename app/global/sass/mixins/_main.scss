@@ -1,0 +1,63 @@
+@mixin container($width:1000,$padding:false){
+
+	.container{
+
+		margin:0 auto;
+		max-width:$width;
+
+		@if $padding{
+			padding:0 $padding;
+		}
+
+		&.relative{
+			position: relative;
+		}
+	}
+
+}
+
+@mixin centring{
+
+	.centre{
+		
+		@include centre;
+
+		&.text{
+
+			text-align: center;
+		}
+	}
+
+	.centre-x{
+
+		@include centre(x);
+
+		&.text{
+
+			text-align: center;
+		}
+	}
+
+	.centre-y{
+
+		@include centre(y);
+
+		&.text{
+
+			text-align: center;
+		}
+	}
+}
+
+@mixin transitions($transitions) {
+	
+	@for $i from 1 through length($transitions) {
+			
+		$transition : nth($transitions,$i);
+
+		.transition-#{$i}{
+			@include single-transition(all,$transition,ease)
+		}
+
+	}
+}
