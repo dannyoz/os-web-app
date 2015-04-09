@@ -2,7 +2,7 @@
 // Grid mixins
 // -----------------------------------------
 
-@mixin grid-col($ammount:3,$col-count:12,$gutter-width:$gridGuttering){
+@mixin grid-col($ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -15,7 +15,7 @@
 	margin-right:$gutter-width;
 }
 
-@mixin grid-col-last($ammount:3,$col-count:12,$gutter-width:$gridGuttering){
+@mixin grid-col-last($ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -28,7 +28,7 @@
 	margin-right:0;
 }
 
-@mixin shift($dir:"push",$ammount:3,$col-count:12,$gutter-width:$gridGuttering){
+@mixin shift($dir:"push",$ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -44,7 +44,7 @@
 	}
 }
 
-@mixin grid-push($ammount:3,$col-count:12,$gutter-width:$gridGuttering){
+@mixin grid-push($ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -55,7 +55,7 @@
 
 }
 
-@mixin grid-pull($ammount:3,$col-count:12,$gutter-width:$gridGuttering){
+@mixin grid-pull($ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;
 	$remainder  : 100% - $gutter-total;
@@ -66,7 +66,7 @@
 
 }
 
-@mixin grid ($col-count:12,$gutter-width:$gridGuttering,$stack-point:550px,$shift:true,$dividers:false){
+@mixin grid ($col-count:12,$gutter-width:2%,$stack-point:550px,$shift:true){
 
 	/* =========================================*/
 	/* GRID STYLES                              */
@@ -86,37 +86,8 @@
 	@for $i from 1 through $col-count{
 
 		.grid-#{$i}{
+
 			@include grid-col($i,$col-count,$gutter-width);
-
-			@if $dividers {
-
-				&.grid-divide-right:after{
-
-					position: absolute;
-					width:1px;
-					height:100%;
-					right:-($gutter-width*($col-count - $i));
-					top:0;
-					background-color:$theme-subtle-dark;
-					border-right:1px solid $theme-subtle-light;
-					@include afterBefore;
-
-				}
-
-				&.grid-divide-left:before{
-
-					position: absolute;
-					width:1px;
-					height:100%;
-					left:-($gutter-width*($col-count - $i));
-					top:0;
-					background-color:$theme-subtle-dark;
-					border-right:1px solid $theme-subtle-light;
-					@include afterBefore;
-
-				}
-
-			}
 
 		}
 
@@ -132,28 +103,8 @@
 
 		}
 
-		// .grid-#{$i}:last-child{
-		// 	margin-right:0;
-		// }
-
 	}
 
-
-	// .grid-divide-right{
-
-	// 	&:after{
-
-	// 		position: absolute;
-	// 		width:1px;
-	// 		height:100%;
-	// 		right:-($gutter-width*4);
-	// 		top:0;
-	// 		background-color:$theme-subtle-dark;
-	// 		border-right:1px solid $theme-subtle-light;
-	// 		@include afterBefore;
-
-	// 	}
-	// }
 
 	[class*="grid"]:last-child{
 		margin-right:0;
@@ -161,26 +112,10 @@
 
 	@media screen and (max-width:$stack-point){
 
-		// @for $i from 1 through $col-count{
-
-		// 	.grid-#{$i}{
-		// 		margin-left: 0;
-		// 		margin-right: 0;
-		// 		width: 100%;
-		// 	}
-		// }
 		[class*="grid"]{
 			margin-left: 0;
 			margin-right: 0;
 			width: 100%;
-		}
-
-		@if $dividers {
-
-			.grid-divide-right:after, .grid-divide-left:before {
-				display: none!important;
-			}
-
 		}
 	}
 

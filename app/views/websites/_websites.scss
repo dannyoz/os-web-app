@@ -1,0 +1,30 @@
+#websites{
+
+	.website{
+
+		padding: 50px 0;
+		border-bottom: 1px solid #151515;
+
+		h3{
+
+			font-size: 1.4em;
+			margin-bottom:30px;
+		}
+
+		&:last-child{
+
+			border-bottom:none;
+		}
+
+		.website-showcase{
+
+			@include grid-col(7);
+		}
+
+		.website-info{
+
+			@include grid-col-last(5);
+		}
+
+	}
+}

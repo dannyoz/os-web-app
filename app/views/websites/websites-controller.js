@@ -1,8 +1,9 @@
 dod.controller('websites',[
 	'$scope',
+	'$sce',
 	'$location', 
 	'content', 
-	function ($scope, $location, content) {
+	function ($scope, $sce, $location, content) {
 		"use strict";
 		
 		//Use cached data if request is already made
