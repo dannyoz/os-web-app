@@ -1,4 +1,23 @@
 #editor{
 
+	$editorwidth : 500px;
+
 	display:block;
+	overflow:hidden;
+	@include fitParent;
+
+	aside{
+
+		background:#DDD;
+		width:$editorwidth;
+		@include fitParent("",0,auto,0,0);
+	}
+
+	#preview{
+
+		font-size:12px;
+
+		overflow:auto;
+		@include fitParent("",0,0,0,$editorwidth);
+	}
 }
