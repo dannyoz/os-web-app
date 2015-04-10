@@ -27806,7 +27806,7 @@ cms.controller('editor',[
 				$scope.page = $scope.json[$scope.currentView];
 				$scope.ready = true;
 			});
-			
+
 		} else {
 
 			$scope.json = data.json
@@ -27814,7 +27814,7 @@ cms.controller('editor',[
 			$scope.ready = true;
 		}
 
-		$scope.currentView = "home"
+		$scope.currentView  = "home"
 
 		$scope.views = [
 			"home",

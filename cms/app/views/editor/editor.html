@@ -2,8 +2,8 @@
 
 	<aside>
 		
-		<ul>
-			<li ng-repeat="view in views">
+		<ul id="views">
+			<li ng-repeat="view in views" ng-class="{current:currentView == view}">
 				<a ng-click="switchView($index);" ng-bind="view"></a>
 			</li>
 		</ul>

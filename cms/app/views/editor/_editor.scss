@@ -10,7 +10,38 @@
 
 		background:#DDD;
 		width:$editorwidth;
+		padding:30px;
+		@include box-sizing(border-box);
 		@include fitParent("",0,auto,0,0);
+
+		#views{
+
+			border:1px solid #AAA;
+			overflow:hidden;
+			@include border-radius(10px);
+
+			li{
+
+				display:inline-block;
+
+				a{
+
+					display:block;
+					padding:10px;
+					color:#333;
+					font-size:14px;
+					text-decoration:none;
+					border-right:1px solid #AAA;
+
+
+				}
+
+				&.current{
+
+					background:#CCC;
+				}
+			}
+		}
 	}
 
 	#preview{
