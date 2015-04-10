@@ -1,0 +1,32 @@
+<div id="art" class="page transition-5" ng-class="{show:ready,hide:!ready}">
+
+	<header class="grid-row">
+		<div class="container">
+			<div class="centred">
+				<h1 ng-bind="::page.heading"></h1>
+				<h2 ng-bind="::page.subheading" ng-if="page.subheading"></h2>
+				<p ng-bind-html="::page.intro"></p>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+
+		<div class="grid-row" ng-if="page.list">
+
+			<div class="art-thumb" ng-attr-style="background-image:url({{data.media.thumbnail}});" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
+
+				<img class="first" src="/img/spacer.png">
+				<img class="second" src="/img/spacer.png">
+				<div class="overlay">
+					<div class="centre">
+						<p ng-bind="::data.title"></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+	</div>
+
+</div>

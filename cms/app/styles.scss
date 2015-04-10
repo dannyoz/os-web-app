@@ -43,9 +43,58 @@
 	// 2.2 Global module styling
 	// --------------------------------------------
 	"global/nav/nav",
+
+	// 2.3 View styling
+	// --------------------------------------------
+	"views/editor/editor",
 	
 	// 2.* Misc
 	// --------------------------------------------
 	"global/sass/animations";
 
+// 3. PREVIEW INCLUDES
 // =====================================================
+
+#preview {
+
+	@import
+		
+		// 3.2 Common variables
+		// --------------------------------------------
+		"../../app/global/sass/variables/theme",     
+		"../../app/global/sass/variables/default_settings",
+
+		// 3.3 Mixins and helpers
+		// --------------------------------------------
+		"../../app/global/sass/mixins/animations",
+		"../../app/global/sass/mixins/grid",
+		"../../app/global/sass/mixins/font-face",
+		"../../app/global/sass/mixins/forms",
+		"../../app/global/sass/mixins/helpers",
+		"../../app/global/sass/mixins/layout",
+		"../../app/global/sass/mixins/theme",
+		"../../app/global/sass/mixins/typography",
+		"../../app/global/sass/mixins/main",
+
+	// 3.4 CSS OUTPUTTERS
+	// =====================================================
+
+		// 3.4.1 Core styling
+		// --------------------------------------------
+		"../../app/global/sass/core",
+		"../../app/global/sass/links",
+		"../../app/global/sass/forms",
+		"../../app/global/sass/typography",
+
+		// 3.4.2 Global module styling
+		// --------------------------------------------
+		"../../app/global/navigation/navigation",
+
+		// 3.4.3 View styling
+		// --------------------------------------------
+		"../../app/views/home/home",
+		"../../app/views/websites/websites",
+		"../../app/views/art/art";
+
+	// =====================================================
+}

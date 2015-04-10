@@ -140,7 +140,7 @@ module.exports = function(grunt) {
                 files:[
                     'app/**/*.html'
                 ],
-                tasks: ['ngtemplates']
+                tasks: ['ngtemplates','copy:html']
             }
 
             // livereload: {
@@ -187,7 +187,7 @@ module.exports = function(grunt) {
                     '*/*/*.html',
                     '*/*/*/*.html'
                     ], 
-                dest: 'build/views/', 
+                dest: 'cms/views/preview', 
                 filter: 'isFile'
             },
             json : {
