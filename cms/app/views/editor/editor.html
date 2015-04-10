@@ -2,14 +2,21 @@
 
 	<aside>
 		
-		Left nav
+		<ul>
+			<li ng-repeat="view in views">
+				<a ng-click="switchView($index);" ng-bind="view"></a>
+			</li>
+		</ul>
 
 	</aside>
 
 	<section id="preview">
 		
-		<div ng-include="'views/preview/home.html'"></div>
-		<div ng-include="'views/preview/art.html'"></div>
+		<div ng-if="currentView == 'home'" ng-include="'views/preview/home.html'"></div>
+		<div ng-if="currentView == 'art'" ng-include="'views/preview/art.html'"></div>
+		<div ng-if="currentView == 'about'" ng-include="'views/preview/about.html'"></div>
+		<div ng-if="currentView == 'websites'" ng-include="'views/preview/websites.html'"></div>
+		<div ng-if="currentView == 'contact'" ng-include="'views/preview/contact.html'"></div>
 
 	</section>
 

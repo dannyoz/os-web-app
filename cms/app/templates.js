@@ -6,7 +6,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<aside>Left nav</aside><section id=preview>Main section d {{json}}</section>"
+    "<div id=editor><aside><ul><li ng-repeat=\"view in views\"><a ng-click=switchView($index); ng-bind=view></a></li></ul></aside><section id=preview>{{currentView}} {{page}}<div ng-include=\"'views/preview/home.html'\"></div><div ng-include=\"'views/preview/art.html'\"></div></section></div>"
   );
 
 

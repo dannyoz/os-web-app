@@ -1,4 +1,4 @@
-var cms = angular.module('cms', ['ngRoute']);
+var cms = angular.module('cms', ['ngRoute','ngSanitize']);
 
 
 cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
