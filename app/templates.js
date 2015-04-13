@@ -11,7 +11,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/about/about.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=container><p>{{::page.heading}}</p></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><p>Derp</p></div></div>"
   );
 
 
@@ -31,7 +31,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><h1>{{::page.heading}}</h1><h2>{{::page.subheading}}</h2></div></div>"
+    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><!-- \t\t<h3>Artist</h3> --></div></div>"
   );
 
 

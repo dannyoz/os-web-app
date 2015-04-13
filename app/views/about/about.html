@@ -1,8 +1,18 @@
 <div class="page transition-5" ng-class="{show:ready,hide:!ready}">
 
+	<header class="grid-row">
+		<div class="container">
+			<div class="centred">
+				<h1 ng-bind="::page.heading"></h1>
+				<h2 ng-bind="::page.subheading" ng-if="page.subheading"></h2>
+				<p ng-bind-html="::page.intro"></p>
+			</div>
+		</div>
+	</header>
+
 	<div class="container">
 
-		<p>{{::page.heading}}</p>
+		<p>Derp</p>
 		
 	</div>
 
