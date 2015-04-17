@@ -27623,7 +27623,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-bind=view></a></li></ul></aside><section id=preview><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><aside><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-bind=view></a></li></ul><p>{{json.home.heading}}</p></aside><section id=preview><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
   );
 
 
