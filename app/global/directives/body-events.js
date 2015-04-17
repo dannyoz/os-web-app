@@ -1,4 +1,4 @@
-dod.directive('dodEvents', function(){
+dod.directive('dodEvents', ['$rootScope',function ($rootScope){
 	return {
 		restrict : "A",
 		link : function(scope, element, attrs){
@@ -10,6 +10,10 @@ dod.directive('dodEvents', function(){
 					start : {},
 					end : {}
 				};
+
+			$window.on('scroll', function (){
+				$rootScope.$broadcast('scrolling');
+			});	
 
 
 			$window.on('touchstart', function (e){
@@ -67,4 +71,4 @@ dod.directive('dodEvents', function(){
 			});
 		}
 	}
-});
+}]);

@@ -1757,18 +1757,18 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   margin-right: 0;
   opacity: 0;
 }
-#preview .tablet {
-  opacity: 0.7;
+#preview #websites .website .tablet {
+  opacity: 1;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
   position: relative;
-  -moz-transform: rotateY(40deg) rotateX(-10deg);
-  -ms-transform: rotateY(40deg) rotateX(-10deg);
-  -webkit-transform: rotateY(40deg) rotateX(-10deg);
-  transform: rotateY(40deg) rotateX(-10deg);
+  -moz-transform: rotateY(0deg) rotateX(0deg);
+  -ms-transform: rotateY(0deg) rotateX(0deg);
+  -webkit-transform: rotateY(0deg) rotateX(0deg);
+  transform: rotateY(0deg) rotateX(0deg);
 }
-#preview .tablet .front {
+#preview #websites .website .tablet .front {
   overflow: hidden;
   background: grey;
   position: relative;
@@ -1777,8 +1777,8 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-border-radius: 20px;
   border-radius: 20px;
 }
-#preview .tablet .front .shine {
-  opacity: 0;
+#preview #websites .website .tablet .front .shine {
+  opacity: 1;
   position: absolute;
   top: 0;
   right: 0;
@@ -1795,7 +1795,36 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
 }
-#preview .tablet .back {
+#preview #websites .website .tablet .back {
+  background: #555;
+  -moz-border-radius: 45px 35px 25px 50px;
+  -webkit-border-radius: 45px;
+  border-radius: 45px 35px 25px 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -moz-transform: translateZ(0) translateY(0) translateX(0);
+  -ms-transform: translateZ(0) translateY(0) translateX(0);
+  -webkit-transform: translateZ(0) translateY(0) translateX(0);
+  transform: translateZ(0) translateY(0) translateX(0);
+}
+#preview #websites .website .tablet img {
+  display: block;
+  width: 100%;
+}
+#preview #websites .website.hidden .tablet {
+  opacity: 0.2;
+  -moz-transform: rotateY(40deg) rotateX(-10deg);
+  -ms-transform: rotateY(40deg) rotateX(-10deg);
+  -webkit-transform: rotateY(40deg) rotateX(-10deg);
+  transform: rotateY(40deg) rotateX(-10deg);
+}
+#preview #websites .website.hidden .front .shine {
+  opacity: 0;
+}
+#preview #websites .website.hidden .back {
   background: #555;
   position: absolute;
   top: -15px;
@@ -1809,31 +1838,6 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -ms-transform: translateZ(-20px) translateY(20px) translateX(30px);
   -webkit-transform: translateZ(-20px) translateY(20px) translateX(30px);
   transform: translateZ(-20px) translateY(20px) translateX(30px);
-}
-#preview .tablet:hover {
-  opacity: 1;
-  -moz-transform: rotateY(0deg) rotateX(0deg);
-  -ms-transform: rotateY(0deg) rotateX(0deg);
-  -webkit-transform: rotateY(0deg) rotateX(0deg);
-  transform: rotateY(0deg) rotateX(0deg);
-}
-#preview .tablet:hover .front .shine {
-  opacity: 1;
-}
-#preview .tablet:hover .back {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -moz-transform: translateZ(0) translateY(0) translateX(0);
-  -ms-transform: translateZ(0) translateY(0) translateX(0);
-  -webkit-transform: translateZ(0) translateY(0) translateX(0);
-  transform: translateZ(0) translateY(0) translateX(0);
-}
-#preview .tablet img {
-  display: block;
-  width: 100%;
 }
 #preview #art .art-thumb {
   float: left;

@@ -27768,10 +27768,10 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=\"website grid-row\" ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website)><div class=website-showcase><div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=http://placehold.it/600x450 alt=\"\"></div><div class=\"back transition-3\"></div></div></div><div class=website-info><h3 ng-bind=::data.title></h3><div ng-bind-html=::data.info></div></div></div></div></div>"
+    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=\"website grid-row\" ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website) dod-scroll><div class=website-showcase><div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=http://placehold.it/600x450 alt=\"\"></div><div class=\"back transition-3\"></div></div></div><div class=website-info><h3 ng-bind=::data.title></h3><div ng-bind-html=::data.info></div></div></div></div></div>"
   );
 }])
-dod.directive('dodEvents', function(){
+dod.directive('dodEvents', ['$rootScope',function ($rootScope){
 	return {
 		restrict : "A",
 		link : function(scope, element, attrs){
@@ -27783,6 +27783,10 @@ dod.directive('dodEvents', function(){
 					start : {},
 					end : {}
 				};
+
+			$window.on('scroll', function (){
+				$rootScope.$broadcast('scrolling');
+			});	
 
 
 			$window.on('touchstart', function (e){
@@ -27840,7 +27844,41 @@ dod.directive('dodEvents', function(){
 			});
 		}
 	}
-});
+}]);
+dod.directive('dodScroll', ['$rootScope', function ($rootScope) {
+    return {
+        restrict: 'A',
+        link: function (scope, elm, attrs) {
+
+            $rootScope.$on('scrolling',function(){
+                applyStyles();
+            });
+
+            function applyStyles(){
+
+                var wHalf   = window.innerHeight / 1.5,
+                    rect    = elm[0].getBoundingClientRect(),
+                    bottom  = rect.top + rect.height,
+                    top     = rect.top,
+                    trigger = top - wHalf;
+
+                if(trigger < 0 && bottom > 0){
+                    elm.removeClass("hidden");
+                }
+
+                else if(bottom < 70){
+                    elm.addClass("hidden");
+                }
+
+                else if(trigger > 0){
+                    elm.addClass("hidden");
+                }
+            }
+
+            applyStyles();
+        }
+    };
+}]);
 dod.controller('navigation',[
 	'$scope', 
 	'$timeout',
