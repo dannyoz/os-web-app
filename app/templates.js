@@ -31,7 +31,13 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><!-- \t\t<h3>Artist</h3> --></div></div>"
+    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><!-- \t\t<span class=\"forename\">Dan</span>\r" +
+    "\n" +
+    "\t\t<span class=\"surname\">Osborne</span>\r" +
+    "\n" +
+    "\t\t<h1><span>Front end developer</span></h1>\r" +
+    "\n" +
+    "\t\t<h2><span>Digital</span><br/>Designer</h2> --><!-- \t\t<h3>Artist</h3> --></div></div>"
   );
 
 
