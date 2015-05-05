@@ -1,7 +1,7 @@
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p>"
+    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p><div ng-if=\"type == 'wysiwyg'\">wysiwyg</div>"
   );
 
 
@@ -15,8 +15,13 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
+    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul><ul id=bottom><li><a ng-click=publish();><i class=icon-cloud></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
   );
 
 
@@ -30,7 +35,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/splash/splash.html',
-    "<div class=centre><h1>DOD CMS</h1><button class=\"large rounded-10px\" ng-click=\"env('dev')\">Dev site</button></div>"
+    "<div class=centre><h1>Edit</h1><button class=\"medium rounded-10px\" ng-click=\"env('dev')\">Edit</button></div>"
   );
 
 

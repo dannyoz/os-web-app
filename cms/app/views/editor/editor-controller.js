@@ -1,12 +1,12 @@
 cms.controller('editor',[
 	'$scope',
 	'$location',
+	'$routeParams',
 	'$sce',
 	'api',
 	'data', 
-	function ($scope, $location, $sce,  api, data){
+	function ($scope, $location, $routeParams, $sce,  api, data){
 		"use strict";
-
 
 		if(!$scope.json){
 			
@@ -23,7 +23,6 @@ cms.controller('editor',[
 			$scope.ready = true;
 		}
 
-		$scope.currentView  = "home"
 		$scope.previewMode  = false;
 
 		$scope.views = [
@@ -34,10 +33,22 @@ cms.controller('editor',[
 			"contact"
 		];
 
+		if($routeParams.view){
+			$scope.currentView  = $routeParams.view
+		} else {
+			$scope.currentView  = "home"
+		}
+
+
+		$scope.publish = function(){
+			var data = angular.copy($scope.json);
+			api.post(data);
+		};
+
 		$scope.switchView = function (index) {
 			$scope.currentView = $scope.views[index];
 			$scope.page = $scope.json[$scope.currentView];
-		}
+		};
 
 		$scope.iconClass = function(view){
 
@@ -64,6 +75,6 @@ cms.controller('editor',[
 			}
 
 			return className;
-		}
+		};
 
 	}]);

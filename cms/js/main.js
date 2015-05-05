@@ -27587,7 +27587,7 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
 
 
 })(window, window.angular);
-var cms = angular.module('cms', ['ngRoute','ngSanitize']);
+var cms = angular.module('cms', ['ngRoute','ngSanitize','textAngular']);
 
 
 cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -27595,11 +27595,16 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
  	$routeProvider
 
         .when('/', {
-        	templateUrl: 'ams/app/views/splash/splash.html',
+        	templateUrl: 'cms/app/views/splash/splash.html',
             controller : 'splash'
         })
 
         .when('/editor', {
+            templateUrl: 'cms/app/views/editor/editor.html',
+            controller : 'editor'
+        })
+
+        .when('/editor/:view', {
             templateUrl: 'cms/app/views/editor/editor.html',
             controller : 'editor'
         })
@@ -27618,7 +27623,7 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p>"
+    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p><div ng-if=\"type == 'wysiwyg'\">wysiwyg</div>"
   );
 
 
@@ -27632,8 +27637,13 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
+    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul><ul id=bottom><li><a ng-click=publish();><i class=icon-cloud></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
   );
 
 
@@ -27647,7 +27657,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/splash/splash.html',
-    "<div class=centre><h1>DOD CMS</h1><button class=\"large rounded-10px\" ng-click=\"env('dev')\">Dev site</button></div>"
+    "<div class=centre><h1>Edit</h1><button class=\"medium rounded-10px\" ng-click=\"env('dev')\">Edit</button></div>"
   );
 
 
@@ -27784,7 +27794,7 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
 		"devapi"  : "http://localhost:3000/api/data.json",
-		"devpost" : "http://localhost:3000/test/"
+		"devpost" : "http://localhost:3000/update/"
 	};
 
 	var get = function(){
@@ -27831,12 +27841,12 @@ cms.factory('data',function () {
 cms.controller('editor',[
 	'$scope',
 	'$location',
+	'$routeParams',
 	'$sce',
 	'api',
 	'data', 
-	function ($scope, $location, $sce,  api, data){
+	function ($scope, $location, $routeParams, $sce,  api, data){
 		"use strict";
-
 
 		if(!$scope.json){
 			
@@ -27853,7 +27863,6 @@ cms.controller('editor',[
 			$scope.ready = true;
 		}
 
-		$scope.currentView  = "home"
 		$scope.previewMode  = false;
 
 		$scope.views = [
@@ -27864,10 +27873,22 @@ cms.controller('editor',[
 			"contact"
 		];
 
+		if($routeParams.view){
+			$scope.currentView  = $routeParams.view
+		} else {
+			$scope.currentView  = "home"
+		}
+
+
+		$scope.publish = function(){
+			var data = angular.copy($scope.json);
+			api.post(data);
+		};
+
 		$scope.switchView = function (index) {
 			$scope.currentView = $scope.views[index];
 			$scope.page = $scope.json[$scope.currentView];
-		}
+		};
 
 		$scope.iconClass = function(view){
 
@@ -27894,7 +27915,7 @@ cms.controller('editor',[
 			}
 
 			return className;
-		}
+		};
 
 	}]);
 cms.controller('publish',['$scope','api',function ($scope,api){

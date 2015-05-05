@@ -1,4 +1,4 @@
-var cms = angular.module('cms', ['ngRoute','ngSanitize']);
+var cms = angular.module('cms', ['ngRoute','ngSanitize','textAngular']);
 
 
 cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -6,11 +6,16 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
  	$routeProvider
 
         .when('/', {
-        	templateUrl: 'ams/app/views/splash/splash.html',
+        	templateUrl: 'cms/app/views/splash/splash.html',
             controller : 'splash'
         })
 
         .when('/editor', {
+            templateUrl: 'cms/app/views/editor/editor.html',
+            controller : 'editor'
+        })
+
+        .when('/editor/:view', {
             templateUrl: 'cms/app/views/editor/editor.html',
             controller : 'editor'
         })

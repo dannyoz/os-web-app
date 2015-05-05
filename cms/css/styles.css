@@ -1282,6 +1282,10 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside nav ul li.current a {
   color: white;
 }
+#editor aside nav ul#bottom {
+  position: absolute;
+  bottom: 0;
+}
 #editor aside .editable {
   position: relative;
 }

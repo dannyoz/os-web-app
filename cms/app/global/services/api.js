@@ -2,7 +2,7 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
 		"devapi"  : "http://localhost:3000/api/data.json",
-		"devpost" : "http://localhost:3000/test/"
+		"devpost" : "http://localhost:3000/update/"
 	};
 
 	var get = function(){

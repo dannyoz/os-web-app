@@ -151,6 +151,38 @@ var SampleApp = function() {
             });
         };
 
+        
+        self.app.post('/update', function(req, res){
+
+            var topSlice    = "",
+                filling     = JSON.stringify(req.body),
+                bottomSlice = "",
+                sandwich    = topSlice+filling+bottomSlice,
+                response    = {};
+
+            fs.writeFile("build/api/data.json", sandwich, function(err) {
+
+                if(err) {
+
+                    response.data = req.body;
+                    response.status = "ERROR file not saved";
+
+                    res.send(response);
+
+                    return console.log(err);
+                    
+                } else {
+
+                    response.data = req.body;
+                    response.status = "File saved successfully!!!";
+
+                    res.send(response);
+                }
+        
+            }); 
+
+        });
+
         self.app.post('/post-message', function(req, res){
 
             var topSlice    = '{"messages":',
