@@ -139,9 +139,10 @@ module.exports = function(grunt) {
 
             html: {
                 files:[
-                    'app/**/*.html'
+                    'app/**/*.html',
+                    'cms/app/**/*.html'
                 ],
-                tasks: ['ngtemplates','copy:html']
+                tasks: ['ngtemplates', 'copy:html']
             }
 
             // livereload: {

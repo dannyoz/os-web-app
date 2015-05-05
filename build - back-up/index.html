@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="dod">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Angular boilerplate</title>
+	<script src="//use.typekit.net/csc3poz.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" />
+</head>
+<body dod-events>
+	<div ng-include="'app/views/loading/loading.html'" ng-controller="loading"></div>
+	<div ng-include="'app/global/navigation/navigation.html'" ng-controller="navigation"></div>
+	<ng-view></ng-view>
+	<script type="text/javascript" src="/js/main.min.js"></script>
+</body>
+</html>
+

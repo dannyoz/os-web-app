@@ -1,18 +1,30 @@
 <div id="editor">
 
-	<aside>
-		
-		<ul id="views">
-			<li ng-repeat="view in views" ng-class="{current:currentView == view}">
-				<a ng-click="switchView($index);" ng-bind="view"></a>
-			</li>
-		</ul>
+	<aside ng-class="{fullscreen : !previewMode}">
 
-		<p>{{json.home.heading}}</p>
+		<nav>
+			<ul id="views">
+				<li ng-repeat="view in views" ng-class="{current:currentView == view}">
+					<a ng-click="switchView($index);" ng-class="[view]">
+						<i ng-class="iconClass(view);"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<section id="edit-pane">
+			
+			<div ng-if="currentView == 'home'" ng-include="'cms/app/views/editor/editor-views/edit-homepage.html'"></div>
+
+		</section>
+
+		<p>{{json[currentView]}}</p>
+
+		<button ng-click="previewMode = !previewMode">derp</button>
 
 	</aside>
 
-	<section id="preview">
+	<section id="preview" ng-class="{hide : !previewMode}">
 		
 		<div ng-if="currentView == 'home'" ng-include="'views/preview/home.html'"></div>
 		<div ng-if="currentView == 'art'" ng-include="'views/preview/art.html'"></div>

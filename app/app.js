@@ -56,3 +56,10 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
 }]);
 
+//IE 9 detection...
+dod.run(function(){
+
+    if(navigator.appVersion.indexOf('MSIE 9.0')> -1){
+        console.log('your browser is shit');
+    }
+});

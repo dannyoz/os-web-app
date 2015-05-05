@@ -1,6 +1,7 @@
 #editor{
 
 	$editorwidth : 500px;
+	$navWidth : 60px;
 
 	display:block;
 	overflow:hidden;
@@ -10,45 +11,98 @@
 
 		background:#DDD;
 		width:$editorwidth;
-		padding:30px;
+		padding:30px 30px 30px ($navWidth + 30px);
+		@extend .transition-1;
 		@include box-sizing(border-box);
 		@include fitParent("",0,auto,0,0);
 
-		#views{
+		&.fullscreen{
 
-			border:1px solid #AAA;
-			overflow:hidden;
-			@include border-radius(10px);
+			width:100%;
+		}
 
-			li{
+		nav{
 
-				display:inline-block;
+			background:#222;
+			width:$navWidth;
+			@include fitParent("",0,auto,0,0);
 
-				a{
+			ul{
 
-					display:block;
-					padding:10px;
-					color:#333;
-					font-size:14px;
-					text-decoration:none;
-					border-right:1px solid #AAA;
+				li{
+					width:$navWidth;
+					height:$navWidth;
 
+					a{
 
-				}
+						display:block;
+						color:#777;
+						width:$navWidth;
+						height:$navWidth;
+						font-size:22px;
+						position:relative;
+						text-decoration:none;
 
-				&.current{
+						i{
+							@include centre;
+						}
+					}
 
-					background:#CCC;
+					&.current{
+
+						background:#151515;
+
+						a{
+							color:white;
+						}
+					}
 				}
 			}
 		}
+
+		.editable{
+
+			position:relative;
+
+			p.simple{
+
+				$buttonsize:50px;
+				
+				font-size:22px;
+				line-height:22px;
+				padding:20px;
+
+				textarea{
+
+					font-size:22px;
+					line-height:22px;
+					padding:20px;
+					@include fitParent("",0,$buttonsize,0,0);
+				}
+
+				button{
+					
+					width:$buttonsize;
+					z-index:10;
+					margin-bottom:0;
+					@include fitParent("",0,0,0,auto);
+				}
+			}
+		}
+
+	
 	}
 
 	#preview{
 
 		font-size:12px;
-
+		margin-left:0;
 		overflow:auto;
+		@extend .transition-1;
 		@include fitParent("",0,0,0,$editorwidth);
+
+		&.hide{
+			margin-left:100%;
+		}
 	}
 }

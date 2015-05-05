@@ -1,0 +1,7 @@
+<p class="simple" ng-if="type == 'plain'">
+	<span class="edit-result" ng-click="toggleEdit();">{{content}}</span>
+	<textarea ng-model="content" ng-show="editMode" ></textarea>
+	<button ng-show="editMode" ng-click="save(content);">
+		<span>Save</span>
+	</button>
+</p>

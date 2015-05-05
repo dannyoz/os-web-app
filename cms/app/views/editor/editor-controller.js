@@ -24,6 +24,7 @@ cms.controller('editor',[
 		}
 
 		$scope.currentView  = "home"
+		$scope.previewMode  = false;
 
 		$scope.views = [
 			"home",
@@ -34,10 +35,35 @@ cms.controller('editor',[
 		];
 
 		$scope.switchView = function (index) {
-			console.log(index);
 			$scope.currentView = $scope.views[index];
 			$scope.page = $scope.json[$scope.currentView];
 		}
 
+		$scope.iconClass = function(view){
+
+			var className;
+
+			if(view == "home"){
+				className = "icon-shop";
+			}
+
+			if(view == "art"){
+				className = "icon-pen";
+			}
+
+			if(view == "websites"){
+				className = "icon-display";
+			}
+
+			if(view == "about"){
+				className = "icon-study";
+			}
+
+			if(view == "contact"){
+				className = "icon-bubble";
+			}
+
+			return className;
+		}
 
 	}]);

@@ -30,8 +30,6 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 			var obj = angular.copy($scope.messages);
 
-			console.log($scope.messages);
-
 			api.postMessage(obj).success(function (result){
 				
 				$scope.messageStatus = "sent"

@@ -26,12 +26,12 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><form><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><form ng-submit=sendMessage(message);><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
   );
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><!-- \t\t<span class=\"forename\">Dan</span>\r" +
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><p>X = {{position.xval}}</p><p>Y = {{position.yval}}</p><img src=http://breakupwithie8.com/img/ie8-heart-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;\" width=\"400\"><div class=centre><img src=http://breakupwithie8.com/img/ie8-logo-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px\" width=180></div><!-- \t\t<span class=\"forename\">Dan</span>\r" +
     "\n" +
     "\t\t<span class=\"surname\">Osborne</span>\r" +
     "\n" +

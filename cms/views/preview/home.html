@@ -1,8 +1,16 @@
-<div id="home" class="page transition-5" ng-class="{show:ready,hide:!ready}">
+<div id="home" class="page transition-5" dod-perspective="position" ng-class="{show:ready,hide:!ready}">
 
 	<div class="centre text">
 
+		<p>X = {{position.xval}}</p>
 
+		<p>Y = {{position.yval}}</p>
+
+		<img src="http://breakupwithie8.com/img/ie8-heart-solo.svg" ng-attr-style="transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;" width="400" />
+
+		<div class="centre">
+		<img src="http://breakupwithie8.com/img/ie8-logo-solo.svg" ng-attr-style="transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px" width="180">
+		</div>
 
 <!-- 		<span class="forename">Dan</span>
 		<span class="surname">Osborne</span>

@@ -27645,6 +27645,13 @@ dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
 }]);
 
+//IE 9 detection...
+dod.run(function(){
+
+    if(navigator.appVersion.indexOf('MSIE 9.0')> -1){
+        console.log('your browser is shit');
+    }
+});
 
 //Loading content
 dod.run([
@@ -27748,12 +27755,12 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><form><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><form ng-submit=sendMessage(message);><fieldset><input name=Name ng-model=\"message.name\"></fieldset><fieldset><input type=email name=Email ng-model=\"message.email\"></fieldset><fieldset><input name=Subject ng-model=\"message.subject\"></fieldset><fieldset><textarea name=Message cols=30 rows=10 ng-model=message.text></textarea></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset>{{message}}</form></div></div>"
   );
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" ng-class={show:ready,hide:!ready}><div class=\"centre text\"><!-- \t\t<span class=\"forename\">Dan</span>\r" +
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><p>X = {{position.xval}}</p><p>Y = {{position.yval}}</p><img src=http://breakupwithie8.com/img/ie8-heart-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;\" width=\"400\"><div class=centre><img src=http://breakupwithie8.com/img/ie8-logo-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px\" width=180></div><!-- \t\t<span class=\"forename\">Dan</span>\r" +
     "\n" +
     "\t\t<span class=\"surname\">Osborne</span>\r" +
     "\n" +
@@ -27851,6 +27858,47 @@ dod.directive('dodEvents', ['$rootScope',function ($rootScope){
 		}
 	}
 }]);
+ dod.directive('dodPerspective', function(){
+ 	return {
+ 		restrict: "A",
+ 		scope : {
+ 			position : "=dodPerspective"
+ 		},
+ 		link : function(scope){
+
+ 			var $window = angular.element(window);
+ 			$window.bind('mousemove',function (e){
+
+ 				var xpos   = e.pageX,
+					ypos   = e.pageY,
+					width  = e.view.outerWidth,
+					height = e.view.outerHeight,
+					xmid   = width/2,
+					ymid   = height/2;
+
+				var xval,yval;
+
+				if(xpos < xmid){
+					xval = "-" + (xmid - xpos)/xmid*100;
+				} else {
+					xval = Math.abs((xmid - xpos)/xmid*100);
+				}
+
+				if(ypos < ymid){
+					yval = (ymid - ypos)/ymid*100;
+				} else {
+					yval = "-" +  Math.abs((ymid - ypos)/ymid*100);
+				}
+
+				scope.$apply(function() {
+				    scope.position.xval = xval;
+				    scope.position.yval = yval;
+				});
+
+ 			});
+ 		}
+ 	}
+ });
 dod.directive('dodScroll', ['$rootScope', function ($rootScope) {
     return {
         restrict: 'A',
@@ -28074,8 +28122,6 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 			var obj = angular.copy($scope.messages);
 
-			console.log($scope.messages);
-
 			api.postMessage(obj).success(function (result){
 				
 				$scope.messageStatus = "sent"
@@ -28111,6 +28157,34 @@ dod.controller('home',['$scope', 'content', function ($scope, content) {
 		$scope.page  = content.data.home;
 		$scope.ready = content.ready;
 	});
+
+	// Perspective effects
+    $scope.position = {
+        xval: 0,
+        yval: 0
+    };
+
+    $scope.perspective = function (amount,axis) {
+
+    	var base = 90*amount,
+    		result = $scope.position.xval;
+
+
+   //      var type = (!method) ? "attract" : method,
+			// styles;
+
+   //      if (type == "attract") {
+
+   //          styles = "left:" + (Math.round($scope.position.xval * ammount)) + "px;" +
+			// 		 	 "top:" + (Math.round($scope.position.yval * ammount)) + "px";
+   //      } else {
+
+   //          styles = "right:" + (Math.round($scope.position.xval * ammount)) + "px;" +
+			// 		 	 "bottom:" + (Math.round($scope.position.yval * ammount)) + "px";
+   //      }
+
+        return result;
+    };
 
 }]);
 dod.controller('loading',['$scope', 'content', function ($scope, content) {

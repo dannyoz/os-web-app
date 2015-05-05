@@ -6,17 +6,17 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
  	$routeProvider
 
         .when('/', {
-        	templateUrl: 'app/views/splash/splash.html',
+        	templateUrl: 'ams/app/views/splash/splash.html',
             controller : 'splash'
         })
 
         .when('/editor', {
-            templateUrl: 'app/views/editor/editor.html',
+            templateUrl: 'cms/app/views/editor/editor.html',
             controller : 'editor'
         })
 
         .when('/styleguide', {
-        	templateUrl: 'app/views/styleguide/base.html'
+        	templateUrl: 'cms/app/views/styleguide/base.html'
     	});
         
 

@@ -1,12 +1,22 @@
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
+  $templateCache.put('cms/app/global/directives/cms-editable.html',
+    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p>"
+  );
+
+
   $templateCache.put('cms/app/global/nav/nav.html',
     "<nav><ul><li><a href=# class=item1>Lorem ipsum.</a></li><li><a href=# class=item2>Perferendis, accusantium.</a></li><li><a href=# class=item3>Unde, quam.</a></li><li><a href=# class=item4>Quos, recusandae.</a></li><li><a href=# class=item5>Dolore, corrupti.</a></li></ul></nav>"
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-homepage.html',
+    "<div class=editable ng-if=json cms-editable=json[currentView].heading data-type=plain></div><div class=editable ng-if=json cms-editable=json[currentView].subheading data-type=plain></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-bind=view></a></li></ul><p>{{json.home.heading}}</p></aside><section id=preview><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-click=switchView($index); ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'views/preview/contact.html'\"></div></section></div>"
   );
 
 
