@@ -16,7 +16,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div>"
+    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=\"json[currentView].list['byrne-dean'].info\"></div>"
   );
 
 

@@ -2,6 +2,7 @@
 	float:left;
 	width:100%;
 	clear:both;
+	@include box-sizing(border-box);
 }
 
 @mixin fitParent($all:"", $top:"", $right:"", $bottom:"", $left:""){
