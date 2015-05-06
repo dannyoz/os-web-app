@@ -8,7 +8,7 @@ body{
 	font-family: "Roboto", arial, sans-serif;
 }
 
-@include container(1100px,20px);
+@include container(1100px,40px);
 
 @include centring;
 
@@ -29,7 +29,7 @@ header{
 	padding: 50px 0;
 	background:#171717;
 
-	opacity:0;
+	//opacity:0;
 
 	.centred{
 

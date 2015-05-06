@@ -113,38 +113,7 @@
 			right:0;
 		}
 
-		.editable{
-
-			position:relative;
-
-			p.simple{
-
-				$buttonsize:50px;
-				
-				font-size:22px;
-				line-height:22px;
-				padding:20px;
-
-				input{
-
-					font-size:22px;
-					line-height:22px;
-					padding:20px;
-					width:100%;
-					@include box-sizing(border-box);
-					@include fitParent("",0,$buttonsize,0,0);
-				}
-
-				button{
-					
-					width:$buttonsize;
-					z-index:10;
-					margin-bottom:0;
-					@include fitParent("",0,0,0,auto);
-				}
-			}
-		}
-
+		@import "editable";
 		@import "wysiwyg";
 
 		.list{

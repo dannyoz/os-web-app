@@ -5,14 +5,15 @@ $horiz-width : 50% - $grid-padding;
 #art{
 
 	.art-thumb{
-
-		@include grid-col(6,24,$grid-padding);
+		
 		overflow: hidden;
 		margin-bottom: $grid-y-padding;
 		position: relative;
 		background:#444;
 		background-position:50% 50%;
 		background-size:cover;
+		@include grid-col(6,24,$grid-padding);
+		@extend .transition-3;
 
 		img{
 			
@@ -85,12 +86,6 @@ $horiz-width : 50% - $grid-padding;
 		
 
 		&:hover{
-
-			img{
-				
-				@extend .transition-3;
-				@include scale(1.5);
-			}
 
 			.overlay {
 

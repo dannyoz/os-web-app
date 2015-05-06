@@ -10,26 +10,34 @@
 	</header>
 
 	<div class="container">
-			
-		<div class="website grid-row" ng-repeat="(website,data) in page.list" ng-click="showSite(website)" dod-scroll>
 
-			<div class="website-showcase">
-				
-				<div class="tablet transition-3">
-					<div class="front">
-						<div class="shine transition-3"></div>
-						<img src="http://placehold.it/600x450" alt="">
-					</div>
-					<div class="back transition-3"></div>
-				</div>	
 			
-			</div>
+		<div class="website" ng-repeat="(website,data) in page.list" ng-click="showSite(website)" dod-scroll>
 
-			<div class="website-info">
+			<div class="grid-row">
 				<h3 ng-bind="::data.title"></h3>
-				<div ng-bind-html="::data.info"></div>
 			</div>
+
+			<div class="grid-row">
+
+				<div class="website-showcase">
+					
+					<div class="tablet transition-3">
+						<div class="front">
+							<div class="shine transition-3"></div>
+							<img src="http://placehold.it/600x450" alt="">
+						</div>
+						<div class="back transition-3"></div>
+					</div>	
+				
+				</div>
+
+				<div class="website-info">
+					<div ng-bind-html="::data.info"></div>
+				</div>
 			
+			</div>
+
 		</div>
 	
 	</div>

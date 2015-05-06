@@ -1,0 +1,62 @@
+<div class="grid-row">
+
+	<p class="label">Heading</p>
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].heading">
+	 </div>
+	
+	<p class="label">Subheading</p>
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].subheading">
+	</div>
+
+	<p class="label">Intro</p>
+	<div class="wysiwyg" 
+	     text-angular="text-angular" 
+	     name="intro" 
+	     ng-model="json[currentView].intro">
+	</div>
+
+</div>
+
+<div class="grid-row">
+
+	<div class="grid-4"> 
+	
+		<p class="label">Skills</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView]['skills']"
+		     date-type="list">
+		</div>
+
+	</div>
+
+	<div class="grid-4"> 
+	
+		<p class="label">Most likely to say</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView]['most-likely-to-say']"
+		     date-type="list">
+		</div>
+
+	</div>
+
+
+	<div class="grid-4"> 
+	
+		<p class="label">Least likely to say</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView]['least-likely-to-say']"
+		     date-type="list">
+		</div>
+
+	</div>
+
+</div>
+
+

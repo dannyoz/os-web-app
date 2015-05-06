@@ -36,13 +36,23 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><p>X = {{position.xval}}</p><p>Y = {{position.yval}}</p><img src=http://breakupwithie8.com/img/ie8-heart-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;\" width=\"400\"><div class=centre><img src=http://breakupwithie8.com/img/ie8-logo-solo.svg ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px\" width=180></div><!-- \t\t<span class=\"forename\">Dan</span>\r" +
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=centre><!-- \t\t<p>X = {{position.xval}}</p>\r" +
     "\n" +
-    "\t\t<span class=\"surname\">Osborne</span>\r" +
+    "\r" +
     "\n" +
-    "\t\t<h1><span>Front end developer</span></h1>\r" +
+    "\t\t<p>Y = {{position.yval}}</p>\r" +
     "\n" +
-    "\t\t<h2><span>Digital</span><br/>Designer</h2> --><!-- \t\t<h3>Artist</h3> --></div></div>"
+    "\r" +
+    "\n" +
+    "\t\t<img src=\"http://breakupwithie8.com/img/ie8-heart-solo.svg\" ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;\" width=\"400\" />\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\t\t<div class=\"centre\">\r" +
+    "\n" +
+    "\t\t<img src=\"http://breakupwithie8.com/img/ie8-logo-solo.svg\" ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px\" width=\"180\">\r" +
+    "\n" +
+    "\t\t</div> --><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3>Artist</h3></div></div>"
   );
 
 
@@ -57,6 +67,6 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=\"website grid-row\" ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website) dod-scroll><div class=website-showcase><div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=http://placehold.it/600x450 alt=\"\"></div><div class=\"back transition-3\"></div></div></div><div class=website-info><h3 ng-bind=::data.title></h3><div ng-bind-html=::data.info></div></div></div></div></div>"
+    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=website ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website) dod-scroll><div class=grid-row><h3 ng-bind=::data.title></h3></div><div class=grid-row><div class=website-showcase><div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=http://placehold.it/600x450 alt=\"\"></div><div class=\"back transition-3\"></div></div></div><div class=website-info><div ng-bind-html=::data.info></div></div></div></div></div></div>"
   );
 }])

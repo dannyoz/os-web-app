@@ -7,6 +7,13 @@ cms.directive('cmsEditable', function(){
 		},
 		link : function(scope, element, attrs){
 
+			if(attrs.dateType){
+				scope.type = attrs.dateType;
+				scope.current = 0;
+			} else {
+				scope.type = "text";
+			}
+
 			scope.editMode = false;
 			scope.toggleEdit = function(){
 
@@ -21,6 +28,10 @@ cms.directive('cmsEditable', function(){
 
 				scope.toggleEdit();
 				scope.content = content
+			}
+
+			scope.removeListItem = function(i){
+				scope.content.splice(i,1);
 			}
 		}
 	}

@@ -1,7 +1,18 @@
-<p class="simple">
+<p class="simple" ng-if="type == 'text'">
 	<span class="edit-result" ng-click="toggleEdit();">{{content}}</span>
 	<input type="text" ng-model="content" ng-show="editMode"/>
 	<button ng-show="editMode" ng-click="save(content);">
-		<span>Save</span>
+		<span><i class="icon-check"></i></span>
 	</button>
 </p>
+
+<div ng-if="type == 'list'">
+	
+	<div class="edit-list" ng-repeat="item in content">
+		<p>{{item}}</p>
+		<button ng-click="removeListItem($index);">
+			<i class="icon-trash"></i>
+		</button>
+	</div>
+
+</div>

@@ -7,8 +7,10 @@
 
 		h3{
 
-			font-size: 1.4em;
+			font-size: 2em;
 			margin-bottom:30px;
+			text-align: center;
+
 		}
 
 		&:last-child{
@@ -18,13 +20,17 @@
 
 		.website-showcase{
 
-			@include grid-col(8);
+			@include grid-col(8,12,4%);
 		}
 
 		.website-info{
 
-			@include grid-col-last(4);
-			opacity:0;
+			@include grid-col-last(4,12,4%);
+
+			p{
+
+				text-align: justify;
+			}
 		}
 
 		@import "tablet";

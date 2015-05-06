@@ -331,7 +331,7 @@ body {
   transition: all 0.2s ease;
 }
 
-.transition-3, #preview #art .art-thumb:hover img {
+.transition-3, #preview #art .art-thumb {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -1208,19 +1208,33 @@ h1, h2, h3, h4, h5, h6 {
   width: auto;
   right: 0;
 }
+#editor aside p.label {
+  color: #222;
+  margin: 0 0 5px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
 #editor aside .editable {
   position: relative;
 }
 #editor aside .editable p.simple {
+  background: #eee;
+  border: 1px solid #aaa;
   font-size: 22px;
   line-height: 22px;
   padding: 20px;
+  cursor: pointer;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 #editor aside .editable p.simple input {
   font-size: 22px;
   line-height: 22px;
   padding: 20px;
   width: 100%;
+  border: 1px solid #aaa;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -1229,6 +1243,9 @@ h1, h2, h3, h4, h5, h6 {
   right: 50px;
   bottom: 0;
   left: 0;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 #editor aside .editable p.simple button {
   width: 50px;
@@ -1239,13 +1256,49 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   bottom: 0;
   left: auto;
+  -moz-border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 10px 10px 0;
+}
+#editor aside .editable p.simple:hover {
+  background: #f5f5f5;
+  color: #222;
+}
+#editor aside .editable .edit-list {
+  margin-bottom: 10px;
+}
+#editor aside .editable .edit-list p {
+  font-size: 14px;
+  display: block;
+  padding: 10px 20px;
+  margin-bottom: 0;
+  background: #eee;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#editor aside .editable .edit-list p:hover {
+  background: #f5f5f5;
+  color: #222;
+}
+#editor aside .wysiwyg {
+  margin-bottom: 30px;
+  float: left;
+  width: 100%;
+  clear: both;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #editor aside .wysiwyg .ta-toolbar {
   background: #d7d7d7;
   border-top: 1px solid #aaa;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
-  padding: 5px 10px;
+  padding: 0 10px 5px 10px;
+  text-align: center;
   float: left;
   width: 100%;
   clear: both;
@@ -1257,17 +1310,24 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px 10px 0 0;
 }
 #editor aside .wysiwyg .ta-toolbar .btn-group {
-  float: left;
+  display: inline-block;
   margin-right: 10px;
+  margin-top: 5px;
 }
 #editor aside .wysiwyg .ta-toolbar .btn-group button {
   display: block;
   float: left;
   margin-bottom: 0;
   padding: 5px 10px;
-  border: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  border-right: none;
   background: #d5d5d5;
   color: #333;
+}
+#editor aside .wysiwyg .ta-toolbar .btn-group button:last-child {
+  border-right: 1px solid #aaa;
 }
 #editor aside .wysiwyg .ta-toolbar .btn-group button:hover {
   background: #EEE;
@@ -1538,7 +1598,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview .container {
   margin: 0 auto;
   max-width: 1100px;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 #preview .container.relative {
   position: relative;
@@ -1751,7 +1811,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-#preview .transition-3, #preview #art .art-thumb:hover img {
+#preview .transition-3, #preview #art .art-thumb {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -1778,7 +1838,6 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview header {
   padding: 50px 0;
   background: #171717;
-  opacity: 0;
 }
 #preview header .centred {
   text-align: center;
@@ -1996,8 +2055,9 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   border-bottom: 1px solid #151515;
 }
 #preview #websites .website h3 {
-  font-size: 1.4em;
+  font-size: 2em;
   margin-bottom: 30px;
+  text-align: center;
 }
 #preview #websites .website:last-child {
   border-bottom: none;
@@ -2005,15 +2065,17 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview #websites .website .website-showcase {
   float: left;
   position: relative;
-  width: 66%;
-  margin-right: 2%;
+  width: 65.33333%;
+  margin-right: 4%;
 }
 #preview #websites .website .website-info {
   float: left;
   position: relative;
-  width: 32%;
+  width: 30.66667%;
   margin-right: 0;
-  opacity: 0;
+}
+#preview #websites .website .website-info p {
+  text-align: justify;
 }
 #preview #websites .website .tablet {
   opacity: 1;
@@ -2098,16 +2160,16 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   transform: translateZ(-20px) translateY(20px) translateX(30px);
 }
 #preview #art .art-thumb {
-  float: left;
-  position: relative;
-  width: 24.25%;
-  margin-right: 1%;
   overflow: hidden;
   margin-bottom: 10px;
   position: relative;
   background: #444;
   background-position: 50% 50%;
   background-size: cover;
+  float: left;
+  position: relative;
+  width: 24.25%;
+  margin-right: 1%;
 }
 #preview #art .art-thumb img {
   display: block;
@@ -2163,12 +2225,6 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   float: left;
   width: 49%;
   margin-top: 0;
-}
-#preview #art .art-thumb:hover img {
-  -moz-transform: scale(1.5, 1.5);
-  -ms-transform: scale(1.5, 1.5);
-  -webkit-transform: scale(1.5, 1.5);
-  transform: scale(1.5, 1.5);
 }
 #preview #art .art-thumb:hover .overlay {
   opacity: 1;

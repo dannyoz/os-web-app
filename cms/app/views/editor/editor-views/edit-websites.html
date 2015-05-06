@@ -2,17 +2,19 @@
 
 	<div class="grid-row">
 
+		<p class="label">Heading</p>
 		<div class="editable" 
 		     ng-if="json" 
 		     cms-editable="json[currentView].heading">
 		 </div>
-
+		
+		<p class="label">Subheading</p>
 		<div class="editable" 
 		     ng-if="json" 
 		     cms-editable="json[currentView].subheading">
 		</div>
 
-
+		<p class="label">Intro</p>
 		<div class="wysiwyg" 
 		     text-angular="text-angular" 
 		     name="intro" 
@@ -37,11 +39,16 @@
 </div>
 
 <div ng-if="singleView">
-	{{json[currentView].list[single]}}
+
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].list[single].title">
+	</div>
 
 	<div class="wysiwyg" 
 	     text-angular="text-angular" 
 	     name="info" 
 	     ng-model="json[currentView].list[single].info">
 	</div>
+
 </div>
