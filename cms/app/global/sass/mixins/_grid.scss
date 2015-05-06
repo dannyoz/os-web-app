@@ -15,6 +15,18 @@
 	margin-right:$gutter-width;
 }
 
+@mixin grid-col-last($ammount:3,$col-count:12,$gutter-width:2%){
+
+	$gutter-total : ($col-count - 1) * $gutter-width;
+	$remainder  : 100% - $gutter-total;
+	$fill : ($ammount - 1)*$gutter-width;
+	$unit : $remainder / $col-count;
+
+	float:left;
+	position:relative;
+	width:$unit*$ammount+$fill;
+}
+
 @mixin shift($dir:"push",$ammount:3,$col-count:12,$gutter-width:2%){
 
 	$gutter-total : ($col-count - 1) * $gutter-width;

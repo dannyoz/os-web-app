@@ -38,6 +38,39 @@
 	}	
 }
 
+@mixin sideBar($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:$width;
+
+	@if $side == "left"{
+		left:0;
+	}
+
+	@if $side == "right"{
+		right:0;
+	}
+}
+
+@mixin sideBarAppend($width:300px,$side:"left"){
+
+	position:absolute;
+	top:0;
+	bottom:0;
+
+	@if $side == "left"{
+		left:$width;
+		right:0;
+	}
+
+	@if $side == "right"{
+		right:$width;
+		left:0;
+	}
+}
+
 @mixin centre($axis: "both"){
 	position:absolute;
 	@if $axis == "y"{

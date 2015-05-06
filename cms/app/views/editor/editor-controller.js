@@ -24,6 +24,8 @@ cms.controller('editor',[
 		}
 
 		$scope.previewMode  = false;
+		$scope.showDialogue = false;
+		$scope.singleView   = false;
 
 		$scope.views = [
 			"home",
@@ -39,10 +41,19 @@ cms.controller('editor',[
 			$scope.currentView  = "home"
 		}
 
+		if($routeParams.single){
+			$scope.singleView = true;
+			$scope.single = $routeParams.single;
+		}
+
+		$scope.toggleDialogue = function(){
+			$scope.showDialogue = !$scope.showDialogue;
+		};
 
 		$scope.publish = function(){
 			var data = angular.copy($scope.json);
-			api.post(data);
+			$scope.showDialogue = false;
+			api.post("update",data);
 		};
 
 		$scope.switchView = function (index) {

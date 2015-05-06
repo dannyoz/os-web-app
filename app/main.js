@@ -28109,6 +28109,7 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 	$scope.message = {
 		name : "Name",
 		subject : "Subject",
+		date  : new Date(),
 		email : "e-mail",
 		text : "Message"
 	}

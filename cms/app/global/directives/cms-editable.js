@@ -8,8 +8,6 @@ cms.directive('cmsEditable', function(){
 		link : function(scope, element, attrs){
 
 			scope.editMode = false;
-			scope.type     = attrs.type;
-
 			scope.toggleEdit = function(){
 
 				if(!scope.editMode){

@@ -1,7 +1,7 @@
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p><div ng-if=\"type == 'wysiwyg'\">wysiwyg</div>"
+    "<p class=simple><span class=edit-result ng-click=toggleEdit();>{{content}}</span> <input ng-model=content ng-show=\"editMode\"> <button ng-show=editMode ng-click=save(content);><span>Save</span></button></p>"
   );
 
 
@@ -10,18 +10,28 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-artwork.html',
+    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor-views/edit-homepage.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].heading data-type=plain></div><div class=editable ng-if=json cms-editable=json[currentView].subheading data-type=plain></div>"
+    "<div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=\"json[currentView].list['byrne-dean'].info\"></div>"
+    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul><ul id=bottom><li><a ng-click=publish();><i class=icon-cloud></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+  );
+
+
+  $templateCache.put('cms/app/views/messages/messages.html',
+    "<section id=messages><aside><ul><li ng-repeat=\"message in messages\" ng-class=\"{current:$index == currentmsg}\" ng-click=switchMsg($index)><span ng-bind=parseDate(message.date);></span> <span ng-bind=message.email></span><div ng-if=\"$index == currentmsg\"><div ng-if=!delete><button ng-click=toggleDelete();><i class=icon-trash></i></button></div><div ng-if=delete><button ng-click=deleteMsg($index);><i class=icon-check></i></button> <button ng-click=toggleDelete();><i class=icon-ban></i></button></div></div></li></ul></aside><div id=message-main><div id=message-content><h3 ng-bind-html=messages[currentmsg].subject></h3><div ng-bind-html=messages[currentmsg].text></div></div></div></section>"
   );
 
 

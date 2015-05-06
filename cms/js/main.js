@@ -27609,6 +27609,16 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller : 'editor'
         })
 
+        .when('/editor/:view/:single', {
+            templateUrl: 'cms/app/views/editor/editor.html',
+            controller : 'editor'
+        })
+
+        .when('/messages',{
+            templateUrl: 'cms/app/views/messages/messages.html',
+            controller : 'messages'
+        })
+
         .when('/styleguide', {
         	templateUrl: 'cms/app/views/styleguide/base.html'
     	});
@@ -27623,7 +27633,7 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<p class=simple ng-if=\"type == 'plain'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span><textarea ng-model=content ng-show=editMode></textarea><button ng-show=editMode ng-click=save(content);><span>Save</span></button></p><div ng-if=\"type == 'wysiwyg'\">wysiwyg</div>"
+    "<p class=simple><span class=edit-result ng-click=toggleEdit();>{{content}}</span> <input ng-model=content ng-show=\"editMode\"> <button ng-show=editMode ng-click=save(content);><span>Save</span></button></p>"
   );
 
 
@@ -27632,18 +27642,28 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-artwork.html',
+    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor-views/edit-homepage.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].heading data-type=plain></div><div class=editable ng-if=json cms-editable=json[currentView].subheading data-type=plain></div>"
+    "<div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].intro data-type=wysiwyg></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=json[currentView].intro></div><div class=wysiwyg text-angular=text-angular name=htmlcontent ng-model=\"json[currentView].list['byrne-dean'].info\"></div>"
+    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><aside ng-class=\"{fullscreen : !previewMode}\"><nav><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul><ul id=bottom><li><a ng-click=publish();><i class=icon-cloud></i></a></li></ul></nav><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+  );
+
+
+  $templateCache.put('cms/app/views/messages/messages.html',
+    "<section id=messages><aside><ul><li ng-repeat=\"message in messages\" ng-class=\"{current:$index == currentmsg}\" ng-click=switchMsg($index)><span ng-bind=parseDate(message.date);></span> <span ng-bind=message.email></span><div ng-if=\"$index == currentmsg\"><div ng-if=!delete><button ng-click=toggleDelete();><i class=icon-trash></i></button></div><div ng-if=delete><button ng-click=deleteMsg($index);><i class=icon-check></i></button> <button ng-click=toggleDelete();><i class=icon-ban></i></button></div></div></li></ul></aside><div id=message-main><div id=message-content><h3 ng-bind-html=messages[currentmsg].subject></h3><div ng-bind-html=messages[currentmsg].text></div></div></div></section>"
   );
 
 
@@ -27762,8 +27782,6 @@ cms.directive('cmsEditable', function(){
 		link : function(scope, element, attrs){
 
 			scope.editMode = false;
-			scope.type     = attrs.type;
-
 			scope.toggleEdit = function(){
 
 				if(!scope.editMode){
@@ -27793,8 +27811,10 @@ cms.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, glo
 cms.factory('api',['$http', '$q', function ($http, $q){
 
 	var endpoints = {
-		"devapi"  : "http://localhost:3000/api/data.json",
-		"devpost" : "http://localhost:3000/update/"
+		"devapi"     : "http://localhost:3000/api/data.json",
+		"devpost"    : "http://localhost:3000/update/",
+		"devmsg"     : "http://localhost:3000/api/messages.json",
+		"devmsgPost" : "http://localhost:3000/post-message/"
 	};
 
 	var get = function(){
@@ -27814,10 +27834,17 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 		return defer.promise
 	},
 
-	post = function(data){
+	post = function(method,data){
 
+		if(method == "update"){
+			var endpoint = endpoints.devpost
+		}
 
-		$http.post(endpoints.devpost,data).success(function (result){
+		if(method == "messages"){
+			var endpoint = endpoints.devmsgPost
+		}
+
+		$http.post(endpoint,data).success(function (result){
 			console.log("Post success : " , result.status);
 		}).error(function (data, status, headers, config){
 			console.log("Post error : " , data);
@@ -27825,11 +27852,29 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 			console.log("headers : " , headers);
 			console.log("config : " , config);
 		});
-	};
+	},
+
+	msg = function(){
+
+		var defer = $q.defer();
+
+		$http.get(endpoints.devmsg).success(function (result){
+			defer.resolve(result);
+			
+		}).error(function (data, status, headers, config){
+			console.log("Get error : " , data);
+			console.log("status : " , status);
+			console.log("headers : " , headers);
+			console.log("config : " , config);
+		});
+
+		return defer.promise
+	}
 
 	return {
 		get : get,
-		post : post
+		post : post,
+		msg  : msg
 	}
 
 }]);
@@ -27864,6 +27909,8 @@ cms.controller('editor',[
 		}
 
 		$scope.previewMode  = false;
+		$scope.showDialogue = false;
+		$scope.singleView   = false;
 
 		$scope.views = [
 			"home",
@@ -27879,10 +27926,19 @@ cms.controller('editor',[
 			$scope.currentView  = "home"
 		}
 
+		if($routeParams.single){
+			$scope.singleView = true;
+			$scope.single = $routeParams.single;
+		}
+
+		$scope.toggleDialogue = function(){
+			$scope.showDialogue = !$scope.showDialogue;
+		};
 
 		$scope.publish = function(){
 			var data = angular.copy($scope.json);
-			api.post(data);
+			$scope.showDialogue = false;
+			api.post("update",data);
 		};
 
 		$scope.switchView = function (index) {
@@ -27915,6 +27971,56 @@ cms.controller('editor',[
 			}
 
 			return className;
+		};
+
+	}]);
+cms.controller('messages',[
+	'$scope',
+	'$sce',
+	'api',
+	function ($scope,$sce,api){
+
+		$scope.currentmsg = 0;
+		$scope.delete = false;
+		
+		api.msg().then(function (data){
+			$scope.messages   = data.messages;
+		});
+
+		$scope.parseDate = function(d){
+
+			var date     = new Date(d),
+				day      = date.getDate(),
+				months   = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
+				m        = date.getMonth(),
+				year     = date.getFullYear(),
+				niceDate = months[m]+ " " + day + " " + year;
+
+			return niceDate;
+		}
+
+		$scope.switchMsg = function(i){
+			$scope.currentmsg = i;
+		};
+
+		$scope.toggleDelete = function(){
+			$scope.delete = !$scope.delete;
+		};
+
+		$scope.deleteMsg = function(i){
+
+			$scope.delete = false;
+			$scope.messages.splice(i,1);
+
+			if($scope.currentmsg > ($scope.messages.length -1)){
+				$scope.currentmsg -- 
+			}
+
+			var copy  = angular.copy($scope.messages),
+				json  = JSON.stringify(copy);
+
+			api.post("messages",json);
+
 		};
 
 	}]);

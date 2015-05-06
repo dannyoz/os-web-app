@@ -1,0 +1,36 @@
+<section id="messages">
+
+	<aside>
+		<ul>
+			<li ng-repeat="message in messages" ng-class="{current:$index == currentmsg}" ng-click="switchMsg($index)">
+				<span ng-bind="parseDate(message.date);"></span>
+				<span ng-bind="message.email"></span>
+				<div ng-if="$index == currentmsg">
+					<div ng-if="!delete">
+						<button ng-click="toggleDelete();">
+							<i class="icon-trash"></i>
+						</button>
+					</div>
+					<div ng-if="delete">
+						<button ng-click="deleteMsg($index);">
+							<i class="icon-check"></i>
+						</button>
+						<button ng-click="toggleDelete();">
+							<i class="icon-ban"></i>
+						</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</aside>
+
+	<div id="message-main">
+			
+		<div id="message-content">
+			<h3 ng-bind-html="messages[currentmsg].subject"></h3>
+			<div ng-bind-html="messages[currentmsg].text"></div>
+		</div>
+
+	</div>
+
+</section>

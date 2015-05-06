@@ -1,0 +1,50 @@
+#messages{
+
+	$asideWidth : 400px;
+
+	aside{
+
+		background:$editor-dark;
+		@include sideBar($asideWidth);
+
+		ul li{
+
+			display:block;
+			padding:30px;
+			position:relative;
+			cursor:pointer;
+			border-bottom:1px solid darken($editor-dark,10%);
+
+			span{
+
+				font:{
+					size:16px;
+				}
+			}
+
+			&.current{
+
+				$active : lighten($editor-dark,5%);
+
+				background:$active;
+
+				&:after{
+
+					right:-10px;
+					z-index: 10;
+					@include centre(y);
+					@include afterBefore;
+					@include arrow(10px,"right",$active,1.5);
+				}
+			}
+		}
+	}
+
+	#message-main{
+
+		background: $editor-light;
+		padding:30px;
+		@include scrollbar;
+		@include sideBarAppend($asideWidth);
+	}
+}

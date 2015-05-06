@@ -1,11 +1,7 @@
-<p class="simple" ng-if="type == 'plain'">
+<p class="simple">
 	<span class="edit-result" ng-click="toggleEdit();">{{content}}</span>
-	<textarea ng-model="content" ng-show="editMode" ></textarea>
+	<input type="text" ng-model="content" ng-show="editMode"/>
 	<button ng-show="editMode" ng-click="save(content);">
 		<span>Save</span>
 	</button>
 </p>
-
-<div ng-if="type == 'wysiwyg'">
-	wysiwyg
-</div>

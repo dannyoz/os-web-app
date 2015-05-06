@@ -20,6 +20,16 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller : 'editor'
         })
 
+        .when('/editor/:view/:single', {
+            templateUrl: 'cms/app/views/editor/editor.html',
+            controller : 'editor'
+        })
+
+        .when('/messages',{
+            templateUrl: 'cms/app/views/messages/messages.html',
+            controller : 'messages'
+        })
+
         .when('/styleguide', {
         	templateUrl: 'cms/app/views/styleguide/base.html'
     	});

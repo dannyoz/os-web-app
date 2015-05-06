@@ -1,28 +1,38 @@
 <div id="editor">
 
-	<aside ng-class="{fullscreen : !previewMode}">
+	<nav>
+		<ul id="top">
+			<li>
+				<a ng-click="toggleDialogue();">
+					<i class="icon-jsfiddle"></i>
+				</a>
+				<div class="publish-dialogue rounded-10px" ng-if="showDialogue">
+					<p>Publish changes?</p>
+					<button ng-click="publish();" class="medium rounded-10px">
+						<i class="icon-check"></i>
+					</button>
+					<button ng-click="toggleDialogue();" class="medium rounded-10px">
+						<i class="icon-ban"></i>
+					</button>
+				</div>
+			</li>
+		</ul>
+		<ul id="views">
+			<li ng-repeat="view in views" ng-class="{current:currentView == view}">
+				<a ng-href="/editor/{{view}}" ng-class="[view]">
+					<i ng-class="iconClass(view);"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
 
-		<nav>
-			<ul id="views">
-				<li ng-repeat="view in views" ng-class="{current:currentView == view}">
-					<a ng-href="/editor/{{view}}" ng-class="[view]">
-						<i ng-class="iconClass(view);"></i>
-					</a>
-				</li>
-			</ul>
-			<ul id="bottom">
-				<li>
-					<a ng-click="publish();">
-						<i class="icon-cloud"></i>
-					</a>
-				</li>
-			</ul>
-		</nav>
+	<aside ng-class="{fullscreen : !previewMode}">
 
 		<section id="edit-pane">
 			
 			<div ng-if="currentView == 'home'" ng-include="'cms/app/views/editor/editor-views/edit-homepage.html'"></div>
 			<div ng-if="currentView == 'websites'" ng-include="'cms/app/views/editor/editor-views/edit-websites.html'"></div>
+			<div ng-if="currentView == 'art'" ng-include="'cms/app/views/editor/editor-views/edit-artwork.html'"></div>
 
 		</section>
 

@@ -1,69 +1,116 @@
 #editor{
 
 	$editorwidth : 500px;
-	$navWidth : 60px;
+	$navWidth : 70px;
 
 	display:block;
 	overflow:hidden;
 	@include fitParent;
 
-	aside{
+	nav{
 
-		background:#DDD;
-		width:$editorwidth;
-		padding:30px 30px 30px ($navWidth + 30px);
-		@extend .transition-1;
-		@include box-sizing(border-box);
-		@include fitParent("",0,auto,0,0);
+		background:$editor-dark;
+		@include sideBar($navWidth);
 
-		&.fullscreen{
+		ul{
 
-			width:100%;
-		}
+			li{
+				width:$navWidth;
+				height:$navWidth;
 
-		nav{
+				a{
 
-			background:#222;
-			width:$navWidth;
-			@include fitParent("",0,auto,0,0);
-
-			ul{
-
-				li{
+					display:block;
+					color:#777;
 					width:$navWidth;
 					height:$navWidth;
+					font-size:22px;
+					position:relative;
+					text-decoration:none;
+					@externd .transition-2;
+
+					i{
+						@include centre;
+					}
+				}
+
+				&.current{
+
+					background:#151515;
+
+					a{
+						color:white;
+					}
+				}
+			}
+
+			&#top{
+
+				li {
+
+					position:relative;
 
 					a{
 
-						display:block;
-						color:#777;
-						width:$navWidth;
-						height:$navWidth;
-						font-size:22px;
-						position:relative;
-						text-decoration:none;
+						background:rgb(71, 176, 172);
+						color:#C6F0ED;
 
-						i{
-							@include centre;
-						}
-					}
+						&:hover{
 
-					&.current{
-
-						background:#151515;
-
-						a{
+							background:darken(rgb(71, 176, 172),4%);
 							color:white;
 						}
+
+					}
+
+					.publish-dialogue{
+
+						$offset:20px;
+						$width:200px;
+
+						position:absolute;
+						top: $offset;
+						padding:20px;
+						left:$navWidth + $offset;
+						background:$editor-dark;
+						width:$width;
+						z-index: 999;
+
+						&:before{
+
+							position:absolute;
+							top:10px;
+							left:-10px;
+							@include afterBefore;
+							@include arrow(10px,"left",$editor-dark);
+						}
 					}
 				}
-
-				&#bottom{
-
-					position:absolute;
-					bottom:0;
-				}
 			}
+
+			&#bottom{
+
+				position:absolute;
+				bottom:0;
+			}
+
+		}
+	}
+
+	aside{
+
+		background:$editor-light;
+		width:$editorwidth;
+		overflow:auto;
+		padding:30px;
+		@extend .transition-1;
+		@include box-sizing(border-box);
+		@include fitParent("",0,auto,0,$navWidth);
+
+		&.fullscreen{
+
+			width:auto;
+			right:0;
 		}
 
 		.editable{
@@ -78,11 +125,13 @@
 				line-height:22px;
 				padding:20px;
 
-				textarea{
+				input{
 
 					font-size:22px;
 					line-height:22px;
 					padding:20px;
+					width:100%;
+					@include box-sizing(border-box);
 					@include fitParent("",0,$buttonsize,0,0);
 				}
 
@@ -97,6 +146,50 @@
 		}
 
 		@import "wysiwyg";
+
+		.list{
+
+			padding:20px 0;
+			margin:20px 0;
+			position:relative;
+			border-top:1px solid darken($editor-light,10%);
+			border-bottom:1px solid darken($editor-light,10%);
+			@extend .grid-row;
+
+			.selection{
+
+				margin-bottom:20px;
+				background:lighten($editor-light,3%);
+				border:1px solid darken($editor-light,10%);
+				@include box-sizing(border-box);
+				@include border-radius(10px);
+
+				a{
+					
+					display:block;
+					padding:20px;
+					margin-bottom:0;
+					color:$editor-text;
+					text-transform:uppercase;
+				}
+
+				&:hover{
+					background:lighten($editor-light,6%);
+					a{text-decoration:none;color:darken($editor-text,10%)};
+				}
+
+				&:nth-child(odd){
+					
+					@include grid-col(6,12,2%);
+				}
+
+				&:nth-child(even){
+					
+					@include grid-col-last(6,12,2%);
+				}
+			}
+
+		}
 	}
 
 	#preview{
@@ -105,7 +198,7 @@
 		margin-left:0;
 		overflow:auto;
 		@extend .transition-1;
-		@include fitParent("",0,0,0,$editorwidth);
+		@include sideBarAppend($editorwidth + $navWidth);
 
 		&.hide{
 			margin-left:100%;

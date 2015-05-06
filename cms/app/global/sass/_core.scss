@@ -27,30 +27,6 @@ body{
 @include transitions(0.1s 0.2s 0.3s 0.4s 0.5s);
 
 
-.bevelStack{
-
-	@include boxSizing(20px);
-	@include bevelDivider($theme-bg-colour,"bottom");
-}
-
-
-.grid-example{
-
-	background:#ddd;
-	padding:20px 0;
-	min-height:30px;
-	margin-bottom:20px;
-	position:relative;
-
-	span{
-
-		font-size: 0.8em;
-	}
-}
-
-
-@include grid(12,2%,$small-screens,true);
-
 
 
 
