@@ -14,45 +14,49 @@
 
 		<div class="grid-row">
 
-			<div class="grid-6">
+			<div class="grid-6 push-3">
 
-				<form name="contactForm" ng-submit="sendMessage(message);">
+				<form ng-if="!sent" name="contactForm" ng-submit="sendMessage(message);">
 
 					<fieldset>
-						<input type="text" name="name" ng-model="message.name" placeholder="Name" required/>
-						<div ng-messages="contactForm.name.$error" role="alert">
-						    <div ng-message="required">You did not enter a field</div>
-						</div>
+						<input type="text" name="name" ng-model="message.name" placeholder="Name" required ng-minlength="3"/>
+						<p  ng-messages="contactForm.name.$error" 
+							role="alert" 
+							ng-messages-include="app/views/contact/ng-messages.html">
+						</p>
 					</fieldset>
 					<fieldset>
 						<input type="email" name="email" ng-model="message.email" placeholder="e-mail" required/>
-						<div ng-messages="contactForm.email.$error" role="alert">
-						    <div ng-message="required">You did not enter a field</div>
-						    <div ng-message="email">please enter a valid email</div>
-						</div>
+						<p  ng-messages="contactForm.email.$error" 
+							role="alert" 
+							ng-messages-include="app/views/contact/ng-messages.html">
+							<span ng-message="email">Please enter a valid email</span>
+						</p>
 					</fieldset>
 					<fieldset>
-						<input type="text" name="subject" ng-model="message.subject" placeholder="Subject" required/>
-						<div ng-messages="contactForm.subject.$error" role="alert">
-						    <div ng-message="required">You did not enter a field</div>
-						</div>
+						<input type="text" name="subject" ng-model="message.subject" placeholder="Subject" required ng-minlength="5"/>
+						<p  ng-messages="contactForm.subject.$error" 
+							role="alert" 
+							ng-messages-include="app/views/contact/ng-messages.html">
+						</p>
 					</fieldset>
 					<fieldset>
-						<textarea name="message" cols="30" rows="10" ng-model="message.text" placeholder="Message" required></textarea>
-						<div ng-messages="contactForm.message.$error" role="alert">
-						    <div ng-message="required">You did not enter a field</div>
-						</div>
+						<textarea name="message" cols="30" rows="10" ng-model="message.text" placeholder="Message" required ng-minlength="5" ng-maxlength="3500"></textarea>
+						<p  ng-messages="contactForm.message.$error" 
+							role="alert" 
+							ng-messages-include="app/views/contact/ng-messages.html">
+						</p>
 					</fieldset>
 					<fieldset>
-						<button ng-click="sendMessage(message);">Send</button>
+						<input type="submit" value="send"/>
 					</fieldset>
 
 				</form>
-				
-			</div>
 
-			<div class="grid-6">
-				<p>Herp de derp</p>
+				<div ng-if="sent">
+					thanks bruv
+				</div>
+				
 			</div>
 
 		</div>

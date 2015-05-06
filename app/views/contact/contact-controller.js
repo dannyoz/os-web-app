@@ -13,7 +13,7 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 		$scope.ready    = content.ready;
 	});
 
-	$scope.messageStatus = "pending"
+	$scope.sent    = false;
 	$scope.message = {
 		name : "",
 		subject : "",
@@ -24,6 +24,9 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 
 	$scope.sendMessage = function(msg){
+
+		$scope.messageStatus = "pending"
+		$scope.sent = true;
 
 		api.getContent('messages').success(function (data){
 

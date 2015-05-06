@@ -28155,7 +28155,12 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/contact/contact.html',
-    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=grid-row><div class=grid-6><form name=contactForm ng-submit=sendMessage(message);><fieldset><input name=name ng-model=message.name placeholder=Name required><div ng-messages=contactForm.name.$error role=alert><div ng-message=required>You did not enter a field</div></div></fieldset><fieldset><input type=email name=email ng-model=message.email placeholder=e-mail required><div ng-messages=contactForm.email.$error role=alert><div ng-message=required>You did not enter a field</div><div ng-message=email>please enter a valid email</div></div></fieldset><fieldset><input name=subject ng-model=message.subject placeholder=Subject required><div ng-messages=contactForm.subject.$error role=alert><div ng-message=required>You did not enter a field</div></div></fieldset><fieldset><textarea name=message cols=30 rows=10 ng-model=message.text placeholder=Message required></textarea><div ng-messages=contactForm.message.$error role=alert><div ng-message=required>You did not enter a field</div></div></fieldset><fieldset><button ng-click=sendMessage(message);>Send</button></fieldset></form></div><div class=grid-6><p>Herp de derp</p></div></div></div></div>"
+    "<div class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=grid-row><div class=\"grid-6 push-3\"><form ng-if=!sent name=contactForm ng-submit=sendMessage(message);><fieldset><input name=name ng-model=message.name placeholder=Name required ng-minlength=\"3\"><p ng-messages=contactForm.name.$error role=alert ng-messages-include=app/views/contact/ng-messages.html></p></fieldset><fieldset><input type=email name=email ng-model=message.email placeholder=e-mail required><p ng-messages=contactForm.email.$error role=alert ng-messages-include=app/views/contact/ng-messages.html><span ng-message=email>Please enter a valid email</span></p></fieldset><fieldset><input name=subject ng-model=message.subject placeholder=Subject required ng-minlength=\"5\"><p ng-messages=contactForm.subject.$error role=alert ng-messages-include=app/views/contact/ng-messages.html></p></fieldset><fieldset><textarea name=message cols=30 rows=10 ng-model=message.text placeholder=Message required ng-minlength=5 ng-maxlength=3500></textarea><p ng-messages=contactForm.message.$error role=alert ng-messages-include=app/views/contact/ng-messages.html></p></fieldset><fieldset><input type=submit value=\"send\"></fieldset></form><div ng-if=sent>thanks bruv</div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/contact/ng-messages.html',
+    "<span ng-message=required>This field is required</span> <span ng-message=minlength>This field is too short</span> <span ng-message=maxlength>This field is too long</span>"
   );
 
 
@@ -28505,7 +28510,7 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 		$scope.ready    = content.ready;
 	});
 
-	$scope.messageStatus = "pending"
+	$scope.sent    = false;
 	$scope.message = {
 		name : "",
 		subject : "",
@@ -28516,6 +28521,9 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 
 	$scope.sendMessage = function(msg){
+
+		$scope.messageStatus = "pending"
+		$scope.sent = true;
 
 		api.getContent('messages').success(function (data){
 
