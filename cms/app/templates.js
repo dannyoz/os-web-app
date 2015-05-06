@@ -11,7 +11,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-artwork.html',
-    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
   );
 
 

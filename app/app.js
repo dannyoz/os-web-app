@@ -1,4 +1,4 @@
-var dod = angular.module('dod', ['ngRoute','ngSanitize']);
+var dod = angular.module('dod', ['ngRoute','ngSanitize','ngMessages']);
 
 dod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
  	

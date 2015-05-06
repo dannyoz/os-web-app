@@ -15,12 +15,13 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 
 	$scope.messageStatus = "pending"
 	$scope.message = {
-		name : "Name",
-		subject : "Subject",
+		name : "",
+		subject : "",
 		date  : new Date(),
-		email : "e-mail",
-		text : "Message"
+		email : "",
+		text : ""
 	}
+
 
 	$scope.sendMessage = function(msg){
 
@@ -46,9 +47,7 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 			});
 
 		});
-
-		
-		
+	
 	};
 
 }]);

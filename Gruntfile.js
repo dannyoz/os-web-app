@@ -21,6 +21,7 @@ module.exports = function(grunt) {
                     'app/libs/angular.js',
                     'app/libs/angular-route.js',
                     'app/libs/angular-sanitize.js',
+                    'app/libs/angular-messages.js',
                     'app/app.js',
                     'app/preloader.js',
                     'app/templates.js',
