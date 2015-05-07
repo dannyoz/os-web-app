@@ -32,12 +32,10 @@ button, .button{
 	outline:0;
 	margin-bottom:20px;
 
-	border-top:1px solid darken($theme-subtle-light,7%);
-	border-left:1px solid darken($theme-subtle-light,7%);
-	border-right:1px solid darken($theme-subtle-light,7%);
-	border-bottom:5px solid darken($theme-subtle-light,7%);
+	border:1px solid darken($theme-subtle-light,7%);
 	background:$theme-subtle-light;
 	color: $theme-text-colour;
+	@extend .transition-2;
 
 	&:hover, &:focus{
 		border-color:darken($theme-subtle-light,6%);
@@ -50,18 +48,16 @@ button, .button{
 
 		&.#{$name}{
 
-			border-top:1px solid darken($colour,5%);
-			border-left:1px solid darken($colour,5%);
-			border-right:1px solid darken($colour,5%);
-			border-bottom:5px solid darken($colour,5%);
+			border:1px solid darken($colour,5%);
 			background:$colour;
-			color: darken($colour,35%);
+			color: darken($colour,20%);
 			text-shadow:1px 1px 0 lighten($colour,10%);
+			
 
 			&:hover, &:focus{
-				border-color:darken($colour,15%);
-				background:lighten(saturate($colour,15%),10%);
-				color: darken($colour,45%);
+				border-color:darken($colour,8%);
+				background:lighten(saturate($colour,3%),5%);
+				color: darken($colour,30%);
 			}
 		}
 	}
@@ -93,5 +89,55 @@ button, .button{
 			size:0.7em;
 		}
 
+	}
+
+	&.close{
+
+		$size: 25px;
+		height:$size;
+		width:$size;
+		background-color:darken($editor-light,15%);
+		border-color:darken($editor-light,25%);
+		color:darken($editor-light,35%);
+		@include border-radius(100%);
+
+		span{
+			
+			font-weight:600;
+			font-size:16px;
+			@include centre;
+		}
+
+		&:hover{
+
+			background:#A83535;
+			border-color:darken(#A83535,10%);
+			color:white;
+		}
+	}
+
+	&.confirm{
+
+		$size: 25px;
+		height:$size;
+		width:$size;
+		background-color:darken($editor-light,15%);
+		border-color:darken($editor-light,25%);
+		color:darken($editor-light,35%);
+		@include border-radius(100%);
+
+		i{
+			
+			font-weight:600;
+			font-size:16px;
+			@include centre;
+		}
+
+		&:hover{
+
+			background:#65B345;
+			border-color:darken(#65B345,10%);
+			color:white;
+		}
 	}
 }

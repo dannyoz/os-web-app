@@ -22,7 +22,7 @@ body{
 
 @include rounding(10px);
 
-@include grid(12,2%,450);
+@include grid(12,3%,450);
 
 @include transitions(0.1s 0.2s 0.3s 0.4s 0.5s);
 

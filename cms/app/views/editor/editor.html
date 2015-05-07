@@ -8,10 +8,10 @@
 				</a>
 				<div class="publish-dialogue rounded-10px" ng-if="showDialogue">
 					<p>Publish changes?</p>
-					<button ng-click="publish();" class="medium rounded-10px">
+					<button ng-click="publish();" class="green medium rounded-10px">
 						<i class="icon-check"></i>
 					</button>
-					<button ng-click="toggleDialogue();" class="medium rounded-10px">
+					<button ng-click="toggleDialogue();" class="red medium rounded-10px">
 						<i class="icon-ban"></i>
 					</button>
 				</div>
@@ -36,8 +36,6 @@
 			<div ng-if="currentView == 'about'" ng-include="'cms/app/views/editor/editor-views/edit-about.html'"></div>
 
 		</section>
-
-		<p>{{json[currentView]}}</p>
 
 		<button ng-click="previewMode = !previewMode">derp</button>
 

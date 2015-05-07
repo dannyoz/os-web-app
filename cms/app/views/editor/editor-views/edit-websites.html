@@ -40,15 +40,37 @@
 
 <div ng-if="singleView">
 
+	<p class="label">Title</p>
 	<div class="editable" 
 	     ng-if="json" 
 	     cms-editable="json[currentView].list[single].title">
 	</div>
 
-	<div class="wysiwyg" 
-	     text-angular="text-angular" 
-	     name="info" 
-	     ng-model="json[currentView].list[single].info">
+	<div class="grid-row">
+
+		<div class="grid-8">
+			
+			<p class="label">Info</p>
+			<div class="wysiwyg" 
+			     text-angular="text-angular" 
+			     name="info" 
+			     ng-model="json[currentView].list[single].info">
+			</div>
+
+		</div>
+
+		<div class="grid-4">
+
+			<p class="label">Tags</p>
+			<div class="editable" 
+			     ng-if="json" 
+			     cms-editable="json[currentView].list[single].tags"
+			     data-type="list">
+			</div>
+
+		</div>
+
 	</div>
+
 
 </div>

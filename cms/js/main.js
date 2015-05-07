@@ -27633,7 +27633,7 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<p class=simple ng-if=\"type == 'text'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span> <input ng-model=content ng-show=\"editMode\"> <button ng-show=editMode ng-click=save(content);><span><i class=icon-check></i></span></button></p><div ng-if=\"type == 'list'\"><div class=edit-list ng-repeat=\"item in content\"><p>{{item}}</p><button ng-click=removeListItem($index);><i class=icon-trash></i></button></div></div>"
+    "<p class=simple ng-if=\"type == 'text'\"><span class=edit-result ng-click=toggleEdit();>{{content}}</span> <input ng-model=content ng-show=\"editMode\"> <button class=green ng-show=editMode ng-click=save(content);><span><i class=icon-check></i></span></button></p><div ng-if=\"type == 'list'\"><div class=edit-list ng-repeat=\"item in content track by $index\"><p ng-click=selectListItem($index);>{{item}}</p><button class=close ng-if=\"currentList != $index\" ng-click=removeListItem($index);><span>x</span></button> <button class=confirm ng-if=\"currentList == $index\" ng-click=changeListItem($index,item);><i class=icon-check></i></button> <input ng-model=item ng-show=\"currentList == $index\"></div><button ng-click=addListItem(); class=\"rounded-10px green medium\"><span>+</span></button></div>"
   );
 
 
@@ -27643,7 +27643,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-about.html',
-    "<div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=grid-row><div class=grid-4><p class=label>Skills</p><div class=editable ng-if=json cms-editable=\"json[currentView]['skills']\" date-type=list></div></div><div class=grid-4><p class=label>Most likely to say</p><div class=editable ng-if=json cms-editable=\"json[currentView]['most-likely-to-say']\" date-type=list></div></div><div class=grid-4><p class=label>Least likely to say</p><div class=editable ng-if=json cms-editable=\"json[currentView]['least-likely-to-say']\" date-type=list></div></div></div>"
+    "<div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=grid-row><div class=grid-4><p class=label>Skills</p><div class=editable ng-if=json cms-editable=\"json[currentView]['skills']\" data-type=list></div></div><div class=grid-4><p class=label>Most likely to say</p><div class=editable ng-if=json cms-editable=\"json[currentView]['most-likely-to-say']\" data-type=list></div></div><div class=grid-4><p class=label>Least likely to say</p><div class=editable ng-if=json cms-editable=\"json[currentView]['least-likely-to-say']\" data-type=list></div></div></div>"
   );
 
 
@@ -27658,12 +27658,12 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView><p class=label>Title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-8><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div><div class=grid-4><p class=label>Tags</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].tags data-type=list></div></div></div></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div></section><p>{{json[currentView]}}</p><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"green medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"red medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div></section><button ng-click=\"previewMode = !previewMode\">derp</button></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
   );
 
 
@@ -27777,33 +27777,6 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
     "</pre><p>Monospace Text wrapped in \"pre\" tags</p><pre><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p></pre><hr>"
   );
 }])
-// cms.directive('cmsEditable', function(){
-// 	return{
-// 		restrict : "A",
-// 		templateUrl : 'cms/app/global/directives/cms-editable-list.html',
-// 		scope : {
-// 			content : "=cmsEditable" 
-// 		},
-// 		link : function(scope, element, attrs){
-
-// 			scope.editMode = false;
-// 			scope.toggleEdit = function(){
-
-// 				if(!scope.editMode){
-// 					scope.editMode = true
-// 				} else{
-// 					scope.editMode = false
-// 				}
-// 			}
-
-// 			scope.save = function(content){
-
-// 				scope.toggleEdit();
-// 				scope.content = content
-// 			}
-// 		}
-// 	}
-// });
 cms.directive('cmsEditable', function(){
 	return{
 		restrict : "A",
@@ -27813,9 +27786,8 @@ cms.directive('cmsEditable', function(){
 		},
 		link : function(scope, element, attrs){
 
-			if(attrs.dateType){
-				scope.type = attrs.dateType;
-				scope.current = 0;
+			if(attrs.type){
+				scope.type = attrs.type;
 			} else {
 				scope.type = "text";
 			}
@@ -27831,13 +27803,26 @@ cms.directive('cmsEditable', function(){
 			}
 
 			scope.save = function(content){
-
 				scope.toggleEdit();
 				scope.content = content
 			}
 
 			scope.removeListItem = function(i){
 				scope.content.splice(i,1);
+			}
+
+			scope.selectListItem = function(i){
+				scope.currentList = i;
+			}
+
+			scope.changeListItem = function(i,text){
+				scope.content[i] = text;
+				scope.currentList = null;
+			}
+
+			scope.addListItem = function(){
+				scope.content.push("List item");
+				scope.currentList = (scope.content.length-1);
 			}
 		}
 	}
