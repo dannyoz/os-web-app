@@ -10,6 +10,7 @@
 	nav{
 
 		background:$editor-dark;
+		z-index: 9999;
 		@include sideBar($navWidth);
 
 		ul{
@@ -97,6 +98,39 @@
 		}
 	}
 
+	#editor-header{
+
+		background:lighten($editor-light,8%);
+		height:$navWidth;
+		width:$editorwidth;
+		z-index: 999;
+		@include fitParent("",0,auto,auto,$navWidth);
+		@include box-shadow(10px 5px 10px darken($editor-light,5%));
+
+		h1{
+
+			line-height:$navWidth;
+			margin:0 0 0 30px;
+			color:$editor-dark;
+			font:{
+				size:22px;
+				weight:600;
+			}
+		}
+
+		button{
+
+			right:30px;
+			@include centre(y);
+		}
+
+		&.fullscreen{
+
+			width:auto;
+			right:0;
+		}
+	}
+
 	aside{
 
 		background:$editor-light;
@@ -105,7 +139,7 @@
 		padding:30px;
 		@extend .transition-1;
 		@include box-sizing(border-box);
-		@include fitParent("",0,auto,0,$navWidth);
+		@include fitParent("",$navWidth,auto,0,$navWidth);
 
 		&.fullscreen{
 

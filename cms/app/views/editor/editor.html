@@ -26,6 +26,13 @@
 		</ul>
 	</nav>
 
+	<div id="editor-header" ng-class="{fullscreen : !previewMode}">
+		<h1 ng-bind="currentView"></h1>
+		<button class="rounded-10px medium blue" ng-click="previewMode = !previewMode">
+			<span>Preview</span>
+		</button>
+	</div>
+
 	<aside ng-class="{fullscreen : !previewMode}">
 
 		<section id="edit-pane">
@@ -36,8 +43,6 @@
 			<div ng-if="currentView == 'about'" ng-include="'cms/app/views/editor/editor-views/edit-about.html'"></div>
 
 		</section>
-
-		<button ng-click="previewMode = !previewMode">derp</button>
 
 	</aside>
 
