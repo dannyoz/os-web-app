@@ -32,7 +32,8 @@ cms.controller('editor',[
 			"art",
 			"websites",
 			"about",
-			"contact"
+			"contact",
+			"media"
 		];
 
 		if($routeParams.view){
@@ -61,6 +62,45 @@ cms.controller('editor',[
 			$scope.page = $scope.json[$scope.currentView];
 		};
 
+		$scope.addWebsite = function(){
+
+			$scope.showAddWeb = true;
+			$scope.newwebsite = "Website Name goes here";
+
+			$scope.confirmWebsite = function(name){
+
+				var key = name.replace(/ /g, "-").toLowerCase(),
+					obj = {
+						title : name,
+						display : "tablet",
+						info : "<p>Write something about me...</p>",
+						tags: [
+							"HTML5",
+							"jQuery",
+							"Sass"
+						],
+						carousel: [
+							"http://placehold.it/450x680",
+							"http://placehold.it/450x680",
+							"http://placehold.it/450x680"
+						]
+					};
+
+				$scope.json.websites.list[key] = obj;
+				$scope.publish();
+				$location.path("/editor/websites/" + key);
+			};
+
+		};
+
+		$scope.uploadFile = function(){
+
+			var file = $scope.myFile;
+	        console.log('file is ' + JSON.stringify(file));
+	        // var uploadUrl = "/fileUpload";
+	        // fileUpload.uploadFileToUrl(file, uploadUrl);
+		};
+
 		$scope.iconClass = function(view){
 
 			var className;
@@ -83,6 +123,10 @@ cms.controller('editor',[
 
 			if(view == "contact"){
 				className = "icon-bubble";
+			}
+
+			if(view == "media"){
+				className = "icon-photo";
 			}
 
 			return className;

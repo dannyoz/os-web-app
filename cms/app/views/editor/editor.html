@@ -28,7 +28,7 @@
 
 	<div id="editor-header" ng-class="{fullscreen : !previewMode}">
 		<h1 ng-bind="currentView"></h1>
-		<button class="rounded-10px medium blue" ng-click="previewMode = !previewMode">
+		<button ng-if="currentView != 'media'" class="rounded-10px medium blue" ng-click="previewMode = !previewMode">
 			<span>Preview</span>
 		</button>
 	</div>
@@ -41,6 +41,7 @@
 			<div ng-if="currentView == 'websites'" ng-include="'cms/app/views/editor/editor-views/edit-websites.html'"></div>
 			<div ng-if="currentView == 'art'" ng-include="'cms/app/views/editor/editor-views/edit-artwork.html'"></div>
 			<div ng-if="currentView == 'about'" ng-include="'cms/app/views/editor/editor-views/edit-about.html'"></div>
+			<div ng-if="currentView == 'media'" ng-include="'cms/app/views/editor/editor-views/edit-media.html'"></div>
 
 		</section>
 

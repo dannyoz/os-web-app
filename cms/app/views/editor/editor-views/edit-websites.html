@@ -30,9 +30,16 @@
 			<a ng-href="/editor/websites/{{website}}" ng-bind="website"></a>
 		</div>
 
-		<div class="selection">
-			<a>+</a>
+		<div class="selection" ng-if="showAddWeb">
+			<input type="text" ng-model="newwebsite"/>
+			<button ng-click="confirmWebsite(newwebsite);" class="confirm">
+				<i class="icon-check"></i>
+			</button>
 		</div>
+
+		<button ng-if="!showAddWeb" ng-click="addWebsite();" class="rounded-10px medium green">
+			<span>+ Add</span>
+		</button>
 
 	</div>
 

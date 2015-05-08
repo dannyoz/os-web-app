@@ -38,9 +38,10 @@
 				&.current{
 
 					background:#151515;
+					@include box-shadow(inset -4px 0 0 rgb(71, 176, 172));
 
 					a{
-						color:white;
+						color:rgb(71, 176, 172);
 					}
 				}
 			}
@@ -104,8 +105,8 @@
 		height:$navWidth;
 		width:$editorwidth;
 		z-index: 999;
+		border-bottom:1px solid darken($editor-light,8%);
 		@include fitParent("",0,auto,auto,$navWidth);
-		@include box-shadow(10px 5px 10px darken($editor-light,5%));
 
 		h1{
 
@@ -162,18 +163,34 @@
 			.selection{
 
 				margin-bottom:20px;
+				position: relative;
 				background:lighten($editor-light,3%);
 				border:1px solid darken($editor-light,10%);
 				@include box-sizing(border-box);
 				@include border-radius(10px);
 
-				a{
+				a, input{
 					
 					display:block;
 					padding:20px;
 					margin-bottom:0;
 					color:$editor-text;
 					text-transform:uppercase;
+				}
+
+				input{
+
+					font-size:20px;
+					width:100%;
+					border:none;
+					@include box-sizing(border-box);
+					@include border-radius(10px);
+				}
+
+				button{
+
+					right:10px;
+					@include centre(y);
 				}
 
 				&:hover{

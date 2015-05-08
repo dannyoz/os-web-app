@@ -1202,9 +1202,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 #editor nav ul li.current {
   background: #151515;
+  -moz-box-shadow: inset -4px 0 0 #47b0ac;
+  -webkit-box-shadow: inset -4px 0 0 #47b0ac;
+  box-shadow: inset -4px 0 0 #47b0ac;
 }
 #editor nav ul li.current a {
-  color: white;
+  color: #47b0ac;
 }
 #editor nav ul#top li {
   position: relative;
@@ -1247,14 +1250,12 @@ h1, h2, h3, h4, h5, h6 {
   height: 70px;
   width: 500px;
   z-index: 999;
+  border-bottom: 1px solid #c9c9c9;
   position: absolute;
   top: 0;
   right: auto;
   bottom: auto;
   left: 70px;
-  -moz-box-shadow: 10px 5px 10px #d0d0d0;
-  -webkit-box-shadow: 10px 5px 10px #d0d0d0;
-  box-shadow: 10px 5px 10px #d0d0d0;
 }
 #editor #editor-header h1 {
   line-height: 70px;
@@ -1474,6 +1475,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #editor aside .list .selection {
   margin-bottom: 20px;
+  position: relative;
   background: #e5e5e5;
   border: 1px solid #c4c4c4;
   -moz-box-sizing: border-box;
@@ -1483,12 +1485,32 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-#editor aside .list .selection a {
+#editor aside .list .selection a, #editor aside .list .selection input {
   display: block;
   padding: 20px;
   margin-bottom: 0;
   color: #444;
   text-transform: uppercase;
+}
+#editor aside .list .selection input {
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#editor aside .list .selection button {
+  right: 10px;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 #editor aside .list .selection:hover {
   background: #ececec;

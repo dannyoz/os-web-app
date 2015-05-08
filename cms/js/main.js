@@ -27657,13 +27657,18 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/views/editor/editor-views/edit-media.html',
+    "<div><form ng-submit=uploadFile();><input type=file name=pic cms-uploader=myFile accept=image/*> <input type=submit></form></div>"
+  );
+
+
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection><a>+</a></div></div></div><div ng-if=singleView><p class=label>Title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-8><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div><div class=grid-4><p class=label>Tags</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].tags data-type=list></div></div></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection ng-if=showAddWeb><input ng-model=\"newwebsite\"> <button ng-click=confirmWebsite(newwebsite); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddWeb ng-click=addWebsite(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView><p class=label>Title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-8><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div><div class=grid-4><p class=label>Tags</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].tags data-type=list></div></div></div></div>"
   );
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"green medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"red medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><div id=editor-header ng-class=\"{fullscreen : !previewMode}\"><h1 ng-bind=currentView></h1><button class=\"rounded-10px medium blue\" ng-click=\"previewMode = !previewMode\"><span>Preview</span></button></div><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div></section></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"green medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"red medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><div id=editor-header ng-class=\"{fullscreen : !previewMode}\"><h1 ng-bind=currentView></h1><button ng-if=\"currentView != 'media'\" class=\"rounded-10px medium blue\" ng-click=\"previewMode = !previewMode\"><span>Preview</span></button></div><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div><div ng-if=\"currentView == 'media'\" ng-include=\"'cms/app/views/editor/editor-views/edit-media.html'\"></div></section></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
   );
 
 
@@ -27827,6 +27832,22 @@ cms.directive('cmsEditable', function(){
 		}
 	}
 });
+
+cms.directive('cmsUploader', ['$parse', function ($parse){
+	return{
+		restrict : "A",
+		link : function(scope, element, attrs){
+			var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+		}
+	}
+}]);
 cms.controller('nav', ['$scope', '$http', 'global', function ($scope, $http, global) {
 
 	// Check to see if feed has loaded
@@ -27945,7 +27966,8 @@ cms.controller('editor',[
 			"art",
 			"websites",
 			"about",
-			"contact"
+			"contact",
+			"media"
 		];
 
 		if($routeParams.view){
@@ -27974,6 +27996,45 @@ cms.controller('editor',[
 			$scope.page = $scope.json[$scope.currentView];
 		};
 
+		$scope.addWebsite = function(){
+
+			$scope.showAddWeb = true;
+			$scope.newwebsite = "Website Name goes here";
+
+			$scope.confirmWebsite = function(name){
+
+				var key = name.replace(/ /g, "-").toLowerCase(),
+					obj = {
+						title : name,
+						display : "tablet",
+						info : "<p>Write something about me...</p>",
+						tags: [
+							"HTML5",
+							"jQuery",
+							"Sass"
+						],
+						carousel: [
+							"http://placehold.it/450x680",
+							"http://placehold.it/450x680",
+							"http://placehold.it/450x680"
+						]
+					};
+
+				$scope.json.websites.list[key] = obj;
+				$scope.publish();
+				$location.path("/editor/websites/" + key);
+			};
+
+		};
+
+		$scope.uploadFile = function(){
+
+			var file = $scope.myFile;
+	        console.log('file is ' + JSON.stringify(file));
+	        // var uploadUrl = "/fileUpload";
+	        // fileUpload.uploadFileToUrl(file, uploadUrl);
+		};
+
 		$scope.iconClass = function(view){
 
 			var className;
@@ -27996,6 +28057,10 @@ cms.controller('editor',[
 
 			if(view == "contact"){
 				className = "icon-bubble";
+			}
+
+			if(view == "media"){
+				className = "icon-photo";
 			}
 
 			return className;
