@@ -1974,7 +1974,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   opacity: 1;
 }
 #preview header {
-  padding: 50px 0;
+  padding: 80px 0 50px 0;
   background: #171717;
 }
 #preview header .centred {
@@ -2095,28 +2095,73 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   text-align: center;
 }
 #preview nav {
-  background: #171717;
-  width: 300px;
-  position: absolute;
+  background: #121212;
+  width: 100%;
+  position: fixed;
   z-index: 9999;
-  height: 100%;
-  left: -300px;
+  height: 60px;
+  top: -60px;
+  border-bottom: 1px solid #050505;
 }
 #preview nav #hamburger {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  bottom: 0;
+  margin-bottom: -60px;
+  z-index: -1;
+  opacity: 1;
+  cursor: pointer;
   position: absolute;
-  right: 0;
-  margin-right: -50px;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+#preview nav #hamburger span {
+  display: block;
+  height: 2px;
+  width: 30px;
+  background: #777;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#preview nav #hamburger span:before {
+  background: #777;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -10px;
+  display: block;
+  content: "";
+}
+#preview nav #hamburger span:after {
+  background: #777;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 10px;
+  display: block;
+  content: "";
 }
 #preview nav #nav-holder {
-  margin-top: 50px;
+  padding: 0 60px;
+  text-align: center;
+  overflow: hidden;
+  background: #121212;
+  z-index: 5;
 }
 #preview nav #nav-holder li {
   position: relative;
-  margin-left: -20px;
+  top: 80px;
   opacity: 0;
+  display: inline-block;
   -moz-transition: all 0.6s cubic-bezier(0.39, -0.35, 0.4, 1.36);
   -o-transition: all 0.6s cubic-bezier(0.39, -0.35, 0.4, 1.36);
   -webkit-transition: all 0.6s cubic-bezier(0.39, -0.35, 0.4, 1.36);
@@ -2124,22 +2169,52 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview nav #nav-holder li a {
   display: block;
-  padding: 10px;
+  padding: 0 30px;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #777;
+  -moz-box-shadow: inset 0 0px 0 #121212;
+  -webkit-box-shadow: inset 0 0px 0 #121212;
+  box-shadow: inset 0 0px 0 #121212;
+}
+#preview nav #nav-holder li a:hover {
+  color: white;
+  background: #121212;
+  text-decoration: none;
+  -moz-box-shadow: inset 0 -4px 0 #333;
+  -webkit-box-shadow: inset 0 -4px 0 #333;
+  box-shadow: inset 0 -4px 0 #333;
+}
+#preview nav #nav-holder li a.current {
+  color: white;
+  -moz-box-shadow: inset 0 -4px 0 #CE7C40;
+  -webkit-box-shadow: inset 0 -4px 0 #CE7C40;
+  box-shadow: inset 0 -4px 0 #CE7C40;
+}
+#preview nav #hoverbar {
+  background: red;
+  top: 60px;
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  z-index: 99;
 }
 #preview nav.show {
-  left: 0;
+  top: 0;
 }
 #preview nav.show #hamburger {
-  margin-right: 0;
+  margin-bottom: 0;
+  opacity: 0;
+}
+#preview nav.show #hoverbar {
+  top: -60px;
 }
 #preview nav.open #nav-holder li {
-  margin-left: 50px;
+  top: 0;
   opacity: 1;
 }
 #preview #home .text {
-  width: 300px;
-  height: 450px;
-  background: #777;
+  text-align: center;
 }
 #preview #home .forename, #preview #home .surname {
   color: #5C5C5C;

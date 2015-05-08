@@ -1,64 +1,140 @@
-$nav-colour : #171717;
+$nav-colour : #121212;
 $nav-width  : 300px;
+$nav-height : 60px;
 $icon-size  : 50px;
 
 nav{
 
 	background:$nav-colour;
-	width:$nav-width;
-	position: absolute;
+	width:100%;
+	position: fixed;
 	z-index:9999;
-	height:100%;
-	left:-$nav-width;
+	height:$nav-height;
+	top:-$nav-height;
+	border-bottom:1px solid #050505;
 
 	#hamburger{
 
 		display: block;
-		width: $icon-size;
-		height:$icon-size;
-		position:absolute;
-		right: 0;
-		margin-right: -$icon-size;
+		width: $nav-height;
+		height:$nav-height;
+		bottom: 0;
+		margin-bottom: -$nav-height;
+		z-index:-1;
+		opacity: 1;
+		cursor : pointer;
+		@include centre(x);
+
+		span{
+
+			$colour:#777;
+
+			display: block;
+			height: 2px;
+			width: ($nav-height - 30px);
+			background:$colour;
+			@include centre;
+
+			&:before{
+
+				background:$colour;
+				position:absolute;
+				width:100%;
+				height:100%;
+				top:-10px;
+				@include afterBefore;
+			}
+
+			&:after{
+
+				background:$colour;
+				position:absolute;
+				width:100%;
+				height:100%;
+				top:10px;
+				@include afterBefore;
+			}
+
+		}
 
 	}
 
 	#nav-holder{
 
-		margin-top: $icon-size;
+		padding: 0 $nav-height;
+		text-align: center;
+		overflow: hidden;
+		background:$nav-colour;
+		z-index: 5;
 
 		li{
 
 			position:relative;
-			margin-left:-20px;
+			top:80px;
 			opacity: 0;
+			display:inline-block;
 
 			a{
 
 				display: block;
-				padding: 10px;
+				padding: 0 30px;
+				line-height: $nav-height;
+				text-transform:uppercase;
+				color:#777;
+				@include box-shadow(inset 0 0px 0 $nav-colour);
 				// @extend .open-sans;
+
+				&:hover{
+
+					color:white;
+					background:#121212;
+					text-decoration:none;
+					@include box-shadow(inset 0 -4px 0 #333);
+				}
+
+				&.current{
+
+					color:white;
+					@include box-shadow(inset 0 -4px 0 $primary-orange);
+				}
 			}
+
+			
 
 			@include single-transition(all,0.6s,cubic-bezier(.39,-0.35,.4,1.36));
 		}
 	}
 
+	#hoverbar{
+
+		background:red;
+		top:$nav-height;
+		height:$nav-height;
+		width:100%;
+		position:absolute;
+		z-index: 99;
+	}
+
 	&.show{
 
-		left:0;
+		top:0;
 
 		#hamburger{
 
-			margin-right: 0;
+			margin-bottom: 0;
+			opacity: 0;
 		}
 
+		#hoverbar {
+			top:-$nav-height;
+		}
 	}
 
 	&.open{
 
 		#nav-holder li{
 
-			margin-left: 50px;
+			top: 0;
 			opacity: 1;
 		}
 	}

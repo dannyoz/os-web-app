@@ -1,8 +1,9 @@
 dod.controller('navigation',[
-	'$scope', 
+	'$scope',
+	'$location', 
 	'$timeout',
 	'content', 
-	function ($scope, $timeout, content) {
+	function ($scope, $location, $timeout, content) {
 		"use strict";
 
 		//Use cached data if request is already made
@@ -13,6 +14,10 @@ dod.controller('navigation',[
 		
 		$scope.showNav = false;
 		$scope.openNav = false;
+
+		$scope.$on("$routeChangeSuccess", function(){
+			$scope.path = $location.$$path;
+		});
 
 		//Use event listener for initial api request
 		$scope.$on('appReady', function (data){

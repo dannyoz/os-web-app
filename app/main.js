@@ -28130,7 +28130,7 @@ dod.run([
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();>menu</div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a ng-href={{::link.url}} ng-bind=::link.title></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav} ng-mouseleave=hideNav();><div id=hamburger class=transition-3 ng-mouseenter=toggleNav();><span></span></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
 
 
@@ -28165,23 +28165,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=centre><!-- \t\t<p>X = {{position.xval}}</p>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t<p>Y = {{position.yval}}</p>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t<img src=\"http://breakupwithie8.com/img/ie8-heart-solo.svg\" ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval}}px; margin-left:{{position.xval}}px;\" width=\"400\" />\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t<div class=\"centre\">\r" +
-    "\n" +
-    "\t\t<img src=\"http://breakupwithie8.com/img/ie8-logo-solo.svg\" ng-attr-style=\"transform: rotateX({{position.xval*0.5}}deg) rotateY({{position.yval*0.5}}deg); margin-top:{{position.yval*0.5}}px; margin-left:{{position.xval*0.5}}px\" width=\"180\">\r" +
-    "\n" +
-    "\t\t</div> --><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3>Artist</h3></div></div>"
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3>Artist</h3></div></div>"
   );
 
 
@@ -28349,10 +28333,11 @@ dod.directive('dodScroll', ['$rootScope', function ($rootScope) {
     };
 }]);
 dod.controller('navigation',[
-	'$scope', 
+	'$scope',
+	'$location', 
 	'$timeout',
 	'content', 
-	function ($scope, $timeout, content) {
+	function ($scope, $location, $timeout, content) {
 		"use strict";
 
 		//Use cached data if request is already made
@@ -28363,6 +28348,10 @@ dod.controller('navigation',[
 		
 		$scope.showNav = false;
 		$scope.openNav = false;
+
+		$scope.$on("$routeChangeSuccess", function(){
+			$scope.path = $location.$$path;
+		});
 
 		//Use event listener for initial api request
 		$scope.$on('appReady', function (data){

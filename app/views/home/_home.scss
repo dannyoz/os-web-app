@@ -1,13 +1,8 @@
 #home{
 
-	// @include background-image(radial-gradient(#242424,#151515));
-	// @include fitParent;
-
 	.text{
 
-		width:300px;
-		height:450px;
-		background:#777;
+		text-align: center;
 	}
 
 	.forename, .surname{
