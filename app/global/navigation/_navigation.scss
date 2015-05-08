@@ -15,44 +15,52 @@ nav{
 
 	#hamburger{
 
-		display: block;
-		width: $nav-height;
+		position:absolute;
+		width: 100%;
 		height:$nav-height;
 		bottom: 0;
 		margin-bottom: -$nav-height;
 		z-index:-1;
 		opacity: 1;
 		cursor : pointer;
-		@include centre(x);
-
-		span{
-
-			$colour:#777;
+		
+		div{
 
 			display: block;
-			height: 2px;
-			width: ($nav-height - 30px);
-			background:$colour;
-			@include centre;
+			width: $nav-height;
+			height:$nav-height;
+			@include centre(x);
 
-			&:before{
+			span{
 
+				$colour:#777;
+
+				display: block;
+				height: 2px;
+				width: ($nav-height - 30px);
 				background:$colour;
-				position:absolute;
-				width:100%;
-				height:100%;
-				top:-10px;
-				@include afterBefore;
-			}
+				@include centre;
 
-			&:after{
+				&:before{
 
-				background:$colour;
-				position:absolute;
-				width:100%;
-				height:100%;
-				top:10px;
-				@include afterBefore;
+					background:$colour;
+					position:absolute;
+					width:100%;
+					height:100%;
+					top:-10px;
+					@include afterBefore;
+				}
+
+				&:after{
+
+					background:$colour;
+					position:absolute;
+					width:100%;
+					height:100%;
+					top:10px;
+					@include afterBefore;
+				}
+
 			}
 
 		}

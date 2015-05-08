@@ -1,7 +1,7 @@
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav} ng-mouseleave=hideNav();><div id=hamburger class=transition-3 ng-mouseenter=toggleNav();><span></span></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav} ng-mouseleave=hideNav();><div id=hamburger class=transition-3 ng-click=toggleNav();><div><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
 
 

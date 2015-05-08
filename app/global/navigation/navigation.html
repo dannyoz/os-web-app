@@ -1,7 +1,9 @@
 <nav class="transition-3" ng-class="{show:showNav,open:openNav}" ng-mouseleave="hideNav();">
 
-	<div id="hamburger" class="transition-3" ng-mouseenter="toggleNav();">
-		<span></span>
+	<div id="hamburger" class="transition-3" ng-click="toggleNav();">
+		<div>
+			<span></span>
+		</div>
 	</div>
 
 	<div id="nav-holder" ng-click="hideNav();">
