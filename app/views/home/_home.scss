@@ -24,7 +24,7 @@
 
 		text-transform:uppercase;
 		letter-spacing: 0.4em;
-		color:#ddd;
+		color:$primary-orange;
 		margin-top: 20px;
 		font: {
 			size : 1.85em;
@@ -35,7 +35,7 @@
 		span{
 
 			padding:10px 0;
-			border-top:3px dotted #5c5c5c;
+			border-top:3px dotted $primary-orange;
 		}
 		
 	}
@@ -58,7 +58,7 @@
 
 		span{
 
-			border-top:3px dotted #5c5c5c;
+			border-top:3px dotted $primary-orange;
 			font-size: 1.3em;
 			padding-top:10px;
 		}

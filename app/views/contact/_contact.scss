@@ -1,0 +1,56 @@
+#contact{
+
+	#contact-form{
+
+		padding:50px 0;
+
+		fieldset{
+
+			position:relative;
+			@include boxSizing(35px 0 0 0);
+			@include stack;
+
+			input:not([type="submit"]), textarea{
+
+				width:100%;
+				max-width: 100%;
+				border:1px solid #111;
+				background: #151515;
+				color:#aaa;
+				outline: none;
+				font:{
+					size:1em;
+				}
+				@include border-radius(10px);
+				@include boxSizing(10px 20px);
+
+				&:focus{
+
+					background: #121212;
+					color: white;
+					border-color:#333;
+				}
+			}
+
+			p[role="alert"]{
+
+				opacity: 0;
+				position: absolute;
+				top:10px;
+				font:{
+					size:0.85em
+				}
+				color: $primary-orange;
+			}
+
+			&:hover{
+
+				p{
+
+					opacity: 1;
+				}
+			}
+
+		}
+	}
+}

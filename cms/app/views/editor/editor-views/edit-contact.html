@@ -1,0 +1,29 @@
+<div class="grid-row">
+
+	<p class="label">Heading</p>
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].heading">
+	 </div>
+	
+	<p class="label">Subheading</p>
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].subheading">
+	</div>
+
+	<p class="label">Success Message</p>
+	<div class="wysiwyg" 
+	     text-angular="text-angular" 
+	     name="success" 
+	     ng-model="json[currentView].successMessage">
+	</div>
+
+	<p class="label">Error Message</p>
+	<div class="wysiwyg" 
+	     text-angular="text-angular" 
+	     name="error" 
+	     ng-model="json[currentView].errorMessage">
+	</div>
+
+</div>

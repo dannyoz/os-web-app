@@ -175,7 +175,9 @@
 	},
 	"contact" : {
 		"heading" : "contact",
-		"subheading" : "Derpminster"
+		"subheading" : "Derpminster",
+		"successMessage" : "<p>derp</p>",
+		"errorMessage" : "<p>derp</p>"
 	},
 	"images" : [{
 		"title" : "image-1",

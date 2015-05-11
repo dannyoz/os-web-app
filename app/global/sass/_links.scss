@@ -15,22 +15,18 @@ a{
 	}
 
 	&:hover{
-		color:$theme-text-colour;
+		color:$primary-orange;
 		text-decoration:underline;
 	}
 
 	&:active{
-		color:$theme-text-colour;
+		color:$primary-orange;
 		text-decoration:underline;
 	}
 
-	&.orange{
-
-		color:$primary-orange;
-	}
 }
 
-button, .button{
+button, .button, input[type="submit"]{
 
 	
 	outline:0;
@@ -39,11 +35,10 @@ button, .button{
 	background:$primary-orange;
 	color: white;
 	font:{
-		family:$futura;
-		weight:500;
-		size:0.9em; 
+		family : "museo-sans", sans-serif;
+		size:1.2em; 
 	};
-
+	@extend .transition-2;
 	@include border-radius(30px);
 	
 	&:hover, &:focus{
@@ -51,22 +46,6 @@ button, .button{
 		background:$primary-hover;
 		border-color:$primary-hover;
 		text-decoration: none;
-	}
-
-	&.clear{
-
-		background:white;
-		color:black;
-		border-color:$light-keyline;
-
-		&:hover, &:focus{
-			border-color: #f3c5bf;
-			color: $primary-orange;
-		}
-	}
-
-	&.small{
-		padding:4px 15px;
 	}
 
 }
