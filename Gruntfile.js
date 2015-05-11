@@ -35,6 +35,8 @@ module.exports = function(grunt) {
                     'cms/app/libs/angular.js',
                     'cms/app/libs/angular-route.js',
                     'cms/app/libs/angular-sanitize.js',
+                    'cms/app/libs/ng-file-upload.js',
+                    'cms/app/libs/ng-file-upload-shim.js',
                     'cms/app/app.js',
                     'cms/app/preloader.js',
                     'cms/app/templates.js',
