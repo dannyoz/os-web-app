@@ -28655,7 +28655,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-media.html',
-    "<div><div ng-app=fileUpload class=grid-row><div class=\"button medium rounded-10px\" ngf-select ngf-change=upload($files)>Upload</div><p>Drop File:</p><div ngf-drop ng-model=files class=drop-box ngf-drag-over-class=dragover ngf-multiple=true ngf-allow-dir=true ngf-accept=\"'.jpg,.png,.pdf'\" ngf-change=upload($files)><span class=centre>Drop Images or PDFs files here</span></div><div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></div><div id=thumbs class=grid-row><div cms-square class=thumbnail ng-repeat=\"image in json.images\"><span class=centre ng-bind=image.title></span></div></div></div>"
+    "<div><div ng-app=fileUpload class=grid-row><div class=\"button medium rounded-10px\" ngf-select ngf-change=upload($files)>Upload</div><p>Drop File:</p><div ngf-drop ng-model=files class=drop-box ngf-drag-over-class=dragover ngf-multiple=true ngf-allow-dir=true ngf-accept=\"'.jpg,.png,.pdf'\" ngf-change=upload($files)><span class=centre>Drop Images or PDFs files here</span></div><div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></div><div id=thumbs class=grid-row><div cms-square class=thumbnail ng-repeat=\"image in json.images\" ng-click=deleteImage(image.path,$index);><span class=centre ng-bind=image.title></span></div></div></div>"
   );
 
 
@@ -28870,7 +28870,8 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 		"devapi"     : "http://localhost:3000/api/data.json",
 		"devpost"    : "http://localhost:3000/update/",
 		"devmsg"     : "http://localhost:3000/api/messages.json",
-		"devmsgPost" : "http://localhost:3000/post-message/"
+		"devmsgPost" : "http://localhost:3000/post-message/",
+		"delteteImg" : "http://localhost:3000/user/uploads/delete"
 	};
 
 	var get = function(){
@@ -28925,12 +28926,17 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 		});
 
 		return defer.promise
+	},
+
+	deleteImg = function(fileData){
+		return $http.post(endpoints.delteteImg, fileData);
 	}
 
 	return {
 		get : get,
 		post : post,
-		msg  : msg
+		msg  : msg,
+		deleteImg :deleteImg
 	}
 
 }]);
@@ -29037,7 +29043,6 @@ cms.controller('editor',[
 
 		$scope.upload = function (files) {
 
-			console.log('derp');
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
@@ -29059,6 +29064,14 @@ cms.controller('editor',[
 	                });
 	            }
 	        }
+	    };
+
+	    $scope.deleteImage = function(filePath,i){
+	    	var dataObj = {path : filePath, index : i};
+	    	api.deleteImg(dataObj).success(function (data){
+	    		$scope.json.images.splice(data.index,1);
+	    		$scope.publish();
+	    	});
 	    };
 
 		$scope.iconClass = function(view){

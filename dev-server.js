@@ -251,6 +251,24 @@ var SampleApp = function() {
 
         });
 
+        self.app.post('/user/uploads/delete', function (req, res){
+
+            console.log(req.body.index)
+
+            var imgPath  = req.body.path,
+                response = {
+                    index : req.body.index
+                };
+
+            fs.unlink('./build/'+imgPath, function (err) {
+                if (err) throw err;
+                response.index = req.body.index;
+                console.log('./build/'+imgPath);
+                res.send(response);
+            });
+
+        });
+
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);

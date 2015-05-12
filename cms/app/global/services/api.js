@@ -4,7 +4,8 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 		"devapi"     : "http://localhost:3000/api/data.json",
 		"devpost"    : "http://localhost:3000/update/",
 		"devmsg"     : "http://localhost:3000/api/messages.json",
-		"devmsgPost" : "http://localhost:3000/post-message/"
+		"devmsgPost" : "http://localhost:3000/post-message/",
+		"delteteImg" : "http://localhost:3000/user/uploads/delete"
 	};
 
 	var get = function(){
@@ -59,12 +60,17 @@ cms.factory('api',['$http', '$q', function ($http, $q){
 		});
 
 		return defer.promise
+	},
+
+	deleteImg = function(fileData){
+		return $http.post(endpoints.delteteImg, fileData);
 	}
 
 	return {
 		get : get,
 		post : post,
-		msg  : msg
+		msg  : msg,
+		deleteImg :deleteImg
 	}
 
 }]);

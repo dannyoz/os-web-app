@@ -96,7 +96,6 @@ cms.controller('editor',[
 
 		$scope.upload = function (files) {
 
-			console.log('derp');
 	        if (files && files.length) {
 	            for (var i = 0; i < files.length; i++) {
 	                var file = files[i];
@@ -118,6 +117,14 @@ cms.controller('editor',[
 	                });
 	            }
 	        }
+	    };
+
+	    $scope.deleteImage = function(filePath,i){
+	    	var dataObj = {path : filePath, index : i};
+	    	api.deleteImg(dataObj).success(function (data){
+	    		$scope.json.images.splice(data.index,1);
+	    		$scope.publish();
+	    	});
 	    };
 
 		$scope.iconClass = function(view){

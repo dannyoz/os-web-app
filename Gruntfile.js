@@ -194,20 +194,20 @@ module.exports = function(grunt) {
                     ], 
                 dest: 'cms/views/preview', 
                 filter: 'isFile'
-            },
-            json : {
-                expand: true, 
-                flatten: true,
-                cwd: 'app', 
-                src: [
-                    '**.json',
-                    '*/*.json',
-                    '*/*/*.json',
-                    '*/*/*/*.json'
-                    ], 
-                dest: 'build/api/', 
-                filter: 'isFile'
-            }
+            }//,
+            // json : {
+            //     expand: true, 
+            //     flatten: true,
+            //     cwd: 'app', 
+            //     src: [
+            //         '**.json',
+            //         '*/*.json',
+            //         '*/*/*.json',
+            //         '*/*/*/*.json'
+            //         ], 
+            //     dest: 'build/api/', 
+            //     filter: 'isFile'
+            // }
         },
 
         express: {

@@ -14,7 +14,7 @@
 
 	<div id="thumbs" class="grid-row">
 		
-		<div cms-square class="thumbnail" ng-repeat="image in json.images">
+		<div cms-square class="thumbnail" ng-repeat="image in json.images" ng-click="deleteImage(image.path,$index);">
 			<span class="centre" ng-bind="image.title"></span>
 		</div>
 
