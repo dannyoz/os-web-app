@@ -1,8 +1,14 @@
 #!/bin/env node
 //  OpenShift sample Node application
 var express = require('express');
-var fs      = require('fs');
+//var fs      = require('fs');
+var fs      = require('fs-extra');
 var path    = require('path');
+
+//File upload dependancies
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty();
+// var UserController = require('./controllers/UserController');
 
 
 /**
@@ -183,7 +189,7 @@ var SampleApp = function() {
 
         });
 
-        self.app.post('/post-message', function(req, res){
+        self.app.post('/post-message', function (req, res){
 
             var topSlice    = '{"messages":',
                 filling     = JSON.stringify(req.body),
@@ -211,6 +217,37 @@ var SampleApp = function() {
                 }
         
             }); 
+
+        });
+
+        self.app.post('/user/uploads', multipartyMiddleware, function (req, res){
+
+            if(req.files.file.type == "image/jpeg"){
+                var orgName = req.files.file.originalFilename,
+                    title   = orgName.replace('.jpg','');
+            } else if(req.files.file.type == "image/png"){
+                var orgName = req.files.file.originalFilename,
+                    title   = orgName.replace('.png','');
+            } else {
+                var title = req.files.file.originalFilename;
+            }
+
+            var tempPath  = req.files.file.path,
+                directory = "/img/uploads/",
+                filename  = req.files.file.originalFilename.replace(/ /g, "-").toLowerCase(),
+                response  = {};
+
+            fs.copy(tempPath, './build'+ directory + filename , function (err) {
+                if (err){
+                    return console.error(err)
+                } else{
+
+                    response.filename = filename;
+                    response.title    = title;
+                    response.path     = directory + filename;
+                    res.send(response);
+                }; 
+            });
 
         });
 

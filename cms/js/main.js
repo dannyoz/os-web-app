@@ -28579,7 +28579,7 @@ if (!window.FileReader) {
 }
 })();
 
-var cms = angular.module('cms', ['ngRoute','ngSanitize','textAngular']);
+var cms = angular.module('cms', ['ngRoute','ngSanitize','textAngular', 'ngFileUpload']);
 
 
 cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -28655,7 +28655,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-media.html',
-    "<div><form ng-submit=uploadFile();><input type=file name=pic cms-uploader=myFile accept=image/*> <input type=submit></form></div>"
+    "<div><div ng-app=fileUpload class=grid-row><div class=\"button medium rounded-10px\" ngf-select ngf-change=upload($files)>Upload</div><p>Drop File:</p><div ngf-drop ng-model=files class=drop-box ngf-drag-over-class=dragover ngf-multiple=true ngf-allow-dir=true ngf-accept=\"'.jpg,.png,.pdf'\" ngf-change=upload($files)><span class=centre>Drop Images or PDFs files here</span></div><div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></div><div id=thumbs class=grid-row><div cms-square class=thumbnail ng-repeat=\"image in json.images\"><span class=centre ng-bind=image.title></span></div></div></div>"
   );
 
 
@@ -28829,6 +28829,16 @@ cms.directive('cmsEditable', function(){
 		}
 	}
 });
+cms.directive('cmsSquare', function(){
+	return{
+		restrict : "A",
+		link : function(scope, element, attrs){
+			var width = element[0].getBoundingClientRect().width,
+				round = Math.round(width);
+			element.css({"height" : round+"px"});
+		}
+	}
+});
 
 cms.directive('cmsUploader', ['$parse', function ($parse){
 	return{
@@ -28934,9 +28944,10 @@ cms.controller('editor',[
 	'$location',
 	'$routeParams',
 	'$sce',
+	'Upload',
 	'api',
 	'data', 
-	function ($scope, $location, $routeParams, $sce,  api, data){
+	function ($scope, $location, $routeParams, $sce, Upload, api, data){
 		"use strict";
 
 		if(!$scope.json){
@@ -29024,13 +29035,31 @@ cms.controller('editor',[
 
 		};
 
-		$scope.uploadFile = function(){
+		$scope.upload = function (files) {
 
-			var file = $scope.myFile;
-	        console.log('file is ' + JSON.stringify(file));
-	        // var uploadUrl = "/fileUpload";
-	        // fileUpload.uploadFileToUrl(file, uploadUrl);
-		};
+			console.log('derp');
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                Upload.upload({
+	                    url: 'http://localhost:3000/user/uploads',
+	                    fields: {'username': $scope.username},
+	                    file: file
+	                }).progress(function (evt) {
+	                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+	                }).success(function (data) {
+	                    var obj = {
+	                    	title   : data.title,
+	                    	path    : data.path,
+	                    	preload : false
+	                    };
+	                    $scope.json.images.push(obj);
+	                    $scope.publish();
+	                });
+	            }
+	        }
+	    };
 
 		$scope.iconClass = function(view){
 

@@ -1,0 +1,33 @@
+.drop-box{
+
+	height:200px;
+	margin:20px 0;
+	border:3px dashed darken($editor-light,8%);
+	position: relative;
+	background:lighten($editor-light,4%);
+	@include box-sizing(border-box);
+	@include grid-col-last(12,12,2%);
+
+	span{
+
+		font-size:1.6em;
+		line-height:150%;
+	}
+}
+
+#thumbs{
+
+	.thumbnail{
+
+		cursor:pointer;
+		background:darken($editor-light,8%);
+		margin-bottom:30px;
+		position:relative;
+		@include border-radius(5px);
+		@include grid-col(2,10,3%);
+
+		&:nth-child(5n + 5){
+			margin-right:0;
+		}
+	}
+}

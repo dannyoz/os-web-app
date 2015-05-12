@@ -3,9 +3,10 @@ cms.controller('editor',[
 	'$location',
 	'$routeParams',
 	'$sce',
+	'Upload',
 	'api',
 	'data', 
-	function ($scope, $location, $routeParams, $sce,  api, data){
+	function ($scope, $location, $routeParams, $sce, Upload, api, data){
 		"use strict";
 
 		if(!$scope.json){
@@ -93,13 +94,31 @@ cms.controller('editor',[
 
 		};
 
-		$scope.uploadFile = function(){
+		$scope.upload = function (files) {
 
-			var file = $scope.myFile;
-	        console.log('file is ' + JSON.stringify(file));
-	        // var uploadUrl = "/fileUpload";
-	        // fileUpload.uploadFileToUrl(file, uploadUrl);
-		};
+			console.log('derp');
+	        if (files && files.length) {
+	            for (var i = 0; i < files.length; i++) {
+	                var file = files[i];
+	                Upload.upload({
+	                    url: 'http://localhost:3000/user/uploads',
+	                    fields: {'username': $scope.username},
+	                    file: file
+	                }).progress(function (evt) {
+	                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+	                }).success(function (data) {
+	                    var obj = {
+	                    	title   : data.title,
+	                    	path    : data.path,
+	                    	preload : false
+	                    };
+	                    $scope.json.images.push(obj);
+	                    $scope.publish();
+	                });
+	            }
+	        }
+	    };
 
 		$scope.iconClass = function(view){
 

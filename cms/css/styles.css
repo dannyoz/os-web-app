@@ -1466,6 +1466,39 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside .wysiwyg .ta-scroll-window h1, #editor aside .wysiwyg .ta-scroll-window h2, #editor aside .wysiwyg .ta-scroll-window h3, #editor aside .wysiwyg .ta-scroll-window h4, #editor aside .wysiwyg .ta-scroll-window h5, #editor aside .wysiwyg .ta-scroll-window h6, #editor aside .wysiwyg .ta-scroll-window p {
   color: #777;
 }
+#editor aside .drop-box {
+  height: 200px;
+  margin: 20px 0;
+  border: 3px dashed #c9c9c9;
+  position: relative;
+  background: #e7e7e7;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+#editor aside .drop-box span {
+  font-size: 1.6em;
+  line-height: 150%;
+}
+#editor aside #thumbs .thumbnail {
+  cursor: pointer;
+  background: #c9c9c9;
+  margin-bottom: 30px;
+  position: relative;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  position: relative;
+  width: 17.6%;
+  margin-right: 3%;
+}
+#editor aside #thumbs .thumbnail:nth-child(5n + 5) {
+  margin-right: 0;
+}
 #editor aside .list {
   padding: 20px 0;
   margin: 20px 0;
