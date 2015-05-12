@@ -46,12 +46,19 @@
 
 <div ng-if="singleView">
 	{{json[currentView].list[single]}}
-
+	
+	<p class="label">Image title</p>
 	<div class="editable" 
 	     ng-if="json" 
 	     cms-editable="json[currentView].list[single].title">
 	</div>
 
+	<div class="editable" 
+	     ng-if="json" 
+	     cms-editable="json[currentView].list[single].media.thumbnail">
+	</div>
+
+	<p class="label">Info</p>
 	<div class="wysiwyg" 
 	     text-angular="text-angular" 
 	     name="info" 

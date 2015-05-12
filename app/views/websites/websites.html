@@ -12,7 +12,7 @@
 	<div class="container">
 
 			
-		<div class="website" ng-repeat="(website,data) in page.list" ng-click="showSite(website)" dod-scroll>
+		<div class="website" ng-repeat="(website,data) in page.list" dod-scroll>
 
 			<div class="grid-row">
 				<h3 ng-bind="::data.title"></h3>
@@ -21,15 +21,7 @@
 			<div class="grid-row">
 
 				<div class="website-showcase">
-					
-					<div class="tablet transition-3">
-						<div class="front">
-							<div class="shine transition-3"></div>
-							<img src="http://placehold.it/600x450" alt="">
-						</div>
-						<div class="back transition-3"></div>
-					</div>	
-				
+					<div dod-carousel="data.carousel"></div>			
 				</div>
 
 				<div class="website-info">

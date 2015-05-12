@@ -26,8 +26,39 @@
 		@include border-radius(5px);
 		@include grid-col(2,10,3%);
 
+		.close, .confirm{
+
+			position:absolute;
+			top:-8px;
+			right:-8px;
+			z-index: 999;
+		}
+
 		&:nth-child(5n + 5){
 			margin-right:0;
+		}
+
+		.centre{
+
+			z-index:10;
+		}
+
+		.img{
+
+			background-size:cover;
+			@include border-radius(5px);
+			@include fitParent;
+		}
+
+		span.title{
+
+			position:absolute;
+			top:100%;
+			left: 0;
+			width:100%;
+			color: $editor-dark;
+			font-size: 12px;
+			@include boxSizing(10px);
 		}
 	}
 }

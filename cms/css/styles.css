@@ -1496,8 +1496,40 @@ h1, h2, h3, h4, h5, h6 {
   width: 17.6%;
   margin-right: 3%;
 }
+#editor aside #thumbs .thumbnail .close, #editor aside #thumbs .thumbnail .confirm {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  z-index: 999;
+}
 #editor aside #thumbs .thumbnail:nth-child(5n + 5) {
   margin-right: 0;
+}
+#editor aside #thumbs .thumbnail .centre {
+  z-index: 10;
+}
+#editor aside #thumbs .thumbnail .img {
+  background-size: cover;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#editor aside #thumbs .thumbnail span.title {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  color: #222;
+  font-size: 12px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
 }
 #editor aside .list {
   padding: 20px 0;
@@ -2322,15 +2354,36 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview #websites .website .tablet .front {
   overflow: hidden;
-  background: grey;
+  background: #111;
   position: relative;
   z-index: 99;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
 }
+#preview #websites .website .tablet .front .nextslide {
+  right: 30px;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#preview #websites .website .tablet .front .prevslide {
+  left: 30px;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 #preview #websites .website .tablet .front .shine {
   opacity: 1;
+  z-index: 10;
   position: absolute;
   top: 0;
   right: 0;
@@ -2347,8 +2400,108 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
 }
+#preview #websites .website .tablet .front .screen {
+  overflow: hidden;
+  background: #222;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  bottom: 25px;
+  left: 25px;
+}
+#preview #websites .website .tablet .front .screen .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  z-index: 5;
+  left: 0;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+#preview #websites .website .tablet .front .screen .slide.next {
+  z-index: 8;
+}
+#preview #websites .website .tablet .front .screen .slide.active {
+  z-index: 10;
+}
+#preview #websites .website .tablet .front .screen.left .slide.next {
+  -moz-transform: translateX(10%);
+  -ms-transform: translateX(10%);
+  -webkit-transform: translateX(10%);
+  transform: translateX(10%);
+}
+#preview #websites .website .tablet .front .screen.left .slide.active {
+  -moz-transform: translateX(-150%);
+  -ms-transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+  transform: translateX(-150%);
+}
+#preview #websites .website .tablet .front .screen.right .slide.next {
+  -moz-transform: translateX(-10%);
+  -ms-transform: translateX(-10%);
+  -webkit-transform: translateX(-10%);
+  transform: translateX(-10%);
+}
+#preview #websites .website .tablet .front .screen.right .slide.active {
+  -moz-transform: translateX(150%);
+  -ms-transform: translateX(150%);
+  -webkit-transform: translateX(150%);
+  transform: translateX(150%);
+}
+#preview #websites .website .tablet .front .screen .carousel-bullets {
+  bottom: 10px;
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+#preview #websites .website .tablet .front .screen .carousel-bullets .bullet {
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  margin: 0;
+  display: inline-block;
+  background: none;
+  border: none;
+  position: relative;
+  opacity: 0.7;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+#preview #websites .website .tablet .front .screen .carousel-bullets .bullet.active {
+  opacity: 1;
+}
+#preview #websites .website .tablet .front .screen .carousel-bullets .bullet span {
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 0 5px black;
+  -webkit-box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px black;
+}
 #preview #websites .website .tablet .back {
-  background: #555;
+  background: #000;
   -moz-border-radius: 45px 35px 25px 50px;
   -webkit-border-radius: 45px;
   border-radius: 45px 35px 25px 50px;
@@ -2377,7 +2530,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   opacity: 0;
 }
 #preview #websites .website.hidden .back {
-  background: #555;
+  background: #000;
   position: absolute;
   top: -15px;
   right: 0;

@@ -12,23 +12,129 @@
 	.front{
 
 		overflow:hidden;
-		background:grey;
+		background:#111;
 		position: relative;
 		z-index:99;
 		@include border-radius(20px);
 
+		.nextslide{
+
+			right:30px;
+			z-index: 999;
+			@include centre(y);
+		}
+
+		.prevslide{
+
+			left:30px;
+			z-index: 999;
+			@include centre(y);
+		}
+
 		.shine{
 
 			opacity:1;
+			z-index: 10;
 			@include fitParent;
 			@include transform(rotate(-25deg) translateX(-4%) translateY(-61%));
 			@include background-image(linear-gradient(to right bottom, rgba(255,255,255,0.4), rgba(255,255,255,0)));
+		}
+
+		.screen{
+
+			overflow: hidden;
+			background:#222;
+			@include border-radius(8px);
+			@include fitParent(25px);
+
+			.slide{
+
+				position:absolute;
+				width:100%;
+				height: 100%;
+				background-size:cover;
+				background-position:center top;
+				z-index:5;
+				left:0;
+				@include single-transition(all,0.5s,linear);
+
+				&.next{
+
+					z-index:8;
+				}
+
+				&.active{
+
+					z-index:10;
+				}
+				
+			}
+
+			&.left{
+
+				.slide.next{
+					@include transform(translateX(10%));
+				}
+
+				.slide.active{
+					@include transform(translateX(-150%));
+				}
+			}
+
+			&.right{
+
+				.slide.next{
+					@include transform(translateX(-10%));
+				}
+
+				.slide.active{
+					@include transform(translateX(150%));
+				}
+			}
+
+			.carousel-bullets{
+
+				bottom:10px;
+				z-index: 999;
+				@include centre(x);
+
+				.bullet{
+
+					$size:10px;
+
+					width:$size;
+					height:$size;
+					padding:10px;
+					margin:0;
+					display:inline-block;
+					background:none;
+					border:none;
+					position:relative;
+					opacity: 0.7;
+					@include border-radius(0);
+
+					&.active{
+
+						opacity: 1;
+					}
+
+					span{
+
+						width:$size;
+						height:$size;
+						background:white;
+						@include centre;
+						@include border-radius($size);
+						@include box-shadow(0 0 5px black);
+					}
+				}
+			}
 		}
 	}
 
 	.back{
 
-		background:#555;
+		background:#000;
 		@include border-radius( 45px 35px 25px 50px);
 		@include fitParent;
 		@include transform(translateZ(0) translateY(0) translateX(0));
@@ -58,7 +164,7 @@
 
 	.back{
 
-		background:#555;
+		background:#000;
 		@include fitParent("",-15px,0,0,-15px);
 		@include border-radius( 45px 35px 25px 50px);
 		@include transform(translateZ(-20px) translateY(20px) translateX(30px));

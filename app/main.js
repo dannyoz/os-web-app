@@ -28129,6 +28129,15 @@ dod.run([
     }]);
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
+  $templateCache.put('app/global/directives/dod-carousel.html',
+    "<div class=\"tablet transition-3\"><div class=front><!-- \r" +
+    "\n" +
+    "\t\t<button class=\"nextslide\" ng-click=\"selectSlide(currentSlide +1);\"></button>\r" +
+    "\n" +
+    "\t\t<button class=\"prevslide\" ng-click=\"selectSlide(currentSlide -1);\"></button> --><div class=\"shine transition-3\"></div><img src=/img/tablet-spacer.png><div class=screen ng-class=[direction]><div class=slide ng-attr-style=background-image:url({{image}});-webkit-transition-duration:{{duration}}ms ng-repeat=\"image in images track by $index\" ng-class=slideClass($index);></div><div class=carousel-bullets><button class=bullet ng-repeat=\"image in images track by $index\" ng-class=slideClass($index); ng-click=selectSlide($index);><span></span></button></div></div></div><div class=\"back transition-3\"></div></div>"
+  );
+
+
   $templateCache.put('app/global/navigation/navigation.html',
     "<nav class=transition-3 ng-class={show:showNav,open:openNav} ng-mouseleave=hideNav();><div id=hamburger class=transition-3 ng-click=toggleNav();><div><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
@@ -28180,7 +28189,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=website ng-repeat=\"(website,data) in page.list\" ng-click=showSite(website) dod-scroll><div class=grid-row><h3 ng-bind=::data.title></h3></div><div class=grid-row><div class=website-showcase><div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=http://placehold.it/600x450 alt=\"\"></div><div class=\"back transition-3\"></div></div></div><div class=website-info><div ng-bind-html=::data.info></div></div></div></div></div></div>"
+    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=website ng-repeat=\"(website,data) in page.list\" dod-scroll><div class=grid-row><h3 ng-bind=::data.title></h3></div><div class=grid-row><div class=website-showcase><div dod-carousel=data.carousel></div></div><div class=website-info><div ng-bind-html=::data.info></div></div></div></div></div></div>"
   );
 }])
 dod.directive('dodEvents', ['$rootScope',function ($rootScope){
@@ -28254,6 +28263,41 @@ dod.directive('dodEvents', ['$rootScope',function ($rootScope){
 
 
 			});
+		}
+	}
+}]);
+dod.directive('dodCarousel',['$timeout', function ($timeout){
+	return{
+		restrict: "A",
+		templateUrl : 'app/global/directives/dod-carousel.html',
+		scope : {
+			images : '=dodCarousel'
+		},
+		link : function(scope,element,attrs){
+
+			scope.currentSlide = 0;
+			scope.nextSlide    = 1;
+			scope.duration     = 500;
+
+			scope.selectSlide = function(i,dir){
+				scope.nextSlide = i
+				if(i>scope.currentSlide){
+					scope.direction = "right";
+				}else{
+					scope.direction = "left";
+				}
+
+				$timeout(function(){
+					scope.direction = "";
+					scope.currentSlide = i;
+					scope.nextSlide    = 1;
+				},scope.duration);
+			};
+
+			scope.slideClass = function(i){
+				if(i==scope.currentSlide) return "active"
+				if(i==scope.nextSlide) return "next"	
+			}
 		}
 	}
 }]);
