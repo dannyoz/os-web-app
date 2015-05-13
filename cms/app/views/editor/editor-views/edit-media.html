@@ -5,16 +5,14 @@
 	    <p>Drop File:</p>
 	    <div ngf-drop ng-model="files" class="drop-box" 
 	        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-	        ngf-accept="'.jpg,.png,.pdf'"
+	        ngf-accept="'.jpg,.png'"
 			ngf-change="upload($files)">
-			<span class="centre">Drop Images or PDFs files here</span>
+			<span class="centre">Drop image files here</span>
 		</div>
 	    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 	</div>
 
-	<div id="thumbs" class="grid-row">
-
-
+	<div class="thumbs grid-row">
 		
 		<div cms-square class="thumbnail" ng-repeat="image in json.images" >
 

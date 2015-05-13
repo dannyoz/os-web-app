@@ -15,7 +15,7 @@
 	}
 }
 
-#thumbs{
+.thumbs{
 
 	.thumbnail{
 
@@ -32,6 +32,7 @@
 			top:-8px;
 			right:-8px;
 			z-index: 999;
+			display:none;
 		}
 
 		&:nth-child(5n + 5){
@@ -59,6 +60,13 @@
 			color: $editor-dark;
 			font-size: 12px;
 			@include boxSizing(10px);
+		}
+
+		&:hover{
+
+			.close, .confirm{
+				display:block;
+			}
 		}
 	}
 }

@@ -1483,7 +1483,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.6em;
   line-height: 150%;
 }
-#editor aside #thumbs .thumbnail {
+#editor aside .thumbs .thumbnail {
   cursor: pointer;
   background: #c9c9c9;
   margin-bottom: 30px;
@@ -1496,19 +1496,20 @@ h1, h2, h3, h4, h5, h6 {
   width: 17.6%;
   margin-right: 3%;
 }
-#editor aside #thumbs .thumbnail .close, #editor aside #thumbs .thumbnail .confirm {
+#editor aside .thumbs .thumbnail .close, #editor aside .thumbs .thumbnail .confirm {
   position: absolute;
   top: -8px;
   right: -8px;
   z-index: 999;
+  display: none;
 }
-#editor aside #thumbs .thumbnail:nth-child(5n + 5) {
+#editor aside .thumbs .thumbnail:nth-child(5n + 5) {
   margin-right: 0;
 }
-#editor aside #thumbs .thumbnail .centre {
+#editor aside .thumbs .thumbnail .centre {
   z-index: 10;
 }
-#editor aside #thumbs .thumbnail .img {
+#editor aside .thumbs .thumbnail .img {
   background-size: cover;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1519,7 +1520,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   left: 0;
 }
-#editor aside #thumbs .thumbnail span.title {
+#editor aside .thumbs .thumbnail span.title {
   position: absolute;
   top: 100%;
   left: 0;
@@ -1530,6 +1531,9 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px;
+}
+#editor aside .thumbs .thumbnail:hover .close, #editor aside .thumbs .thumbnail:hover .confirm {
+  display: block;
 }
 #editor aside .list {
   padding: 20px 0;
