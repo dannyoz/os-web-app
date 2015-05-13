@@ -28660,7 +28660,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-websites.html',
-    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a></div><div class=selection ng-if=showAddWeb><input ng-model=\"newwebsite\"> <button ng-click=confirmWebsite(newwebsite); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddWeb ng-click=addWebsite(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView><p class=label>Title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-8><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div><div class=grid-4><p class=label>Tags</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].tags data-type=list></div></div></div><div class=\"thumbs grid-row\"><p class=label>Carousel</p><div cms-square class=thumbnail ng-repeat=\"image in json[currentView].list[single].carousel track by $index\"><button class=close ng-click=json[currentView].list[single].carousel.splice($index,1);><span>x</span></button><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image}})></div></div></div><div class=grid-row><button ng-click=\"addThumbs = true\" class=\"rounded-10px green medium\"><span>+</span></button></div><div class=\"thumbs grid-row\" ng-if=addThumbs><div cms-square class=thumbnail ng-repeat=\"image in json.images\" ng-click=json[currentView].list[single].carousel.push(image.path)><span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(website,data) in json[currentView].list\"><a ng-href=/editor/websites/{{website}} ng-bind=website></a> <button ng-click=\"currentList = $index\" ng-hide=\"currentList == $index\" class=close><span>x</span></button> <button ng-click=\"removeFromList('websites',website);\" ng-show=\"currentList == $index\" class=confirm><i class=icon-check></i></button></div><div class=selection ng-if=showAddWeb><input ng-model=\"newwebsite\"> <button ng-click=confirmWebsite(newwebsite); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddWeb ng-click=addWebsite(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView><p class=label>Title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-8><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div><div class=grid-4><p class=label>Tags</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].tags data-type=list></div></div></div><div class=\"thumbs grid-row\"><p class=label>Carousel</p><div cms-square class=thumbnail ng-repeat=\"image in json[currentView].list[single].carousel track by $index\"><button class=close ng-click=json[currentView].list[single].carousel.splice($index,1);><span>x</span></button><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image}})></div></div></div><div class=grid-row><button ng-click=\"addThumbs = true\" class=\"rounded-10px green medium\"><span>+</span></button></div><div class=\"thumbs grid-row\" ng-if=addThumbs><div cms-square class=thumbnail ng-repeat=\"image in json.images\" ng-click=json[currentView].list[single].carousel.push(image.path)><span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div>"
   );
 
 
@@ -29031,7 +29031,8 @@ cms.controller('editor',[
 							"http://placehold.it/450x680",
 							"http://placehold.it/450x680",
 							"http://placehold.it/450x680"
-						]
+						],
+						url : "http://www.google.com"
 					};
 
 				$scope.json.websites.list[key] = obj;
@@ -29072,6 +29073,10 @@ cms.controller('editor',[
 	    		$scope.json.images.splice(data.index,1);
 	    		$scope.publish();
 	    	});
+	    };
+
+	    $scope.removeFromList = function(key,item){
+	    	delete $scope.json[key].list[item];
 	    };
 
 		$scope.iconClass = function(view){

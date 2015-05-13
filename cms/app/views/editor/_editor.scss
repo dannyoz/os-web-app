@@ -191,12 +191,17 @@
 				button{
 
 					right:10px;
+					display: none;
 					@include centre(y);
 				}
 
 				&:hover{
 					background:lighten($editor-light,6%);
 					a{text-decoration:none;color:darken($editor-text,10%)};
+					button{
+
+						display: block;
+					}
 				}
 
 				&:nth-child(odd){

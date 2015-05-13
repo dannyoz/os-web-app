@@ -324,21 +324,21 @@ body {
   transition: all 0.1s ease;
 }
 
-.transition-2, button, .button, #preview button, #preview .button, #preview input[type="submit"], #preview #art .art-thumb .overlay {
+.transition-2, button, .button, #preview button, #preview .button, #preview input[type="submit"] {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
-.transition-3, #preview #art .art-thumb {
+.transition-3, #preview #art #gallery .art-thumb {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.transition-4 {
+.transition-4, #preview #art #gallery .art-thumb .overlay {
   -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
@@ -1574,6 +1574,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #editor aside .list .selection button {
   right: 10px;
+  display: none;
   position: absolute;
   top: 50%;
   -moz-transform: translateY(-50%);
@@ -1587,6 +1588,9 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside .list .selection:hover a {
   text-decoration: none;
   color: #2b2b2b;
+}
+#editor aside .list .selection:hover button {
+  display: block;
 }
 #editor aside .list .selection:nth-child(odd) {
   float: left;
@@ -2012,19 +2016,19 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-#preview .transition-2, #preview button, #preview .button, #preview input[type="submit"], #preview #art .art-thumb .overlay {
+#preview .transition-2, #preview button, #preview .button, #preview input[type="submit"] {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-#preview .transition-3, #preview #art .art-thumb {
+#preview .transition-3, #preview #art #gallery .art-thumb {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-#preview .transition-4 {
+#preview .transition-4, #preview #art #gallery .art-thumb .overlay {
   -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
@@ -2061,7 +2065,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   color: #D84025;
 }
 #preview header .centred h2 {
-  color: #AB834D;
+  color: #626262;
 }
 #preview header .centred p {
   text-align: justify;
@@ -2319,13 +2323,20 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-family: "bistro-script-web", arial, sans-serif;
 }
 #preview #websites .website {
-  padding: 50px 0;
-  border-bottom: 1px solid #151515;
+  padding: 50px 0 80px 0;
 }
 #preview #websites .website h3 {
   font-size: 2em;
-  margin-bottom: 30px;
+  letter-spacing: 0.2em;
+  margin-bottom: 40px;
   text-align: center;
+  border-bottom: 2px solid #1D1D1D;
+}
+#preview #websites .website h3 span {
+  padding-bottom: 10px;
+  display: inline-block;
+  margin-bottom: -2px;
+  border-bottom: 2px solid #D84025;
 }
 #preview #websites .website:last-child {
   border-bottom: none;
@@ -2344,6 +2355,34 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview #websites .website .website-info p {
   text-align: justify;
+}
+#preview #websites .website .website-info .tags {
+  text-align: center;
+  margin: 20px 0 40px 0;
+}
+#preview #websites .website .website-info .tags li {
+  display: inline-block;
+  float: left;
+  padding: 7px;
+  color: #626262;
+  border: 2px solid #1D1D1D;
+  text-shadow: -1px -1px 0 #1D1D1D;
+  margin: 0 5px 5px 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+@media (max-width: 800px) {
+  #preview #websites .website .website-info, #preview #websites .website .website-showcase {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-right: 4%;
+    margin-right: 0;
+  }
+  #preview #websites .website .website-showcase {
+    margin-bottom: 30px;
+  }
 }
 #preview #websites .website .tablet {
   opacity: 1;
@@ -2434,26 +2473,6 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   z-index: 10;
 }
 #preview #websites .website .tablet .front .screen.left .slide.next {
-  -webkit-animation-name: slideLeftBehind;
-  animation-name: slideLeftBehind;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-}
-#preview #websites .website .tablet .front .screen.left .slide.active {
-  -webkit-animation-name: slideLeft;
-  animation-name: slideLeft;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-}
-#preview #websites .website .tablet .front .screen.right .slide.next {
   -webkit-animation-name: slideRightBehind;
   animation-name: slideRightBehind;
   -webkit-animation-fill-mode: both;
@@ -2463,9 +2482,29 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 }
-#preview #websites .website .tablet .front .screen.right .slide.active {
+#preview #websites .website .tablet .front .screen.left .slide.active {
   -webkit-animation-name: slideRight;
   animation-name: slideRight;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview #websites .website .tablet .front .screen.right .slide.next {
+  -webkit-animation-name: slideLeftBehind;
+  animation-name: slideLeftBehind;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview #websites .website .tablet .front .screen.right .slide.active {
+  -webkit-animation-name: slideLeft;
+  animation-name: slideLeft;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-animation-timing-function: ease;
@@ -2574,7 +2613,10 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transform: translateZ(-20px) translateY(20px) translateX(30px);
   transform: translateZ(-20px) translateY(20px) translateX(30px);
 }
-#preview #art .art-thumb {
+#preview #art #gallery {
+  padding: 50px 0;
+}
+#preview #art #gallery .art-thumb {
   overflow: hidden;
   margin-bottom: 10px;
   position: relative;
@@ -2586,16 +2628,18 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   width: 24.25%;
   margin-right: 1%;
 }
-#preview #art .art-thumb img {
+#preview #art #gallery .art-thumb img {
   display: block;
   width: 100%;
   opacity: 0;
 }
-#preview #art .art-thumb img.second {
+#preview #art #gallery .art-thumb img.second {
   margin-top: 10px;
 }
-#preview #art .art-thumb .overlay {
+#preview #art #gallery .art-thumb .overlay {
   opacity: 0;
+  text-align: center;
+  cursor: pointer;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBmMGYwZiIgc3RvcC1vcGFjaXR5PSIwLjgiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjBmMGYiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background-size: 100%;
   background-image: -moz-radial-gradient(rgba(15, 15, 15, 0.8), #0f0f0f);
@@ -2607,48 +2651,83 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   bottom: 0;
   left: 0;
 }
-#preview #art .art-thumb:nth-of-type(13n+9) {
+#preview #art #gallery .art-thumb .overlay .centre {
+  width: 90%;
+}
+#preview #art #gallery .art-thumb .overlay .centre p {
+  color: white;
+  font-family: "museo-slab", sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+#preview #art #gallery .art-thumb:nth-of-type(13n+9) {
   clear: left;
 }
-#preview #art .art-thumb:nth-of-type(13n+3), #preview #art .art-thumb:nth-of-type(13n+8), #preview #art .art-thumb:nth-of-type(13n+11) {
+#preview #art #gallery .art-thumb:nth-of-type(13n+3), #preview #art #gallery .art-thumb:nth-of-type(13n+8), #preview #art #gallery .art-thumb:nth-of-type(13n+11) {
   margin-right: 0;
 }
-#preview #art .art-thumb:nth-of-type(13n+3) .second, #preview #art .art-thumb:nth-of-type(13n+8) .second, #preview #art .art-thumb:nth-of-type(13n+11) .second {
+#preview #art #gallery .art-thumb:nth-of-type(13n+3) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+8) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+11) .second {
   display: none;
 }
-#preview #art .art-thumb:nth-of-type(13n+4) .second, #preview #art .art-thumb:nth-of-type(13n+7) .second, #preview #art .art-thumb:nth-of-type(13n+12) .second {
+#preview #art #gallery .art-thumb:nth-of-type(13n+4) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+7) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+12) .second {
   display: none;
 }
-#preview #art .art-thumb:nth-of-type(13n+2), #preview #art .art-thumb:nth-of-type(13n+6), #preview #art .art-thumb:nth-of-type(13n+10) {
+#preview #art #gallery .art-thumb:nth-of-type(13n+2), #preview #art #gallery .art-thumb:nth-of-type(13n+6), #preview #art #gallery .art-thumb:nth-of-type(13n+10) {
   float: left;
   position: relative;
   width: 49.5%;
   margin-right: 1%;
 }
-#preview #art .art-thumb:nth-of-type(13n+2) img, #preview #art .art-thumb:nth-of-type(13n+6) img, #preview #art .art-thumb:nth-of-type(13n+10) img {
+#preview #art #gallery .art-thumb:nth-of-type(13n+2) img, #preview #art #gallery .art-thumb:nth-of-type(13n+6) img, #preview #art #gallery .art-thumb:nth-of-type(13n+10) img {
   float: left;
   width: 49%;
   margin-top: 0;
 }
-#preview #art .art-thumb:nth-of-type(13n+5), #preview #art .art-thumb:nth-of-type(13n+13) {
+#preview #art #gallery .art-thumb:nth-of-type(13n+5), #preview #art #gallery .art-thumb:nth-of-type(13n+13) {
   float: left;
   position: relative;
   width: 49.5%;
   margin-right: 0;
 }
-#preview #art .art-thumb:nth-of-type(13n+5) img, #preview #art .art-thumb:nth-of-type(13n+13) img {
+#preview #art #gallery .art-thumb:nth-of-type(13n+5) img, #preview #art #gallery .art-thumb:nth-of-type(13n+13) img {
   float: left;
   width: 49%;
   margin-top: 0;
 }
-#preview #art .art-thumb:hover .overlay {
+#preview #art #gallery .art-thumb:hover .overlay {
   opacity: 1;
 }
+#preview #art #gallery .art-thumb:hover .overlay p, #preview #art #gallery .art-thumb:hover .overlay button {
+  -webkit-animation-name: slideUp;
+  animation-name: slideUp;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview #art #gallery .art-thumb:hover .overlay p:nth-child(1), #preview #art #gallery .art-thumb:hover .overlay button:nth-child(1) {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+#preview #art #gallery .art-thumb:hover .overlay p:nth-child(2), #preview #art #gallery .art-thumb:hover .overlay button:nth-child(2) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
 @media (max-width: 720px) {
-  #preview #art .art-thumb {
+  #preview #art #gallery .art-thumb {
     float: left;
     position: relative;
     width: 48.5%;
     margin-right: 3%;
   }
+}
+#preview #art-single {
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

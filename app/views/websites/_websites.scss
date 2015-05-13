@@ -3,14 +3,26 @@
 
 	.website{
 
-		padding: 50px 0;
-		border-bottom: 1px solid #151515;
+		padding: 50px 0 80px 0;
+		//border-bottom: 1px solid #151515;
 
 		h3{
 
+			$border-size : 2px;
+
 			font-size: 2em;
-			margin-bottom:30px;
+			letter-spacing:0.2em;
+			margin-bottom:40px;
 			text-align: center;
+			border-bottom:$border-size solid #1D1D1D;
+
+			span{
+
+				padding-bottom:10px;
+				display: inline-block;
+				margin-bottom: -$border-size;
+				border-bottom:$border-size solid $primary-orange;
+			}
 
 		}
 
@@ -31,6 +43,35 @@
 			p{
 
 				text-align: justify;
+			}
+
+			.tags{
+
+				text-align: center;
+				margin: 20px 0 40px 0;
+
+				li{
+
+					display: inline-block;
+					float: left;
+					padding:7px;
+					color: #626262;
+					border: 2px solid #1D1D1D;
+					text-shadow:-1px -1px 0 #1D1D1D;
+					margin:0 5px 5px 0;
+					@include border-radius(5px);
+				}
+			}
+		}
+
+		@media(max-width:800px){
+			.website-info, .website-showcase{
+				@include grid-col(12,12,4%);
+				margin-right: 0;
+			}
+
+			.website-showcase{
+				margin-bottom: 30px;
 			}
 		}
 

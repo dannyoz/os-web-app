@@ -4,97 +4,136 @@ $horiz-width : 50% - $grid-padding;
 
 #art{
 
-	.art-thumb{
-		
-		overflow: hidden;
-		margin-bottom: $grid-y-padding;
-		position: relative;
-		background:#444;
-		background-position:50% 50%;
-		background-size:cover;
-		@include grid-col(6,24,$grid-padding);
-		@extend .transition-3;
+	#gallery{
 
-		img{
+		padding:50px 0;
+
+		.art-thumb{
 			
-			display: block;
-			width:100%;
-			opacity: 0;
-
-			&.second{
-
-				margin-top:10px;
-			}
-
-		}
-
-		.overlay{
-			
-			opacity: 0;
-			@extend .transition-2;
-			@include background-image(radial-gradient(rgba(15,15,15,0.8),rgba(15,15,15,1)));
-			@include fitParent;
-		}
-
-		&:nth-of-type(13n+9){
-
-			clear: left;
-		}
-
-
-		&:nth-of-type(13n+3), &:nth-of-type(13n+8), &:nth-of-type(13n+11){
-			
-			.second{
-
-				display: none;
-			}
-
-			margin-right:0;
-		}
-
-		&:nth-of-type(13n+4), &:nth-of-type(13n+7), &:nth-of-type(13n+12){
-			
-			.second{
-
-				display: none;
-			}
-		}
-
-		&:nth-of-type(13n+2), &:nth-of-type(13n+6), &:nth-of-type(13n+10){
-
-			@include grid-col(12,24,$grid-padding);
+			overflow: hidden;
+			margin-bottom: $grid-y-padding;
+			position: relative;
+			background:#444;
+			background-position:50% 50%;
+			background-size:cover;
+			@include grid-col(6,24,$grid-padding);
+			@extend .transition-3;
 
 			img{
-				float: left;
-				width:$horiz-width;
-				margin-top:0;
-			}
-		}
+				
+				display: block;
+				width:100%;
+				opacity: 0;
 
-		&:nth-of-type(13n+5),&:nth-of-type(13n+13){
+				&.second{
 
-			@include grid-col-last(12,24,$grid-padding);
+					margin-top:10px;
+				}
 
-			img{
-				float: left;
-				width:$horiz-width;
-				margin-top:0;
 			}
 
-		}
+			.overlay{
+				
+				opacity: 0;
+				text-align: center;
+				cursor: pointer;
+				@extend .transition-4;
+				@include background-image(radial-gradient(rgba(15,15,15,0.8),rgba(15,15,15,1)));
+				@include fitParent;
 
-		&:hover{
+				
+				.centre{
 
-			.overlay {
+					width:90%;
 
-				opacity: 1;
+					p{
+						color:white;
+						font:{
+							family : "museo-slab", sans-serif;
+							size:1.2em;
+						}
+						margin-bottom: 10px;
+					}
+
+					button{
+
+						// background:none;
+						// border:1px solid white;
+					}
+				}
 			}
 
-		}
+			&:nth-of-type(13n+9){
 
-		@media (max-width : 720px){
+				clear: left;
+			}
 
-			@include grid-col(12,24,3%);
+
+			&:nth-of-type(13n+3), &:nth-of-type(13n+8), &:nth-of-type(13n+11){
+				
+				.second{
+
+					display: none;
+				}
+
+				margin-right:0;
+			}
+
+			&:nth-of-type(13n+4), &:nth-of-type(13n+7), &:nth-of-type(13n+12){
+				
+				.second{
+
+					display: none;
+				}
+			}
+
+			&:nth-of-type(13n+2), &:nth-of-type(13n+6), &:nth-of-type(13n+10){
+
+				@include grid-col(12,24,$grid-padding);
+
+				img{
+					float: left;
+					width:$horiz-width;
+					margin-top:0;
+				}
+			}
+
+			&:nth-of-type(13n+5),&:nth-of-type(13n+13){
+
+				@include grid-col-last(12,24,$grid-padding);
+
+				img{
+					float: left;
+					width:$horiz-width;
+					margin-top:0;
+				}
+
+			}
+
+			&:hover{
+
+				.overlay {
+
+					opacity: 1;
+
+					p,button{
+
+						@include animation(slideUp,ease,0.5s,2);
+					}
+				}
+
+			}
+
+			@media (max-width : 720px){
+
+				@include grid-col(12,24,3%);
+			}
 		}
 	}
+}
+
+#art-single{
+
+	background-size:cover;
+	@include fitParent;
 }

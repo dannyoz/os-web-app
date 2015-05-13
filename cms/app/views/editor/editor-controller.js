@@ -84,7 +84,8 @@ cms.controller('editor',[
 							"http://placehold.it/450x680",
 							"http://placehold.it/450x680",
 							"http://placehold.it/450x680"
-						]
+						],
+						url : "http://www.google.com"
 					};
 
 				$scope.json.websites.list[key] = obj;
@@ -125,6 +126,10 @@ cms.controller('editor',[
 	    		$scope.json.images.splice(data.index,1);
 	    		$scope.publish();
 	    	});
+	    };
+
+	    $scope.removeFromList = function(key,item){
+	    	delete $scope.json[key].list[item];
 	    };
 
 		$scope.iconClass = function(view){

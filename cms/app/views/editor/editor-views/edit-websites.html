@@ -28,6 +28,12 @@
 
 		<div class="selection" ng-repeat="(website,data) in json[currentView].list">
 			<a ng-href="/editor/websites/{{website}}" ng-bind="website"></a>
+			<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
+				<span>x</span>
+			</button>
+			<button ng-click="removeFromList('websites',website);" ng-show="currentList == $index" class="confirm">
+				<i class="icon-check"></i>
+			</button>
 		</div>
 
 		<div class="selection" ng-if="showAddWeb">

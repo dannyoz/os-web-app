@@ -15,7 +15,9 @@
 		<div class="website" ng-repeat="(website,data) in page.list" dod-scroll>
 
 			<div class="grid-row">
-				<h3 ng-bind="::data.title"></h3>
+				<h3>
+					<span ng-bind="::data.title"></span>
+				</h3>
 			</div>
 
 			<div class="grid-row">
@@ -26,6 +28,12 @@
 
 				<div class="website-info">
 					<div ng-bind-html="::data.info"></div>
+					<ul class="tags grid-row">
+						<li ng-repeat="tag in data.tags" ng-bind="tag"></li>
+					</ul>
+					<div class="grid-row">
+						<a ng-if="data.url" ng-href="{{data.url}}" class="button">Visit site</a>
+					</div>
 				</div>
 			
 			</div>

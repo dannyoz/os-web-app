@@ -73,19 +73,8 @@
 
 			// -- Transitions --
 			$duration : 0.5s;
-
+			
 			&.left{
-
-				.slide.next{
-					@include animation(slideLeftBehind,ease,$duration);
-				}
-
-				.slide.active{
-					@include animation(slideLeft,ease,$duration);
-				}
-			}
-
-			&.right{
 
 				.slide.next{
 					@include animation(slideRightBehind,ease,$duration);
@@ -93,6 +82,18 @@
 
 				.slide.active{
 					@include animation(slideRight,ease,$duration);
+				}
+
+			}
+
+			&.right{
+
+				.slide.next{
+					@include animation(slideLeftBehind,ease,$duration);
+				}
+
+				.slide.active{
+					@include animation(slideLeft,ease,$duration);
 				}
 			}
 
