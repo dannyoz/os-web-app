@@ -28130,11 +28130,7 @@ dod.run([
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/directives/dod-carousel.html',
-    "<div class=\"tablet transition-3\"><div class=front><!-- \r" +
-    "\n" +
-    "\t\t<button class=\"nextslide\" ng-click=\"selectSlide(currentSlide +1);\"></button>\r" +
-    "\n" +
-    "\t\t<button class=\"prevslide\" ng-click=\"selectSlide(currentSlide -1);\"></button> --><div class=\"shine transition-3\"></div><img src=/img/tablet-spacer.png><div class=screen ng-class=[direction]><div class=slide ng-attr-style=background-image:url({{image}});-webkit-transition-duration:{{duration}}ms ng-repeat=\"image in images track by $index\" ng-class=slideClass($index);></div><div class=carousel-bullets><button class=bullet ng-repeat=\"image in images track by $index\" ng-class=slideClass($index); ng-click=selectSlide($index);><span></span></button></div></div></div><div class=\"back transition-3\"></div></div>"
+    "<div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=/img/tablet-spacer.png><div class=screen ng-class=[direction]><div class=slide ng-attr-style=background-image:url({{image}}); ng-repeat=\"image in images track by $index\" ng-class=slideClass($index);></div><div class=carousel-bullets><button class=bullet ng-repeat=\"image in images track by $index\" ng-class=slideClass($index); ng-click=selectSlide($index);><span></span></button></div></div></div><div class=\"back transition-3\"></div></div>"
   );
 
 
@@ -28277,21 +28273,32 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 
 			scope.currentSlide = 0;
 			scope.nextSlide    = 1;
-			scope.duration     = 500;
+			scope.duration     = 600;
 
 			scope.selectSlide = function(i,dir){
-				scope.nextSlide = i
-				if(i>scope.currentSlide){
-					scope.direction = "right";
-				}else{
-					scope.direction = "left";
+
+				if(i != scope.currentSlide){
+					scope.nextSlide = i;
+					if(i>scope.currentSlide){
+						scope.direction = "right";
+					}else{
+						scope.direction = "left";
+					}
+
+					$timeout(function(){
+						scope.direction = "";
+						scope.currentSlide = i;
+						scope.nextSlide    = 1;
+					},scope.duration);
+					
+				} else {
+
+					scope.direction = "wibble"
+					$timeout(function(){
+						scope.direction = "";
+					},scope.duration);
 				}
 
-				$timeout(function(){
-					scope.direction = "";
-					scope.currentSlide = i;
-					scope.nextSlide    = 1;
-				},scope.duration);
 			};
 
 			scope.slideClass = function(i){

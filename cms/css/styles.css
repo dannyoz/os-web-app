@@ -2387,7 +2387,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview #websites .website .tablet .front .shine {
   opacity: 1;
-  z-index: 10;
+  z-index: 50;
   position: absolute;
   top: 0;
   right: 0;
@@ -2423,41 +2423,67 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   background-size: cover;
   background-position: center top;
   z-index: 5;
+  opacity: 0;
   left: 0;
-  -moz-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-  transition: all 0.5s linear;
 }
 #preview #websites .website .tablet .front .screen .slide.next {
   z-index: 8;
 }
 #preview #websites .website .tablet .front .screen .slide.active {
+  opacity: 1;
   z-index: 10;
 }
 #preview #websites .website .tablet .front .screen.left .slide.next {
-  -moz-transform: translateX(10%);
-  -ms-transform: translateX(10%);
-  -webkit-transform: translateX(10%);
-  transform: translateX(10%);
+  -webkit-animation-name: slideLeftBehind;
+  animation-name: slideLeftBehind;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 #preview #websites .website .tablet .front .screen.left .slide.active {
-  -moz-transform: translateX(-150%);
-  -ms-transform: translateX(-150%);
-  -webkit-transform: translateX(-150%);
-  transform: translateX(-150%);
+  -webkit-animation-name: slideLeft;
+  animation-name: slideLeft;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 #preview #websites .website .tablet .front .screen.right .slide.next {
-  -moz-transform: translateX(-10%);
-  -ms-transform: translateX(-10%);
-  -webkit-transform: translateX(-10%);
-  transform: translateX(-10%);
+  -webkit-animation-name: slideRightBehind;
+  animation-name: slideRightBehind;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 #preview #websites .website .tablet .front .screen.right .slide.active {
-  -moz-transform: translateX(150%);
-  -ms-transform: translateX(150%);
-  -webkit-transform: translateX(150%);
-  transform: translateX(150%);
+  -webkit-animation-name: slideRight;
+  animation-name: slideRight;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview #websites .website .tablet .front .screen.wibble .slide.active {
+  -webkit-animation-name: wibble;
+  animation-name: wibble;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
 #preview #websites .website .tablet .front .screen .carousel-bullets {
   bottom: 10px;

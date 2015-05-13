@@ -9,21 +9,32 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 
 			scope.currentSlide = 0;
 			scope.nextSlide    = 1;
-			scope.duration     = 500;
+			scope.duration     = 600;
 
 			scope.selectSlide = function(i,dir){
-				scope.nextSlide = i
-				if(i>scope.currentSlide){
-					scope.direction = "right";
-				}else{
-					scope.direction = "left";
+
+				if(i != scope.currentSlide){
+					scope.nextSlide = i;
+					if(i>scope.currentSlide){
+						scope.direction = "right";
+					}else{
+						scope.direction = "left";
+					}
+
+					$timeout(function(){
+						scope.direction = "";
+						scope.currentSlide = i;
+						scope.nextSlide    = 1;
+					},scope.duration);
+					
+				} else {
+
+					scope.direction = "wibble"
+					$timeout(function(){
+						scope.direction = "";
+					},scope.duration);
 				}
 
-				$timeout(function(){
-					scope.direction = "";
-					scope.currentSlide = i;
-					scope.nextSlide    = 1;
-				},scope.duration);
 			};
 
 			scope.slideClass = function(i){
