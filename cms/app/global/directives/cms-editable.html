@@ -1,15 +1,8 @@
-<p class="simple" ng-if="type == 'text'">
-	<span class="edit-result" ng-click="toggleEdit();">{{content}}</span>
-	<input type="text" ng-model="content" ng-show="editMode"/>
-	<button class="green" ng-show="editMode" ng-click="save(content);">
-		<span><i class="icon-check"></i></span>
-	</button>
-</p>
+<input type="text" ng-show="type == 'text'" ng-model="content"/>
 
-<div ng-if="type == 'list'">
+<div ng-show="type == 'list'">
 	
 	<div class="edit-list" ng-repeat="item in content track by $index">
-		<p ng-click="selectListItem($index);">{{item}}</p>
 		<button class="close" ng-if="currentList != $index" ng-click="removeListItem($index);">
 			<span>x</span>
 		</button>
@@ -18,7 +11,7 @@
 			<i class="icon-check"></i>
 		</button>
 
-		<input type="text" ng-model="item" ng-show="currentList == $index">
+		<input type="text" ng-model="item" ng-focus="currentList = $index">
 	</div>
 
 	<button ng-click="addListItem();" class="rounded-10px green medium">

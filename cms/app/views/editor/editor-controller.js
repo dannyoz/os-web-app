@@ -81,9 +81,9 @@ cms.controller('editor',[
 							"Sass"
 						],
 						carousel: [
-							"http://placehold.it/450x680",
-							"http://placehold.it/450x680",
-							"http://placehold.it/450x680"
+							"/img/placeholder.jpg",
+							"/img/placeholder.jpg",
+							"/img/placeholder.jpg"
 						],
 						url : "http://www.google.com"
 					};
@@ -91,6 +91,30 @@ cms.controller('editor',[
 				$scope.json.websites.list[key] = obj;
 				$scope.publish();
 				$location.path("/editor/websites/" + key);
+			};
+
+		};
+
+		$scope.addArtwork = function(){
+
+			$scope.showAddArt = true;
+			$scope.newartwork = "Work name goes here";
+
+			$scope.confirmArtwork = function(name){
+
+				var key = name.replace(/ /g, "-").toLowerCase(),
+					obj = {
+						title: "Work title",
+						info: "<p>Description</p>",
+						media: {
+							"thumbnail" : "/img/placeholder.jpg",
+							"main-image": "/img/placeholder.jpg"
+						}
+					};
+
+				$scope.json.art.list[key] = obj;
+				$scope.publish();
+				$location.path("/editor/art/" + key);
 			};
 
 		};

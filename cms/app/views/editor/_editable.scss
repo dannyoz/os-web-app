@@ -13,6 +13,26 @@ p.label{
 
 	position:relative;
 
+	input{
+
+		background:#eee;
+		font-size:22px;
+		line-height:22px;
+		padding:20px;
+		width:100%;
+		border: 1px solid #aaa;
+		outline:none;
+		margin-bottom:10px;
+		@include box-sizing(border-box);
+		@include border-radius(10px);
+
+		&:focus{
+			
+			background:white;
+			border-color:map-get($theme-colours, turqoise);
+		}
+	}
+
 	p.simple{
 
 		$buttonsize:50px;
@@ -73,13 +93,13 @@ p.label{
 
 		input{
 
-			position: absolute;
 			width:100%;
 			font-size:14px;
 			height:100%;
-			padding-left:20px;
+			padding: 10px 20px;
 			border: 1px solid #777;
 			top:0;
+			margin-bottom:0;
 			@include box-sizing(border-box);
 			@include border-radius(10px);
 		}

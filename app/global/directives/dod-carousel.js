@@ -13,7 +13,7 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 
 			scope.selectSlide = function(i,dir){
 
-				if(i != scope.currentSlide){
+				if(i != scope.currentSlide && i >= 0 && i < scope.images.length){
 					scope.nextSlide = i;
 					if(i>scope.currentSlide){
 						scope.direction = "right";
@@ -26,7 +26,7 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 						scope.currentSlide = i;
 						scope.nextSlide    = 1;
 					},scope.duration);
-					
+
 				} else {
 
 					scope.direction = "wibble"
@@ -40,7 +40,7 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 			scope.slideClass = function(i){
 				if(i==scope.currentSlide) return "active"
 				if(i==scope.nextSlide) return "next"	
-			}
+			};
 		}
 	}
 }]);

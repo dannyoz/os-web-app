@@ -26,19 +26,26 @@
 
 	<div class="list">
 
-		<p class="label">List</p>
-
-		<div class="grid-row">
-
-			<div class="selection" ng-repeat="(art,data) in json[currentView].list">
-				<a ng-href="/editor/art/{{art}}" ng-bind="art"></a>
-			</div>
-
+		<div class="selection" ng-repeat="(art,data) in json[currentView].list">
+			<a ng-href="/editor/art/{{art}}" ng-bind="art"></a>
+			<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
+				<span>x</span>
+			</button>
+			<button ng-click="removeFromList('art',art);" ng-show="currentList == $index" class="confirm">
+				<i class="icon-check"></i>
+			</button>
 		</div>
 
-		<div class="selection">
-			<a>+</a>
+		<div class="selection" ng-if="showAddArt">
+			<input type="text" ng-model="newartwork"/>
+			<button ng-click="confirmArtwork(newartwork);" class="confirm">
+				<i class="icon-check"></i>
+			</button>
 		</div>
+
+		<button ng-if="!showAddArt" ng-click="addArtwork();" class="rounded-10px medium green">
+			<span>+ Add</span>
+		</button>
 
 	</div>
 
@@ -53,9 +60,19 @@
 	     cms-editable="json[currentView].list[single].title">
 	</div>
 
-	<div class="editable" 
-	     ng-if="json" 
-	     cms-editable="json[currentView].list[single].media.thumbnail">
+	<div class="grid-row">
+
+		<div class="grid-3">
+			<p class="label">Thumbnail</p>
+			
+			<img class="max" ng-src="http://localhost:3000{{json[currentView].list[single].media.thumbnail}}">
+		</div>
+
+		<div class="grid-9">
+			<p class="label">Main image</p>
+			<img class="max" ng-src="http://localhost:3000{{json[currentView].list[single].media['main-image']}}">
+		</div>
+		
 	</div>
 
 	<p class="label">Info</p>
