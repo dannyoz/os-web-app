@@ -6,7 +6,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav} ng-mouseleave=hideNav();><div id=hamburger class=transition-3 ng-click=toggleNav();><div><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url, home: link.title == 'Home'}\"></a></li></ul></div></nav>"
   );
 
 
@@ -56,6 +56,6 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/websites/websites.html',
-    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div class=website ng-repeat=\"(website,data) in page.list\" dod-scroll><div class=grid-row><h3><span ng-bind=::data.title></span></h3></div><div class=grid-row><div class=website-showcase><div dod-carousel=data.carousel></div></div><div class=website-info><div ng-bind-html=::data.info></div><ul class=\"tags grid-row\"><li ng-repeat=\"tag in data.tags\" ng-bind=tag></li></ul><div class=grid-row><a ng-if=data.url ng-href={{data.url}} class=button>Visit site</a></div></div></div></div></div></div>"
+    "<div id=websites class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1 ng-bind=::page.heading></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=website ng-repeat=\"(website,data) in page.list\" dod-scroll><div class=container><div class=grid-row><h3><span ng-bind=::data.title></span></h3></div><div class=grid-row><div class=website-showcase><div dod-carousel=data.carousel></div></div><div class=website-info><div ng-bind-html=::data.info></div><ul class=\"tags grid-row\"><li ng-repeat=\"tag in data.tags\" ng-bind=tag></li></ul><div class=grid-row><a ng-if=data.url ng-href={{data.url}} class=button>Visit site</a></div></div></div></div></div></div>"
   );
 }])

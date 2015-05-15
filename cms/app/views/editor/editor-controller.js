@@ -157,15 +157,18 @@ cms.controller('editor',[
 	    	delete $scope.json[key].list[item];
 	    };
 
-	    $scope.showMedia = function(key){
-	    	$scope.activeKey  = key;
+	    $scope.showMedia = function(view,work,media){
+
+	    	console.log(view,work,media);
 	    	$scope.mediaPopup = true;
+
+	    	$scope.selectMedia = function(path){
+		    	$scope.json[view].list[work].media[media] = path;
+		    	$scope.mediaPopup = false;
+		    };
 	    };
 
-	    $scope.selectMedia = function(media){
-	    	console.log(media,$scope.activeKey);
-	    };
-
+	    
 		$scope.iconClass = function(view){
 
 			var className;

@@ -62,13 +62,13 @@
 
 	<div class="grid-row">
 
-		<div class="grid-3" ng-click="showMedia(json[currentView].list[single].media.thumbnail);">
+		<div class="grid-3" ng-click="showMedia('art',single,'thumbnail');">
 			<p class="label">Thumbnail</p>
 			
 			<img class="max" ng-src="http://localhost:3000{{json[currentView].list[single].media.thumbnail}}">
 		</div>
 
-		<div class="grid-9">
+		<div class="grid-9" ng-click="showMedia('art',single,'main-image');">
 			<p class="label">Main image</p>
 			<img class="max" ng-src="http://localhost:3000{{json[currentView].list[single].media['main-image']}}">
 		</div>

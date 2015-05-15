@@ -1,7 +1,7 @@
-<nav class="transition-3" ng-class="{show:showNav,open:openNav}" ng-mouseleave="hideNav();">
+<nav class="transition-3" ng-class="{show:showNav,open:openNav}">
 
 	<div id="hamburger" class="transition-3" ng-click="toggleNav();">
-		<div>
+		<div class="transition-3" >
 			<span></span>
 		</div>
 	</div>
@@ -10,7 +10,7 @@
 		
 		<ul>
 			<li ng-repeat="link in nav" ng-attr-style="transition-delay:{{$index*0.1}}s">
-				<a class="transition-2" ng-href="{{::link.url}}" ng-bind="::link.title" ng-class="{current:path == link.url}"></a>
+				<a class="transition-2" ng-href="{{::link.url}}" ng-bind="::link.title" ng-class="{current:path == link.url, home: link.title == 'Home'}"></a>
 			</li>
 		</ul>
 

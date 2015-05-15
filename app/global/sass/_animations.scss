@@ -1,5 +1,7 @@
 
 $wibbleAmount: 2px;
+$slideBehindAmt : 25%;
+$slideBehindSca : 0.9;
 
 @include keyframes(wibble) {
 	0%   {left:0}
@@ -17,9 +19,19 @@ $wibbleAmount: 2px;
 	100% {left:-100%}
 }
 
-@include keyframes(slideLeftBehind) {
-	0%   {left:80px;opacity:0}
-	100% {left:0;opacity:1;}
+@-webkit-keyframes slideLeftBehind {
+	0%   {left:$slideBehindAmt;opacity:0;-webkit-transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;-webkit-transform:scale(1)}
+}
+
+@-moz-keyframes slideLeftBehind {
+	0%   {left:$slideBehindAmt;opacity:0;-moz-transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;-moz-transform:scale(1)}
+}
+
+@keyframes slideLeftBehind {
+	0%   {left:$slideBehindAmt;opacity:0;transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;transform:scale(1)}
 }
 
 @include keyframes(slideRight) {
@@ -27,7 +39,17 @@ $wibbleAmount: 2px;
 	100% {left:100%}
 }
 
-@include keyframes(slideRightBehind) {
-	0%   {left:-80px;opacity:0}
-	100% {left:0;opacity:1;}
+@-webkit-keyframes slideRightBehind{
+	0%   {left:-80px;opacity:0;-webkit-transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;-webkit-transform:scale(1)}
+}
+
+@-moz-keyframes slideRightBehind{
+	0%   {left:-80px;opacity:0;-moz-transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;-moz-transform:scale(1)}
+}
+
+@keyframes slideRightBehind{
+	0%   {left:-80px;opacity:0;transform:scale($slideBehindSca)}
+	100% {left:0;opacity:1;transform:scale(1)}
 }
