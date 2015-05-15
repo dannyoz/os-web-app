@@ -27,6 +27,7 @@ cms.controller('editor',[
 		$scope.previewMode  = false;
 		$scope.showDialogue = false;
 		$scope.singleView   = false;
+		$scope.mediaPopup   = false;
 
 		$scope.views = [
 			"home",
@@ -154,6 +155,15 @@ cms.controller('editor',[
 
 	    $scope.removeFromList = function(key,item){
 	    	delete $scope.json[key].list[item];
+	    };
+
+	    $scope.showMedia = function(key){
+	    	$scope.activeKey  = key;
+	    	$scope.mediaPopup = true;
+	    };
+
+	    $scope.selectMedia = function(media){
+	    	console.log(media,$scope.activeKey);
 	    };
 
 		$scope.iconClass = function(view){

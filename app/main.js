@@ -28206,59 +28206,59 @@ dod.directive('dodEvents', ['$rootScope',function ($rootScope){
 			});	
 
 
-			$window.on('touchstart', function (e){
-				//console.log(e);
-				touch.start.X = e.touches[0].pageX;
-				touch.start.Y = e.touches[0].pageY;
-			});
+			// $window.on('touchstart', function (e){
+			// 	//console.log(e);
+			// 	touch.start.X = e.touches[0].pageX;
+			// 	touch.start.Y = e.touches[0].pageY;
+			// });
 
-			$window.on('touchmove', function (e){
-				distance ++
-				touch.end.X = e.touches[0].pageX;
-				touch.end.Y = e.touches[0].pageY;
-			});
+			// $window.on('touchmove', function (e){
+			// 	distance ++
+			// 	touch.end.X = e.touches[0].pageX;
+			// 	touch.end.Y = e.touches[0].pageY;
+			// });
 
-			$window.on('touchend', function (e){
+			// $window.on('touchend', function (e){
 
-				//console.log(touch.end,touch.start, distance)
+			// 	//console.log(touch.end,touch.start, distance)
 
-				var Xdiff = Math.abs(touch.end.X - touch.start.X),
-			 		Ydiff = Math.abs(touch.end.Y - touch.start.Y),
-			 		direction = "";
+			// 	var Xdiff = Math.abs(touch.end.X - touch.start.X),
+			//  		Ydiff = Math.abs(touch.end.Y - touch.start.Y),
+			//  		direction = "";
 
-			 	//Detect axis
-				if(Xdiff > Ydiff){
-					//horizontal
-					if(touch.start.X > touch.end.X){
-						direction = "right";
-					} else{
-						direction = "left";
-					}
+			//  	//Detect axis
+			// 	if(Xdiff > Ydiff){
+			// 		//horizontal
+			// 		if(touch.start.X > touch.end.X){
+			// 			direction = "right";
+			// 		} else{
+			// 			direction = "left";
+			// 		}
 
-				} else {
-					//vertical
-					if(touch.start.Y > touch.end.Y){
-						direction = "down";
-					} else{
-						direction = "up";
-					}
-				}
+			// 	} else {
+			// 		//vertical
+			// 		if(touch.start.Y > touch.end.Y){
+			// 			direction = "down";
+			// 		} else{
+			// 			direction = "up";
+			// 		}
+			// 	}
 
-				if(distance > 1){
-					console.log(direction);
-				} else {
-					console.log("click");
-				}
+			// 	if(distance > 1){
+			// 		console.log(direction);
+			// 	} else {
+			// 		console.log("click");
+			// 	}
 
-				//Resets
-				distance = 0;
-				touch    = {
-					start : {},
-					end : {}
-				};
+			// 	//Resets
+			// 	distance = 0;
+			// 	touch    = {
+			// 		start : {},
+			// 		end : {}
+			// 	};
 
 
-			});
+			// });
 		}
 	}
 }]);
@@ -28270,6 +28270,13 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 			images : '=dodCarousel'
 		},
 		link : function(scope,element,attrs){
+
+			var isSwipe  = false,
+				distance = 0,
+				touch = {
+					start : {},
+					end : {}
+				};
 
 			scope.currentSlide = 0;
 			scope.nextSlide    = 1;
@@ -28300,6 +28307,37 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 				}
 
 			};
+
+
+			element.on('touchstart', function (e){
+				touch.start.X = e.touches[0].pageX;
+			});
+
+			element.on('touchmove', function (e){
+				distance ++
+				touch.end.X = e.touches[0].pageX;
+			});
+
+			element.on('touchend', function (e){
+
+				var Xdiff = Math.abs(touch.end.X - touch.start.X),
+			 		direction = "";
+
+				//horizontal
+				if(touch.start.X > touch.end.X){
+					scope.selectSlide(1);
+				} else{
+					scope.selectSlide(0);
+				}
+
+				//Resets
+				distance = 0;
+				touch    = {
+					start : {},
+					end : {}
+				};
+
+			});
 
 			scope.slideClass = function(i){
 				if(i==scope.currentSlide) return "active"

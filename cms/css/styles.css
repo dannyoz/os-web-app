@@ -1267,6 +1267,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #222;
   font-size: 22px;
   font-weight: 600;
+  opacity: 0;
 }
 #editor #editor-header button {
   right: 30px;
@@ -1626,6 +1627,16 @@ h1, h2, h3, h4, h5, h6 {
   float: left;
   position: relative;
   width: 49%;
+}
+#editor aside #media-popup {
+  border: 1px solid #c9c9c9;
+  background: #DDD;
+  padding: 30px;
+  position: fixed;
+  top: 90px;
+  left: 90px;
+  right: 20px;
+  bottom: 20px;
 }
 #editor #preview {
   font-size: 12px;
@@ -2346,10 +2357,14 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-weight: 100;
   font-family: "bistro-script-web", arial, sans-serif;
 }
+#preview #websites header {
+  opacity: 0;
+}
 #preview #websites .website {
   padding: 50px 0 80px 0;
 }
 #preview #websites .website h3 {
+  opacity: 0;
   font-size: 2em;
   letter-spacing: 0.2em;
   margin-bottom: 40px;
@@ -2376,6 +2391,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   position: relative;
   width: 30.66667%;
   margin-right: 0;
+  opacity: 0;
 }
 #preview #websites .website .website-info p {
   text-align: justify;

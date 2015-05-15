@@ -1,0 +1,8 @@
+<div class="thumbs grid-row">
+		
+	<div cms-square class="thumbnail" ng-repeat="image in json.images" ng-click="selectMedia(image.path);" >
+		<span class="title" ng-bind="image.title"></span>
+		<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image.path}})"></div>
+	</div>
+
+</div>

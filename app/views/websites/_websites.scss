@@ -1,5 +1,10 @@
 #websites{
 
+	header{
+
+		opacity:0;
+	}
+
 
 	.website{
 
@@ -7,6 +12,8 @@
 		//border-bottom: 1px solid #151515;
 
 		h3{
+
+			opacity:0;
 
 			$border-size : 2px;
 
@@ -39,6 +46,7 @@
 		.website-info{
 
 			@include grid-col-last(4,12,4%);
+			opacity:0;
 
 			p{
 

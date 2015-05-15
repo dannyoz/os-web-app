@@ -46,6 +46,10 @@
 
 		</section>
 
+		<section id="media-popup" ng-if="mediaPopup">
+			<div ng-include="'cms/app/views/editor/editor-views/media-popup.html'"></div>
+		</section>
+
 	</aside>
 
 	<section id="preview" ng-class="{hide : !previewMode}">

@@ -7,6 +7,13 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 		},
 		link : function(scope,element,attrs){
 
+			var isSwipe  = false,
+				distance = 0,
+				touch = {
+					start : {},
+					end : {}
+				};
+
 			scope.currentSlide = 0;
 			scope.nextSlide    = 1;
 			scope.duration     = 600;
@@ -36,6 +43,37 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 				}
 
 			};
+
+
+			element.on('touchstart', function (e){
+				touch.start.X = e.touches[0].pageX;
+			});
+
+			element.on('touchmove', function (e){
+				distance ++
+				touch.end.X = e.touches[0].pageX;
+			});
+
+			element.on('touchend', function (e){
+
+				var Xdiff = Math.abs(touch.end.X - touch.start.X),
+			 		direction = "";
+
+				//horizontal
+				if(touch.start.X > touch.end.X){
+					scope.selectSlide(1);
+				} else{
+					scope.selectSlide(0);
+				}
+
+				//Resets
+				distance = 0;
+				touch    = {
+					start : {},
+					end : {}
+				};
+
+			});
 
 			scope.slideClass = function(i){
 				if(i==scope.currentSlide) return "active"

@@ -117,6 +117,8 @@
 				size:22px;
 				weight:600;
 			}
+
+			opacity:0;
 		}
 
 		button{
@@ -215,6 +217,18 @@
 				}
 			}
 
+		}
+
+		#media-popup{
+
+			border:1px solid darken($editor-light,8%);
+			background:$editor-light;
+			padding:30px;
+			position: fixed;
+			top: $navWidth + 20px;
+			left: $navWidth + 20px;
+			right:20px;
+			bottom:20px;
 		}
 	}
 
