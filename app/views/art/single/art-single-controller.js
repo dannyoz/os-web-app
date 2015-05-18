@@ -1,12 +1,12 @@
 dod.controller('artSingle',[
 	'$scope',
 	'$location',
+	'$routeParams',
 	'content', 
-	function ($scope, $location, content) {
+	function ($scope, $location, $routeParams, content) {
 		"use strict";
 		
-		var pathname = location.pathname,
-			work     = pathname.replace("/art/", "");
+		var work = $routeParams.artwork;
 
 		//Use cached data if request is already made
 		if(content.ready){	

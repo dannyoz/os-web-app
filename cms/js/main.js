@@ -28645,7 +28645,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-artwork.html',
-    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a> <button ng-click=\"currentList = $index\" ng-hide=\"currentList == $index\" class=close><span>x</span></button> <button ng-click=\"removeFromList('art',art);\" ng-show=\"currentList == $index\" class=confirm><i class=icon-check></i></button></div><div class=selection ng-if=showAddArt><input ng-model=\"newartwork\"> <button ng-click=confirmArtwork(newartwork); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddArt ng-click=addArtwork(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<p class=label>Image title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><div class=grid-row><div class=grid-3 ng-click=\"showMedia('art',single,'thumbnail');\"><p class=label>Thumbnail</p><img class=max ng-src=http://localhost:3000{{json[currentView].list[single].media.thumbnail}}></div><div class=grid-9 ng-click=\"showMedia('art',single,'main-image');\"><p class=label>Main image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['main-image']}}\"></div></div><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=data.index></a> <button ng-click=\"currentList = $index\" ng-hide=\"currentList == $index\" class=close><span>x</span></button> <button ng-click=\"removeFromList('art',art);\" ng-show=\"currentList == $index\" class=confirm><i class=icon-check></i></button></div><div class=selection ng-if=showAddArt><input ng-model=\"newartwork\"> <button ng-click=confirmArtwork(newartwork); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddArt ng-click=addArtwork(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<p class=label>Image title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><p class=label>index</p><input type=number ng-model=\"json[currentView].list[single].index\"><div class=grid-row><div class=grid-3 ng-click=\"showMedia('art',single,'thumbnail');\"><p class=label>Thumbnail</p><img class=max ng-src=http://localhost:3000{{json[currentView].list[single].media.thumbnail}}></div><div class=grid-9><div ng-click=\"showMedia('art',single,'landscape');\"><p class=label>Landscape image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['landscape']}}\"></div><div ng-click=\"showMedia('art',single,'portrait');\"><p class=label>Portrait image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['portrait']}}\"></div></div></div><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
   );
 
 
@@ -29097,17 +29097,21 @@ cms.controller('editor',[
 		$scope.addArtwork = function(){
 
 			$scope.showAddArt = true;
-			$scope.newartwork = "Work name goes here";
+			$scope.newartwork = "Edit me";
 
 			$scope.confirmArtwork = function(name){
 
-				var key = name.replace(/ /g, "-").toLowerCase(),
-					obj = {
+				$scope.json.art.count ++;
+
+				var key   = name.replace(/ /g, "-").toLowerCase(),
+					obj   = {
 						title: "Work title",
 						info: "<p>Description</p>",
+						index : ($scope.json.art.count-1),
 						media: {
 							"thumbnail" : "/img/placeholder.jpg",
-							"main-image": "/img/placeholder.jpg"
+							"portrait"  : "/img/placeholder.jpg",
+							"landscape" : "/img/placeholder.jpg"
 						}
 					};
 
@@ -29156,6 +29160,9 @@ cms.controller('editor',[
 	    });
 
 	    $scope.removeFromList = function(key,item){
+	    	if(key == 'art'){
+	    		$scope.json.art.count --;
+	    	}
 	    	delete $scope.json[key].list[item];
 	    };
 

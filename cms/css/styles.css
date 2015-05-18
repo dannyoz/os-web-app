@@ -2745,6 +2745,9 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transform: translateZ(-20px) translateY(20px) translateX(30px);
   transform: translateZ(-20px) translateY(20px) translateX(30px);
 }
+#preview #art header {
+  opacity: 0;
+}
 #preview #art #gallery {
   padding: 50px 0;
 }

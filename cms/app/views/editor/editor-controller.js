@@ -99,17 +99,21 @@ cms.controller('editor',[
 		$scope.addArtwork = function(){
 
 			$scope.showAddArt = true;
-			$scope.newartwork = "Work name goes here";
+			$scope.newartwork = "Edit me";
 
 			$scope.confirmArtwork = function(name){
 
-				var key = name.replace(/ /g, "-").toLowerCase(),
-					obj = {
+				$scope.json.art.count ++;
+
+				var key   = name.replace(/ /g, "-").toLowerCase(),
+					obj   = {
 						title: "Work title",
 						info: "<p>Description</p>",
+						index : ($scope.json.art.count-1),
 						media: {
 							"thumbnail" : "/img/placeholder.jpg",
-							"main-image": "/img/placeholder.jpg"
+							"portrait"  : "/img/placeholder.jpg",
+							"landscape" : "/img/placeholder.jpg"
 						}
 					};
 
@@ -158,6 +162,9 @@ cms.controller('editor',[
 	    });
 
 	    $scope.removeFromList = function(key,item){
+	    	if(key == 'art'){
+	    		$scope.json.art.count --;
+	    	}
 	    	delete $scope.json[key].list[item];
 	    };
 
