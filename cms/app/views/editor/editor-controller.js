@@ -153,19 +153,26 @@ cms.controller('editor',[
 	    	});
 	    };
 
+	    $scope.$on('delete',function (fun,data){
+	    	$scope.deleteImage(data.path,data.index);
+	    });
+
 	    $scope.removeFromList = function(key,item){
 	    	delete $scope.json[key].list[item];
 	    };
 
 	    $scope.showMedia = function(view,work,media){
 
-	    	console.log(view,work,media);
 	    	$scope.mediaPopup = true;
 
 	    	$scope.selectMedia = function(path){
 		    	$scope.json[view].list[work].media[media] = path;
 		    	$scope.mediaPopup = false;
 		    };
+
+		    $scope.$on('select',function (data,path){
+		    	$scope.selectMedia(path);
+		    });
 	    };
 
 	    

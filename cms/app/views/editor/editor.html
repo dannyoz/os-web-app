@@ -47,7 +47,7 @@
 		</section>
 
 		<section id="media-popup" ng-if="mediaPopup">
-			<div ng-include="'cms/app/views/editor/editor-views/media-popup.html'"></div>
+			<div ng-if="json" cms-pagination="json.images" data-function="select"></div>
 		</section>
 
 	</aside>

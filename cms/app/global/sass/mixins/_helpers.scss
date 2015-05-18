@@ -26,21 +26,20 @@
 	overflow: auto ;
 
 	&::-webkit-scrollbar {
-	    width: 6px;
+	    width: 15px;
 	    padding:10px;
 	}
 	 
 	&::-webkit-scrollbar-track {
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-	    background: lighten($basecol,20%);
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
+	    background: lighten($editor-light,10%);
 	    border-radius: 10px;
 	}
 	 
 	&::-webkit-scrollbar-thumb {
 	    border-radius: 10px;
-	    background: lighten($basecol,10%);
-	    border:1px solid darken($basecol,10%);
-	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	    background: darken($editor-light,20%);
+	    border:1px solid darken($editor-light,26%);
 	}
 
 }

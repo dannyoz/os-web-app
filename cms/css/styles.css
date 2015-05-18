@@ -324,7 +324,7 @@ body {
   transition: all 0.1s ease;
 }
 
-.transition-2, button, .button, #preview button, #preview .button, #preview input[type="submit"] {
+.transition-2, button, .button, #editor aside .pagination ul li a, #preview button, #preview .button, #preview input[type="submit"] {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
@@ -1285,8 +1285,8 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside {
   background: #DDD;
   width: 500px;
-  overflow: auto;
   padding: 30px;
+  overflow: auto;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -1295,6 +1295,20 @@ h1, h2, h3, h4, h5, h6 {
   right: auto;
   bottom: 0;
   left: 70px;
+}
+#editor aside::-webkit-scrollbar {
+  width: 15px;
+  padding: 10px;
+}
+#editor aside::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+#editor aside::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #aaaaaa;
+  border: 1px solid #9b9b9b;
 }
 #editor aside.fullscreen {
   width: auto;
@@ -1560,6 +1574,36 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside .thumbs .thumbnail:hover .close, #editor aside .thumbs .thumbnail:hover .confirm {
   display: block;
 }
+#editor aside .pagination {
+  margin: 20px 0;
+}
+#editor aside .pagination ul {
+  text-align: center;
+}
+#editor aside .pagination ul li {
+  display: inline-block;
+  margin: 0 2px;
+}
+#editor aside .pagination ul li a {
+  display: block;
+  padding: 10px;
+  background: #e7e7e7;
+  border: 1px solid #c9c9c9;
+  text-decoration: none;
+  color: #222;
+  font-size: 14px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+#editor aside .pagination ul li a:hover {
+  color: black;
+  background: white;
+}
+#editor aside .pagination ul li.current a {
+  background: #47b0ac;
+  color: white;
+}
 #editor aside .list {
   padding: 20px 0;
   margin: 20px 0;
@@ -1635,8 +1679,23 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: 90px;
   left: 90px;
-  right: 20px;
+  right: 30px;
   bottom: 20px;
+  overflow: auto;
+}
+#editor aside #media-popup::-webkit-scrollbar {
+  width: 15px;
+  padding: 10px;
+}
+#editor aside #media-popup::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+#editor aside #media-popup::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #aaaaaa;
+  border: 1px solid #9b9b9b;
 }
 #editor #preview {
   font-size: 12px;
@@ -1701,19 +1760,18 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
 }
 #messages #message-main::-webkit-scrollbar {
-  width: 6px;
+  width: 15px;
   padding: 10px;
 }
 #messages #message-main::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background: #555555;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background: #f7f7f7;
   border-radius: 10px;
 }
 #messages #message-main::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: #3c3c3c;
-  border: 1px solid #090909;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background: #aaaaaa;
+  border: 1px solid #9b9b9b;
 }
 
 /*
@@ -2051,7 +2109,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-#preview .transition-2, #preview button, #preview .button, #preview input[type="submit"] {
+#preview .transition-2, #preview button, #preview #editor aside .pagination ul li a, #editor aside .pagination ul li #preview a, #preview .button, #preview input[type="submit"] {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;

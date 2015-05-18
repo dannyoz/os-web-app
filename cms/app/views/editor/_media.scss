@@ -70,3 +70,44 @@
 		}
 	}
 }
+
+.pagination{
+
+	margin:20px 0;
+
+	ul{
+
+		text-align:center;
+
+		li{
+
+			display:inline-block;
+			margin: 0 2px;
+
+			a{
+
+				display:block;
+				padding:10px;
+				background:lighten($editor-light,4%);
+				border:1px solid darken($editor-light,8%);
+				text-decoration:none;
+				color:$editor-dark;
+				font-size:14px;
+				@extend .transition-2;
+				@include border-radius(3px);
+
+				&:hover{
+
+					color:black;
+					background:white;
+				}
+			}
+
+			&.current a{
+
+				background:#47b0ac;
+				color:white;
+			}
+		}
+	}
+}

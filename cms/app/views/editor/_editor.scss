@@ -138,8 +138,8 @@
 
 		background:$editor-light;
 		width:$editorwidth;
-		overflow:auto;
 		padding:30px;
+		@include scrollbar;
 		@extend .transition-1;
 		@include box-sizing(border-box);
 		@include fitParent("",$navWidth,auto,0,$navWidth);
@@ -227,8 +227,9 @@
 			position: fixed;
 			top: $navWidth + 20px;
 			left: $navWidth + 20px;
-			right:20px;
+			right:30px;
 			bottom:20px;
+			@include scrollbar;
 		}
 	}
 

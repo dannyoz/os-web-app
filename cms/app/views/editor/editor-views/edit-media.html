@@ -12,22 +12,6 @@
 	    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 	</div>
 
-	<div class="thumbs grid-row">
-		
-		<div cms-square class="thumbnail" ng-repeat="image in json.images" >
-
-			<button class="close" ng-click="current = $index" ng-hide="current == $index">
-				<span>x</span>
-			</button>
-
-			<button class="confirm" ng-show="current == $index" ng-click="deleteImage(image.path,$index);">
-				<i class="icon-check"></i>
-			</button>
-
-			<span class="title" ng-bind="image.title"></span>
-			<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image.path}})"></div>
-		</div>
-
-	</div>
+	<div ng-if="json" cms-pagination="json.images" data-function="delete"></div>
 
 </div>

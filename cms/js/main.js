@@ -28629,6 +28629,11 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
   );
 
 
+  $templateCache.put('cms/app/global/directives/cms-pagination.html',
+    "<div class=\"thumbs grid-row\" ng-if=\"method == 'delete'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\"><button class=close ng-click=\"current = $index\" ng-hide=\"current == $index\"><span>x</span></button> <button class=confirm ng-show=\"current == $index\" ng-click=deleteImage(image.path,image.deleteIndex);><i class=icon-check></i></button> <span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"thumbs grid-row\" ng-if=\"method == 'select'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\" ng-click=selectMedia(image.path);><span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"grid-row pagination\" ng-if=\"pages.length > 1\"><ul><li ng-if=\"currentPage > 0\"><a ng-click=switchPage(currentPage-1);>Prev</a></li><li ng-repeat=\"page in pages\" ng-class=\"{current:currentPage == $index}\"><a ng-click=switchPage($index);>{{$index + 1}}</a></li><li ng-if=\"currentPage < (pages.length-1)\"><a ng-click=switchPage(currentPage+1);>Next</a></li></ul></div>"
+  );
+
+
   $templateCache.put('cms/app/global/nav/nav.html',
     "<nav><ul><li><a href=# class=item1>Lorem ipsum.</a></li><li><a href=# class=item2>Perferendis, accusantium.</a></li><li><a href=# class=item3>Unde, quam.</a></li><li><a href=# class=item4>Quos, recusandae.</a></li><li><a href=# class=item5>Dolore, corrupti.</a></li></ul></nav>"
   );
@@ -28655,7 +28660,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-media.html',
-    "<div><div ng-app=fileUpload class=grid-row><div class=\"button medium rounded-10px\" ngf-select ngf-change=upload($files)>Upload</div><p>Drop File:</p><div ngf-drop ng-model=files class=drop-box ngf-drag-over-class=dragover ngf-multiple=true ngf-allow-dir=true ngf-accept=\"'.jpg,.png'\" ngf-change=upload($files)><span class=centre>Drop image files here</span></div><div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></div><div class=\"thumbs grid-row\"><div cms-square class=thumbnail ng-repeat=\"image in json.images\"><button class=close ng-click=\"current = $index\" ng-hide=\"current == $index\"><span>x</span></button> <button class=confirm ng-show=\"current == $index\" ng-click=deleteImage(image.path,$index);><i class=icon-check></i></button> <span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div>"
+    "<div><div ng-app=fileUpload class=grid-row><div class=\"button medium rounded-10px\" ngf-select ngf-change=upload($files)>Upload</div><p>Drop File:</p><div ngf-drop ng-model=files class=drop-box ngf-drag-over-class=dragover ngf-multiple=true ngf-allow-dir=true ngf-accept=\"'.jpg,.png'\" ngf-change=upload($files)><span class=centre>Drop image files here</span></div><div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></div><div ng-if=json cms-pagination=json.images data-function=delete></div></div>"
   );
 
 
@@ -28670,7 +28675,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor.html',
-    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"green medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"red medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><div id=editor-header ng-class=\"{fullscreen : !previewMode}\"><h1 ng-bind=currentView></h1><button ng-if=\"currentView != 'media'\" class=\"rounded-10px medium blue\" ng-click=\"previewMode = !previewMode\"><span>Preview</span></button></div><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'cms/app/views/editor/editor-views/edit-contact.html'\"></div><div ng-if=\"currentView == 'media'\" ng-include=\"'cms/app/views/editor/editor-views/edit-media.html'\"></div></section><section id=media-popup ng-if=mediaPopup><div ng-include=\"'cms/app/views/editor/editor-views/media-popup.html'\"></div></section></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
+    "<div id=editor><nav><ul id=top><li><a ng-click=toggleDialogue();><i class=icon-jsfiddle></i></a><div class=\"publish-dialogue rounded-10px\" ng-if=showDialogue><p>Publish changes?</p><button ng-click=publish(); class=\"green medium rounded-10px\"><i class=icon-check></i></button> <button ng-click=toggleDialogue(); class=\"red medium rounded-10px\"><i class=icon-ban></i></button></div></li></ul><ul id=views><li ng-repeat=\"view in views\" ng-class=\"{current:currentView == view}\"><a ng-href=/editor/{{view}} ng-class=[view]><i ng-class=iconClass(view);></i></a></li></ul></nav><div id=editor-header ng-class=\"{fullscreen : !previewMode}\"><h1 ng-bind=currentView></h1><button ng-if=\"currentView != 'media'\" class=\"rounded-10px medium blue\" ng-click=\"previewMode = !previewMode\"><span>Preview</span></button></div><aside ng-class=\"{fullscreen : !previewMode}\"><section id=edit-pane><div ng-if=\"currentView == 'home'\" ng-include=\"'cms/app/views/editor/editor-views/edit-homepage.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'cms/app/views/editor/editor-views/edit-websites.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'cms/app/views/editor/editor-views/edit-artwork.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'cms/app/views/editor/editor-views/edit-about.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'cms/app/views/editor/editor-views/edit-contact.html'\"></div><div ng-if=\"currentView == 'media'\" ng-include=\"'cms/app/views/editor/editor-views/edit-media.html'\"></div></section><section id=media-popup ng-if=mediaPopup><div ng-if=json cms-pagination=json.images data-function=select></div></section></aside><section id=preview ng-class=\"{hide : !previewMode}\"><div ng-if=\"currentView == 'home'\" ng-include=\"'/views/preview/home.html'\"></div><div ng-if=\"currentView == 'art'\" ng-include=\"'/views/preview/art.html'\"></div><div ng-if=\"currentView == 'about'\" ng-include=\"'/views/preview/about.html'\"></div><div ng-if=\"currentView == 'websites'\" ng-include=\"'/views/preview/websites.html'\"></div><div ng-if=\"currentView == 'contact'\" ng-include=\"'/views/preview/contact.html'\"></div></section></div>"
   );
 
 
@@ -28831,6 +28836,47 @@ cms.directive('cmsEditable', function(){
 				scope.content.push("List item");
 				scope.currentList = (scope.content.length-1);
 			}
+		}
+	}
+});
+cms.directive('cmsPagination', function(){
+	return {
+		restrict:"A",
+		scope : {
+			array : "=cmsPagination"
+		},
+		templateUrl : 'cms/app/global/directives/cms-pagination.html',
+		link : function(scope,element,attrs){
+
+			scope.method = attrs.function;
+			scope.pages = [];
+			scope.currentPage = 0;
+
+			// Adding delete index
+			for (i=0; i<scope.array.length; i++) {
+                scope.array[i].deleteIndex = i;
+            };
+
+            // Page-ify
+			var i,j,page,chunk = 20;
+            for (i=0; i<scope.array.length; i+=chunk) {
+                page = scope.array.slice(i,i+chunk);
+                scope.pages.push(page);
+            };
+
+            // Emit delete function to editor-controller.js
+            scope.deleteImage = function(path,index){
+            	var image = {"path" : path, "index" : index}; 
+            	scope.$emit('delete',image);
+            };
+
+            scope.selectMedia = function(path){
+            	scope.$emit('select',path);
+            };
+
+            scope.switchPage = function(i){
+            	scope.currentPage = i;
+            };
 		}
 	}
 });
@@ -29105,19 +29151,26 @@ cms.controller('editor',[
 	    	});
 	    };
 
+	    $scope.$on('delete',function (fun,data){
+	    	$scope.deleteImage(data.path,data.index);
+	    });
+
 	    $scope.removeFromList = function(key,item){
 	    	delete $scope.json[key].list[item];
 	    };
 
 	    $scope.showMedia = function(view,work,media){
 
-	    	console.log(view,work,media);
 	    	$scope.mediaPopup = true;
 
 	    	$scope.selectMedia = function(path){
 		    	$scope.json[view].list[work].media[media] = path;
 		    	$scope.mediaPopup = false;
 		    };
+
+		    $scope.$on('select',function (data,path){
+		    	$scope.selectMedia(path);
+		    });
 	    };
 
 	    
