@@ -137,5 +137,6 @@ $horiz-width : 50% - $grid-padding;
 #art-single{
 
 	background-size:cover;
+	background-position: center top;
 	@include fitParent;
 }

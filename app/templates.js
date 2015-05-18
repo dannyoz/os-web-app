@@ -1,7 +1,7 @@
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/directives/dod-carousel.html',
-    "<div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=/img/tablet-spacer.png><div class=screen ng-class=[direction]><div class=slide ng-attr-style=background-image:url({{image}}); ng-repeat=\"image in images track by $index\" ng-class=slideClass($index);></div><div class=carousel-bullets><button class=bullet ng-repeat=\"image in images track by $index\" ng-class=slideClass($index); ng-click=selectSlide($index);><span></span></button></div></div></div><div class=\"back transition-3\"></div></div>"
+    "<div class=\"tablet transition-3\"><div class=front><div class=\"shine transition-3\"></div><img src=/img/tablet-spacer.png><div class=screen ng-class=[direction]><div class=slide ng-attr-style=background-image:url({{image}}); ng-repeat=\"image in images track by $index\" ng-class=slideClass($index);></div></div></div><div class=\"back transition-3\"></div><div class=carousel-bullets><button class=bullet ng-repeat=\"image in images track by $index\" ng-class=slideClass($index); ng-click=selectSlide($index);><span class=transition-2></span></button></div></div>"
   );
 
 
@@ -26,7 +26,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div id=art-single ng-attr-style=background-image:url({{work.media.thumbnail}})><div class=centre>{{work.title}}</div></div>"
+    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})></div>"
   );
 
 
