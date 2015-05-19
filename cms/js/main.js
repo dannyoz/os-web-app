@@ -28672,7 +28672,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-homepage.html',
-    "<div class=editable ng-if=json cms-editable=json[currentView].heading></div><div class=editable ng-if=json cms-editable=json[currentView].subheading></div>"
+    "<div ng-repeat=\"navItem in json.navigation\" draggable=true ondrop=\"console.log('drop')\">{{navItem}}</div>"
   );
 
 

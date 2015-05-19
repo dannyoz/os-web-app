@@ -28135,7 +28135,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url, home: link.title == 'Home'}\"></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
 
 
@@ -28155,7 +28155,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control transition-2\" ng-if=\"artIndex > 0\"><span ng-bind=getArtwork(artIndex-1).title></span></a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control transition-2\" ng-if=\"(artIndex-1) < sequence.length\"><span ng-bind=getArtwork(artIndex+1).title></span></a></div>"
+    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control transition-2\" ng-if=\"artIndex > 0\"><span ng-bind=getArtwork(artIndex-1).title></span></a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control transition-2\" ng-if=\"(artIndex+1) < sequence.length\"><span ng-bind=getArtwork(artIndex+1).title></span></a></div>"
   );
 
 
