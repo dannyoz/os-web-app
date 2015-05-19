@@ -28155,7 +28155,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control\" ng-if=\"artIndex > 0\">{{getArtwork(artIndex-1).title}}</a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control\" ng-if=\"(artIndex-1) < sequence.length\">{{getArtwork(artIndex+1).title}}</a></div>"
+    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control transition-2\" ng-if=\"artIndex > 0\"><span ng-bind=getArtwork(artIndex-1).title></span></a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control transition-2\" ng-if=\"(artIndex-1) < sequence.length\"><span ng-bind=getArtwork(artIndex+1).title></span></a></div>"
   );
 
 
