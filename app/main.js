@@ -28155,7 +28155,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})></div>"
+    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control\" ng-if=\"artIndex > 0\">{{getArtwork(artIndex-1).title}}</a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control\" ng-if=\"(artIndex-1) < sequence.length\">{{getArtwork(artIndex+1).title}}</a></div>"
   );
 
 
@@ -28563,9 +28563,12 @@ dod.controller('artSingle',[
 		var work = $routeParams.artwork;
 
 		//Use cached data if request is already made
-		if(content.ready){	
-			$scope.work  = content.data.art.list[work];
-			$scope.ready = content.ready;
+		if(content.ready){
+			$scope.sequence = content.data.art.sequence;
+			$scope.list     = content.data.art.list;	
+			$scope.work     = content.data.art.list[work];
+			$scope.ready    = content.ready;
+			$scope.artIndex = $scope.sequence.indexOf(work);
 
 			if(!$scope.work){
 				$location.path('/404');
@@ -28574,13 +28577,23 @@ dod.controller('artSingle',[
 
 		//Use event listener for initial api request
 		$scope.$on('appReady', function (data){
-			$scope.work  = content.data.art.list[work];
-			$scope.ready = content.ready;
+			$scope.sequence = content.data.art.sequence;
+			$scope.list     = content.data.art.list;
+			$scope.work     = content.data.art.list[work];
+			$scope.ready    = content.ready;
+			$scope.artIndex = $scope.sequence.indexOf(work);
 
 			if(!$scope.work){
 				$location.path('/404');
 			}
+
+			console.log($scope.artIndex);
 		});
+
+		$scope.getArtwork = function(index){
+			var thisObj = $scope.list[$scope.sequence[index]];
+			return thisObj
+		};
 
 		$scope.getMainImage = function(){
 			var width  = window.innerWidth,
@@ -28589,6 +28602,7 @@ dod.controller('artSingle',[
 			if(width <= height) return $scope.work.media.portrait;
 			if(width > height) return $scope.work.media.landscape;
 		};
+
 
 	}]);
 dod.controller('contact',['$scope', 'content', 'api', function ($scope, content, api) {

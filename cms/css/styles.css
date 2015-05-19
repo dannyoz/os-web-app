@@ -2866,3 +2866,18 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   bottom: 0;
   left: 0;
 }
+#preview #art-single .control {
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#preview #art-single .control.prev-art {
+  left: 0;
+}
+#preview #art-single .control.next-art {
+  right: 0;
+}

@@ -139,4 +139,18 @@ $horiz-width : 50% - $grid-padding;
 	background-size:cover;
 	background-position: center top;
 	@include fitParent;
+
+	.control{
+
+		z-index:9999;
+		@include centre(y);
+
+		&.prev-art{
+			left:0;
+		}
+
+		&.next-art{
+			right:0;
+		}
+	}
 }
