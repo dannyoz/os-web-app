@@ -103,13 +103,11 @@ cms.controller('editor',[
 
 			$scope.confirmArtwork = function(name){
 
-				$scope.json.art.count ++;
 
 				var key   = name.replace(/ /g, "-").toLowerCase(),
 					obj   = {
 						title: "Work title",
 						info: "<p>Description</p>",
-						index : ($scope.json.art.count-1),
 						media: {
 							"thumbnail" : "/img/placeholder.jpg",
 							"portrait"  : "/img/placeholder.jpg",
@@ -118,6 +116,7 @@ cms.controller('editor',[
 					};
 
 				$scope.json.art.list[key] = obj;
+				$scope.json.art.sequence.push(key);
 				$scope.publish();
 				$location.path("/editor/art/" + key);
 			};
@@ -162,9 +161,6 @@ cms.controller('editor',[
 	    });
 
 	    $scope.removeFromList = function(key,item){
-	    	if(key == 'art'){
-	    		$scope.json.art.count --;
-	    	}
 	    	delete $scope.json[key].list[item];
 	    };
 
