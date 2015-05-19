@@ -2164,11 +2164,32 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview header .centred h1::first-letter {
   color: #D84025;
 }
+#preview header .centred h1 span {
+  border-bottom: 1px dashed #252525;
+  padding-bottom: 35px;
+}
 #preview header .centred h2 {
   color: #626262;
 }
 #preview header .centred p {
   text-align: justify;
+}
+@media (max-width: 800px) {
+  #preview header .centred {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-right: 2%;
+    margin: 0;
+  }
+  #preview header .centred h1 {
+    font-size: 3em;
+  }
+}
+@media (max-width: 600px) {
+  #preview header .centred h1 {
+    font-size: 2.5em;
+  }
 }
 #preview a, #preview button, #preview input {
   cursor: pointer;
@@ -2330,7 +2351,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   height: 60px;
 }
 #preview nav #nav-holder {
-  padding: 0 60px;
+  padding: 0;
   text-align: center;
   overflow: hidden;
   background: #121212;
@@ -2375,6 +2396,15 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -moz-box-shadow: inset 0 -4px 0 #D84025;
   -webkit-box-shadow: inset 0 -4px 0 #D84025;
   box-shadow: inset 0 -4px 0 #D84025;
+}
+@media (max-width: 800px) {
+  #preview nav #nav-holder li {
+    width: 25%;
+    float: left;
+  }
+  #preview nav #nav-holder li a {
+    padding: 0;
+  }
 }
 #preview nav #hoverbar {
   background: red;
@@ -2429,7 +2459,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview #home h1 span {
   padding: 10px 0;
-  border-top: 2px dotted #444;
+  border-top: 1px dashed #444;
 }
 #preview #home h2 {
   text-transform: uppercase;
@@ -2439,13 +2469,13 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   padding-bottom: 10px;
   color: #c7c7c7;
   line-height: 1em;
-  border-bottom: 2px dotted #444;
+  border-bottom: 1px dashed #444;
   font-family: "museo-slab", sans-serif;
   font-size: 3.8em;
   font-weight: 100;
 }
 #preview #home h2 span {
-  border-top: 2px dotted #444;
+  border-top: 1px dashed #444;
   font-size: 1.3em;
 }
 #preview #home h2::first-letter {
