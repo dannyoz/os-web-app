@@ -39,6 +39,10 @@
 			margin-right:0;
 		}
 
+		&:nth-child(5n + 6){
+			clear: left;
+		}
+
 		.centre{
 
 			z-index:10;

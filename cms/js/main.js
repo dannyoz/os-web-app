@@ -28622,6 +28622,20 @@ cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     });
     
 }]);
+
+cms.filter('orderObjectBy', function() {
+    return function(items, field, reverse) {
+        var filtered = [];
+        angular.forEach(items, function(item) {
+            filtered.push(item);
+        });
+        filtered.sort(function (a, b) {
+            return (a[field] > b[field] ? 1 : -1);
+        });
+        return filtered;
+    };
+});
+
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
@@ -28645,7 +28659,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-artwork.html',
-    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=data.index></a> <button ng-click=\"currentList = $index\" ng-hide=\"currentList == $index\" class=close><span>x</span></button> <button ng-click=\"removeFromList('art',art);\" ng-show=\"currentList == $index\" class=confirm><i class=icon-check></i></button></div><div class=selection ng-if=showAddArt><input ng-model=\"newartwork\"> <button ng-click=confirmArtwork(newartwork); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddArt ng-click=addArtwork(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<p class=label>Image title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><p class=label>index</p><input type=number ng-model=\"json[currentView].list[single].index\"><div class=grid-row><div class=grid-3 ng-click=\"showMedia('art',single,'thumbnail');\"><p class=label>Thumbnail</p><img class=max ng-src=http://localhost:3000{{json[currentView].list[single].media.thumbnail}}></div><div class=grid-9><div ng-click=\"showMedia('art',single,'landscape');\"><p class=label>Landscape image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['landscape']}}\"></div><div ng-click=\"showMedia('art',single,'portrait');\"><p class=label>Portrait image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['portrait']}}\"></div></div></div><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
+    "<div ng-if=!singleView><div class=grid-row><p class=label>Heading</p><div class=editable ng-if=json cms-editable=json[currentView].heading></div><p class=label>count</p><div class=editable ng-if=json cms-editable=json[currentView].count></div><p class=label>Subheading</p><div class=editable ng-if=json cms-editable=json[currentView].subheading></div><p class=label>Intro</p><div class=wysiwyg text-angular=text-angular name=intro ng-model=json[currentView].intro></div></div><div class=list><div class=selection ng-repeat=\"(art,data) in json[currentView].list\"><a ng-href=/editor/art/{{art}} ng-bind=art></a> <button ng-click=\"currentList = $index\" ng-hide=\"currentList == $index\" class=close><span>x</span></button> <button ng-click=\"removeFromList('art',art);\" ng-show=\"currentList == $index\" class=confirm><i class=icon-check></i></button></div><div class=selection ng-if=showAddArt><input ng-model=\"newartwork\"> <button ng-click=confirmArtwork(newartwork); class=confirm><i class=icon-check></i></button></div><button ng-if=!showAddArt ng-click=addArtwork(); class=\"rounded-10px medium green\"><span>+ Add</span></button></div></div><div ng-if=singleView>{{json[currentView].list[single]}}<p class=label>Image title</p><div class=editable ng-if=json cms-editable=json[currentView].list[single].title></div><p class=label>index</p><input type=number ng-model=\"json[currentView].list[single].index\"><div class=grid-row><div class=grid-3 ng-click=\"showMedia('art',single,'thumbnail');\"><p class=label>Thumbnail</p><img class=max ng-src=http://localhost:3000{{json[currentView].list[single].media.thumbnail}}></div><div class=grid-9><div ng-click=\"showMedia('art',single,'landscape');\"><p class=label>Landscape image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['landscape']}}\"></div><div ng-click=\"showMedia('art',single,'portrait');\"><p class=label>Portrait image</p><img class=max ng-src=\"http://localhost:3000{{json[currentView].list[single].media['portrait']}}\"></div></div></div><p class=label>Info</p><div class=wysiwyg text-angular=text-angular name=info ng-model=json[currentView].list[single].info></div></div>"
   );
 
 

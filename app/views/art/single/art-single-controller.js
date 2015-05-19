@@ -28,4 +28,12 @@ dod.controller('artSingle',[
 			}
 		});
 
+		$scope.getMainImage = function(){
+			var width  = window.innerWidth,
+				height = window.innerHeight;
+
+			if(width <= height) return $scope.work.media.portrait;
+			if(width > height) return $scope.work.media.landscape;
+		};
+
 	}]);
