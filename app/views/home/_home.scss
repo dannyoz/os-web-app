@@ -1,5 +1,10 @@
 #home{
 
+	$border-style : 2px dotted #444;
+
+	background:#181818;
+	@include fitParent;
+
 	.text{
 
 		text-align: center;
@@ -7,7 +12,7 @@
 
 	.forename, .surname{
 
-		color: #5C5C5C;
+		color: $primary-orange;
 		font: {
 			size : 4em;
 			weight:100;
@@ -24,7 +29,7 @@
 
 		text-transform:uppercase;
 		letter-spacing: 0.4em;
-		color:$primary-orange;
+		color:white;
 		margin-top: 20px;
 		font: {
 			size : 1.85em;
@@ -35,7 +40,7 @@
 		span{
 
 			padding:10px 0;
-			border-top:3px dotted $primary-orange;
+			border-top:$border-style;
 		}
 		
 	}
@@ -43,12 +48,13 @@
 	h2{	
 
 		text-transform:uppercase;
-		color:$primary-orange;
 		letter-spacing: 0.1em;
 		margin-bottom: 0;
-		margin-top: 40px;
-		color:#5C5C5C;
+		margin-top: 30px;
+		padding-bottom:10px;
+		color:#c7c7c7;
 		line-height: 1em;
+		border-bottom:$border-style;
 		font:{
 			
 			family : "museo-slab", sans-serif;
@@ -58,22 +64,32 @@
 
 		span{
 
-			border-top:3px dotted $primary-orange;
+			border-top:$border-style;
 			font-size: 1.3em;
-			padding-top:10px;
+		}
+
+		&::first-letter{
+			color: $primary-orange;
 		}
 	}
 
 	h3{
-
+		
+		margin-top: 20px;
 		text-transform:none;
-		color:#5C5C5C;
+		color:#b7b7b7;
 		line-height: 0.7em;
 		font: {
-			size : 5em;
+			size : 7em;
 			weight:100;
 			family: "bistro-script-web", arial, sans-serif;
 		}
+	}
+
+	button{
+
+		bottom:100px;
+		@include centre(x);
 	}
 
 }

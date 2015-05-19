@@ -28170,7 +28170,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3>Artist</h3></div></div>"
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3><span>Artist</span></h3></div><button ng-click=\"location.path('/websites')\"><span>My Work</span> <span class=hover></span></button></div>"
   );
 
 
@@ -28661,50 +28661,56 @@ dod.controller('contact',['$scope', 'content', 'api', function ($scope, content,
 	};
 
 }]);
-dod.controller('home',['$scope', 'content', function ($scope, content) {
-	"use strict";
+dod.controller('home',[
+	'$scope',
+	'$location', 
+	'content', 
+	function ($scope, $location, content) {
+		"use strict";
 
-	//Use cached data if request is already made
-	if(content.ready){	
-		$scope.page  = content.data.home;
-		$scope.ready = content.ready;
-	}
+		$scope.location = $location;
 
-	//Use event listener for initial api request
-	$scope.$on('appReady', function (data){
-		$scope.page  = content.data.home;
-		$scope.ready = content.ready;
-	});
+		//Use cached data if request is already made
+		if(content.ready){	
+			$scope.page  = content.data.home;
+			$scope.ready = content.ready;
+		}
 
-	// Perspective effects
-    $scope.position = {
-        xval: 0,
-        yval: 0
-    };
+		//Use event listener for initial api request
+		$scope.$on('appReady', function (data){
+			$scope.page  = content.data.home;
+			$scope.ready = content.ready;
+		});
 
-    $scope.perspective = function (amount,axis) {
+		// Perspective effects
+	    $scope.position = {
+	        xval: 0,
+	        yval: 0
+	    };
 
-    	var base = 90*amount,
-    		result = $scope.position.xval;
+	    $scope.perspective = function (amount,axis) {
+
+	    	var base = 90*amount,
+	    		result = $scope.position.xval;
 
 
-   //      var type = (!method) ? "attract" : method,
-			// styles;
+	   //      var type = (!method) ? "attract" : method,
+				// styles;
 
-   //      if (type == "attract") {
+	   //      if (type == "attract") {
 
-   //          styles = "left:" + (Math.round($scope.position.xval * ammount)) + "px;" +
-			// 		 	 "top:" + (Math.round($scope.position.yval * ammount)) + "px";
-   //      } else {
+	   //          styles = "left:" + (Math.round($scope.position.xval * ammount)) + "px;" +
+				// 		 	 "top:" + (Math.round($scope.position.yval * ammount)) + "px";
+	   //      } else {
 
-   //          styles = "right:" + (Math.round($scope.position.xval * ammount)) + "px;" +
-			// 		 	 "bottom:" + (Math.round($scope.position.yval * ammount)) + "px";
-   //      }
+	   //          styles = "right:" + (Math.round($scope.position.xval * ammount)) + "px;" +
+				// 		 	 "bottom:" + (Math.round($scope.position.yval * ammount)) + "px";
+	   //      }
 
-        return result;
-    };
+	        return result;
+	    };
 
-}]);
+	}]);
 dod.controller('loading',['$scope', 'content', function ($scope, content) {
 	"use strict";
 
