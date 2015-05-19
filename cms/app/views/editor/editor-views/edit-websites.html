@@ -26,7 +26,7 @@
 
 	<div class="list">
 
-		<div class="selection" ng-repeat="(website,data) in json[currentView].list">
+		<div class="selection" ng-repeat="website in json[currentView].sequence">
 			<a ng-href="/editor/websites/{{website}}" ng-bind="website"></a>
 			<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
 				<span>x</span>

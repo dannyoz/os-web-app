@@ -7,12 +7,6 @@
 		     ng-if="json" 
 		     cms-editable="json[currentView].heading">
 		 </div>
-
-		<p class="label">count</p>
-		<div class="editable" 
-		     ng-if="json" 
-		     cms-editable="json[currentView].count">
-		 </div>
 		
 		<p class="label">Subheading</p>
 		<div class="editable" 
@@ -32,7 +26,7 @@
 
 	<div class="list">
 
-		<div class="selection" ng-repeat="(art,data) in json[currentView].list">
+		<div class="selection" ng-repeat="art in json[currentView].sequence">
 			<a ng-href="/editor/art/{{art}}" ng-bind="art"></a>
 			<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
 				<span>x</span>
@@ -66,8 +60,6 @@
 	     cms-editable="json[currentView].list[single].title">
 	</div>
 
-	<p class="label">index</p>
-	<input type="number" ng-model ="json[currentView].list[single].index"/>
 
 	<div class="grid-row">
 

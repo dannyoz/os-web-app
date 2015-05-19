@@ -90,6 +90,7 @@ cms.controller('editor',[
 					};
 
 				$scope.json.websites.list[key] = obj;
+				$scope.json.websites.sequence.push(key);
 				$scope.publish();
 				$location.path("/editor/websites/" + key);
 			};
@@ -102,7 +103,6 @@ cms.controller('editor',[
 			$scope.newartwork = "Edit me";
 
 			$scope.confirmArtwork = function(name){
-
 
 				var key   = name.replace(/ /g, "-").toLowerCase(),
 					obj   = {
@@ -142,6 +142,7 @@ cms.controller('editor',[
 	                    	preload : false
 	                    };
 	                    $scope.json.images.push(obj);
+	                    $scope.$broadcast("imageAdded");
 	                    $scope.publish();
 	                });
 	            }
@@ -161,6 +162,8 @@ cms.controller('editor',[
 	    });
 
 	    $scope.removeFromList = function(key,item){
+    		var index = $scope.json[key].sequence.indexOf(item);
+    		$scope.json[key].sequence.splice(index,1);
 	    	delete $scope.json[key].list[item];
 	    };
 

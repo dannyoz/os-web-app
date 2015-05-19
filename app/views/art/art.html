@@ -14,13 +14,13 @@
 
 		<div id="gallery" class="grid-row" ng-if="page.list">
 
-			<div class="art-thumb" ng-attr-style="background-image:url({{data.media.thumbnail}});" ng-repeat="(artwork,data) in page.list" ng-click="showWork(artwork)">
+			<div class="art-thumb" ng-attr-style="background-image:url({{page.list[artwork].media.thumbnail}});" ng-repeat="artwork in page.sequence" ng-click="showWork(artwork)">
 
 				<img class="first" src="/img/spacer.png">
 				<img class="second" src="/img/spacer.png">
 				<div class="overlay">
 					<div class="centre">
-						<p ng-bind="::data.title"></p>
+						<p ng-bind="::page.list[artwork].title"></p>
 						<button>View</button>
 					</div>
 				</div>
