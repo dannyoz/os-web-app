@@ -2,52 +2,62 @@
 
 	<div class="grid-row">
 
-		<p class="label">Heading</p>
-		<div class="editable" 
-		     ng-if="json" 
-		     cms-editable="json[currentView].heading">
-		 </div>
-		
-		<p class="label">Subheading</p>
-		<div class="editable" 
-		     ng-if="json" 
-		     cms-editable="json[currentView].subheading">
+		<div class="grid-7">
+
+			<p class="label">Heading</p>
+			<div class="editable" 
+			     ng-if="json" 
+			     cms-editable="json[currentView].heading">
+			 </div>
+			
+			<p class="label">Subheading</p>
+			<div class="editable" 
+			     ng-if="json" 
+			     cms-editable="json[currentView].subheading">
+			</div>
+
+			<p class="label">Intro</p>
+			<div class="wysiwyg" 
+			     text-angular="text-angular" 
+			     name="intro" 
+			     ng-model="json[currentView].intro">
+			</div>
+
 		</div>
 
-		<p class="label">Intro</p>
-		<div class="wysiwyg" 
-		     text-angular="text-angular" 
-		     name="intro" 
-		     ng-model="json[currentView].intro">
+		<div class="list grid-5">
+
+			<p class="label">List</p>
+			<div class="selection" ng-repeat="art in json[currentView].sequence">
+				<div cms-dragable="{index:$index,list:json[currentView].sequence}">
+					<a ng-href="/editor/art/{{art}}">
+						<img ng-src="http://localhost:3000{{json[currentView].list[art].media.thumbnail}}" width="70">
+						<span ng-bind="json[currentView].list[art].title"></span>
+					</a>
+					<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
+						<span>x</span>
+					</button>
+					<button ng-click="removeFromList('art',art);" ng-show="currentList == $index" class="confirm">
+						<i class="icon-check"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="selection" ng-if="showAddArt">
+				<input type="text" ng-model="newartwork"/>
+				<button ng-click="confirmArtwork(newartwork);" class="confirm">
+					<i class="icon-check"></i>
+				</button>
+			</div>
+
+			<button ng-if="!showAddArt" ng-click="addArtwork();" class="rounded-10px medium green">
+				<span>+ Add</span>
+			</button>
+
 		</div>
 
 	</div>
 
-
-	<div class="list">
-
-		<div class="selection" ng-repeat="art in json[currentView].sequence">
-			<a ng-href="/editor/art/{{art}}" ng-bind="art"></a>
-			<button ng-click="currentList = $index" ng-hide="currentList == $index" class="close">
-				<span>x</span>
-			</button>
-			<button ng-click="removeFromList('art',art);" ng-show="currentList == $index" class="confirm">
-				<i class="icon-check"></i>
-			</button>
-		</div>
-
-		<div class="selection" ng-if="showAddArt">
-			<input type="text" ng-model="newartwork"/>
-			<button ng-click="confirmArtwork(newartwork);" class="confirm">
-				<i class="icon-check"></i>
-			</button>
-		</div>
-
-		<button ng-if="!showAddArt" ng-click="addArtwork();" class="rounded-10px medium green">
-			<span>+ Add</span>
-		</button>
-
-	</div>
 
 </div>
 

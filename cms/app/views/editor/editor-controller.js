@@ -181,6 +181,17 @@ cms.controller('editor',[
 		    });
 	    };
 
+		function allowDrop(ev){
+	    	ev.preventDefault();
+	    };
+
+	    function drag(ev){
+	    	console.log(ev);
+	    };
+
+	    function drop(ev){
+	    	console.log(ev);
+	    };
 	    
 		$scope.iconClass = function(view){
 

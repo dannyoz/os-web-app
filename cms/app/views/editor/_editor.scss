@@ -153,71 +153,8 @@
 		@import "editable";
 		@import "wysiwyg";
 		@import "media";
+		@import "list";
 		
-		.list{
-
-			padding:20px 0;
-			margin:20px 0;
-			position:relative;
-			border-top:1px solid darken($editor-light,10%);
-			border-bottom:1px solid darken($editor-light,10%);
-			@extend .grid-row;
-
-			.selection{
-
-				margin-bottom:20px;
-				position: relative;
-				background:lighten($editor-light,3%);
-				border:1px solid darken($editor-light,10%);
-				@include box-sizing(border-box);
-				@include border-radius(10px);
-
-				a, input{
-					
-					display:block;
-					padding:20px;
-					margin-bottom:0;
-					color:$editor-text;
-					text-transform:uppercase;
-				}
-
-				input{
-
-					font-size:20px;
-					width:100%;
-					border:none;
-					@include box-sizing(border-box);
-					@include border-radius(10px);
-				}
-
-				button{
-
-					right:10px;
-					display: none;
-					@include centre(y);
-				}
-
-				&:hover{
-					background:lighten($editor-light,6%);
-					a{text-decoration:none;color:darken($editor-text,10%)};
-					button{
-
-						display: block;
-					}
-				}
-
-				&:nth-child(odd){
-					
-					@include grid-col(6,12,2%);
-				}
-
-				&:nth-child(even){
-					
-					@include grid-col-last(6,12,2%);
-				}
-			}
-
-		}
 
 		#media-popup{
 

@@ -1,0 +1,93 @@
+.list{
+
+	position:relative;
+
+	.selection{
+
+		margin-bottom:20px;
+		position: relative;
+		background:lighten($editor-light,3%);
+		border:1px solid darken($editor-light,10%);
+		@extend .transition-2;
+		@include box-sizing(border-box);
+		@include border-radius(10px);
+
+		span[draggable="true"],div[draggable="true"]{
+			cursor:move;
+		}
+
+		a{
+			
+			display:block;
+			padding:5px;
+			margin-bottom:0;
+			color:$editor-text;
+			text-transform:uppercase;
+
+			img{
+				float:left;
+			}
+
+			span{
+
+				margin-left:20px;
+				line-height:70px;
+			}
+		}
+
+		input{
+			
+			display:block;
+			padding:20px;
+			margin-bottom:0;
+			color:$editor-text;
+			text-transform:uppercase;
+		}
+
+		input{
+
+			font-size:20px;
+			width:100%;
+			border:none;
+			@include box-sizing(border-box);
+			@include border-radius(10px);
+		}
+
+		button{
+
+			right:10px;
+			display: none;
+			@include centre(y);
+		}
+
+		&:hover{
+			background:lighten($editor-light,6%);
+			a{text-decoration:none;color:darken($editor-text,10%)};
+			button{
+
+				display: block;
+			}
+		}
+
+		&.dragover{
+
+			background:white;
+			border-style: dashed;
+		}
+
+		&.dragging{
+			opacity: 0.3;
+		}
+
+		// &:nth-child(odd){
+			
+		// 	@include grid-col(6,12,2%);
+		// }
+
+		// &:nth-child(even){
+			
+		// 	@include grid-col-last(6,12,2%);
+		// }
+	}
+
+}

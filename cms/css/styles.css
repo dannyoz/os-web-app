@@ -116,10 +116,10 @@ body {
 /* =========================================*/
 /* GRID STYLES                              */
 /* =========================================*/
-.grid-row, #editor aside .list {
+.grid-row {
   min-height: 1%;
 }
-.grid-row:after, #editor aside .list:after {
+.grid-row:after {
   content: "";
   display: table;
   clear: both;
@@ -324,7 +324,7 @@ body {
   transition: all 0.1s ease;
 }
 
-.transition-2, button, .button, #editor aside .pagination ul li a, #preview button, #preview .button, #preview input[type="submit"], #preview #art-single .control:before, #preview #art-single .control:after {
+.transition-2, button, .button, #editor aside .pagination ul li a, #editor aside .list .selection, #preview button, #preview .button, #preview input[type="submit"], #preview #art-single .control:before, #preview #art-single .control:after {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
@@ -1608,11 +1608,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 #editor aside .list {
-  padding: 20px 0;
-  margin: 20px 0;
   position: relative;
-  border-top: 1px solid #c4c4c4;
-  border-bottom: 1px solid #c4c4c4;
 }
 #editor aside .list .selection {
   margin-bottom: 20px;
@@ -1626,7 +1622,24 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-#editor aside .list .selection a, #editor aside .list .selection input {
+#editor aside .list .selection span[draggable="true"], #editor aside .list .selection div[draggable="true"] {
+  cursor: move;
+}
+#editor aside .list .selection a {
+  display: block;
+  padding: 5px;
+  margin-bottom: 0;
+  color: #444;
+  text-transform: uppercase;
+}
+#editor aside .list .selection a img {
+  float: left;
+}
+#editor aside .list .selection a span {
+  margin-left: 20px;
+  line-height: 70px;
+}
+#editor aside .list .selection input {
   display: block;
   padding: 20px;
   margin-bottom: 0;
@@ -1664,16 +1677,12 @@ h1, h2, h3, h4, h5, h6 {
 #editor aside .list .selection:hover button {
   display: block;
 }
-#editor aside .list .selection:nth-child(odd) {
-  float: left;
-  position: relative;
-  width: 49%;
-  margin-right: 2%;
+#editor aside .list .selection.dragover {
+  background: white;
+  border-style: dashed;
 }
-#editor aside .list .selection:nth-child(even) {
-  float: left;
-  position: relative;
-  width: 49%;
+#editor aside .list .selection.dragging {
+  opacity: 0.3;
 }
 #editor aside #media-popup {
   border: 1px solid #c9c9c9;
@@ -1944,10 +1953,10 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview .centre-y.text {
   text-align: center;
 }
-#preview .grid-row, #preview #editor aside .list, #editor aside #preview .list {
+#preview .grid-row {
   min-height: 1%;
 }
-#preview .grid-row:after, #preview #editor aside .list:after, #editor aside #preview .list:after {
+#preview .grid-row:after {
   content: "";
   display: table;
   clear: both;
@@ -2112,7 +2121,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-#preview .transition-2, #preview button, #preview #editor aside .pagination ul li a, #editor aside .pagination ul li #preview a, #preview .button, #preview input[type="submit"], #preview #art-single .control:before, #preview #art-single .control:after {
+#preview .transition-2, #preview button, #preview #editor aside .pagination ul li a, #editor aside .pagination ul li #preview a, #preview #editor aside .list .selection, #editor aside .list #preview .selection, #preview .button, #preview input[type="submit"], #preview #art-single .control:before, #preview #art-single .control:after {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
