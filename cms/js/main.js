@@ -28647,7 +28647,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/global/directives/cms-pagination.html',
-    "<div class=\"thumbs grid-row\" ng-if=\"method == 'delete'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\"><button class=close ng-click=\"current = $index\" ng-hide=\"current == $index\"><span>x</span></button> <button class=confirm ng-show=\"current == $index\" ng-click=deleteImage(image.path,image.deleteIndex);><i class=icon-check></i></button> <span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"thumbs grid-row\" ng-if=\"method == 'select'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\" ng-click=selectMedia(image.path);><span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"grid-row pagination\" ng-if=\"pages.length > 1\"><ul><li ng-if=\"currentPage > 0\"><a ng-click=switchPage(currentPage-1);>Prev</a></li><li ng-repeat=\"page in pages\" ng-class=\"{current:currentPage == $index}\"><a ng-click=switchPage($index);>{{$index + 1}}</a></li><li ng-if=\"currentPage < (pages.length-1)\"><a ng-click=switchPage(currentPage+1);>Next</a></li></ul></div>"
+    "<div class=\"thumbs grid-row\" ng-if=\"method == 'delete'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\"><button class=close ng-click=\"current = $index\" ng-hide=\"current == $index\"><span>x</span></button> <button class=confirm ng-show=\"current == $index\" ng-click=deleteImage(image.path,image.deleteIndex);><i class=icon-check></i></button> <button class=preload ng-class={true:image.preload} ng-click=togglePreload(image.deleteIndex)><i class=icon-star></i></button> <span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"thumbs grid-row\" ng-if=\"method == 'select'\"><div ng-repeat=\"page in pages\" ng-show=\"$index == currentPage\"><div cms-square class=thumbnail ng-repeat=\"image in page\" ng-click=selectMedia(image.path);><span class=title ng-bind=image.title></span><div class=img ng-attr-style=background-image:url(http://localhost:3000{{image.path}})></div></div></div></div><div class=\"grid-row pagination\" ng-if=\"pages.length > 1\"><ul><li ng-if=\"currentPage > 0\"><a ng-click=switchPage(currentPage-1);>Prev</a></li><li ng-repeat=\"page in pages\" ng-class=\"{current:currentPage == $index}\"><a ng-click=switchPage($index);>{{$index + 1}}</a></li><li ng-if=\"currentPage < (pages.length-1)\"><a ng-click=switchPage(currentPage+1);>Next</a></li></ul></div>"
   );
 
 
@@ -28948,6 +28948,10 @@ cms.directive('cmsPagination', function(){
 
             scope.switchPage = function(i){
             	scope.currentPage = i;
+            };
+
+            scope.togglePreload = function(i){
+                scope.array[i].preload = !scope.array[i].preload;
             };
 		}
 	}

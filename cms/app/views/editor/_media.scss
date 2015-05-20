@@ -35,6 +35,14 @@
 			display:none;
 		}
 
+		.preload{
+
+			position:absolute;
+			bottom:5px;
+			left:5px;
+			z-index: 999;
+		}
+
 		&:nth-child(5n + 5){
 			margin-right:0;
 		}

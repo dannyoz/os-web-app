@@ -501,6 +501,37 @@ button.confirm:hover, .button.confirm:hover {
   border-color: #508e37;
   color: white;
 }
+button.preload, .button.preload {
+  height: 25px;
+  width: 25px;
+  margin: 0;
+  background-color: #b7b7b7;
+  border-color: #9d9d9d;
+  color: #848484;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+button.preload i, .button.preload i {
+  font-weight: 600;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+button.preload:hover, .button.preload:hover {
+  border-color: #848484;
+  color: #515151;
+}
+button.preload.true, .button.preload.true {
+  background: #65B345;
+  border-color: #508e37;
+  color: white;
+}
 
 .panel {
   margin-bottom: 1.2em;
@@ -1541,6 +1572,12 @@ h1, h2, h3, h4, h5, h6 {
   right: -8px;
   z-index: 999;
   display: none;
+}
+#editor aside .thumbs .thumbnail .preload {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  z-index: 999;
 }
 #editor aside .thumbs .thumbnail:nth-child(5n + 5) {
   margin-right: 0;

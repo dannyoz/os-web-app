@@ -47,6 +47,10 @@ cms.directive('cmsPagination', function(){
             scope.switchPage = function(i){
             	scope.currentPage = i;
             };
+
+            scope.togglePreload = function(i){
+                scope.array[i].preload = !scope.array[i].preload;
+            };
 		}
 	}
 });

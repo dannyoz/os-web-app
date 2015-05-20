@@ -12,6 +12,10 @@
 				<i class="icon-check"></i>
 			</button>
 
+			<button class="preload" ng-class="{true:image.preload}" ng-click="togglePreload(image.deleteIndex)">
+				<i class="icon-star"></i>
+			</button>
+
 			<span class="title" ng-bind="image.title"></span>
 			<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image.path}})"></div>
 		</div>
@@ -25,8 +29,10 @@
 	<div ng-repeat="page in pages" ng-show="$index == currentPage">
 		
 		<div cms-square class="thumbnail" ng-repeat="image in page" ng-click="selectMedia(image.path);" >
+
 			<span class="title" ng-bind="image.title"></span>
 			<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image.path}})"></div>
+
 		</div>
 
 	</div>

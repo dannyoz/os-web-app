@@ -28069,17 +28069,16 @@ dod.run([
 
             console.log(result);
 
-            //Sluggish
-            //loadImages(result.images, result)
+            loadImages(result.images, result)
             
-            $timeout(function(){
+            // $timeout(function(){
 
-                content.data  = result;
-                content.ready = true;
+            //     content.data  = result;
+            //     content.ready = true;
 
-                $rootScope.$broadcast('appReady', result);
+            //     $rootScope.$broadcast('appReady', result);
 
-            },500);
+            // },500);
 
         });
 
@@ -28098,6 +28097,8 @@ dod.run([
             });
 
             function get(url){
+
+                console.log(url);
 
                 $http.get(url).success(function (data){
 
@@ -28170,7 +28171,33 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><span class=forename>Dan</span> <span class=surname>Osborne</span><h1><span>Front end developer</span></h1><h2><span>Digital</span><br>Designer</h2><h3><span>Artist</span></h3></div><button ng-click=\"location.path('/websites')\"><span>My Work</span> <span class=hover></span></button></div>"
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><!-- \t<div class=\"centre text\">\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\t\t<span class=\"forename\">Dan</span>\r" +
+    "\n" +
+    "\t\t<span class=\"surname\">Osborne</span>\r" +
+    "\n" +
+    "\t\t<h1><span>Front end developer</span></h1>\r" +
+    "\n" +
+    "\t\t<h2><span>Digital</span><br/>Designer</h2>\r" +
+    "\n" +
+    "\t\t<h3><span>Artist</span></h3>\r" +
+    "\n" +
+    "\t\t\r" +
+    "\n" +
+    "\t</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "\t<button ng-click=\"location.path('/websites')\">\r" +
+    "\n" +
+    "\t\t<span>My Work</span>\r" +
+    "\n" +
+    "\t\t<span class=\"hover\"></span>\r" +
+    "\n" +
+    "\t</button> --></div>"
   );
 
 

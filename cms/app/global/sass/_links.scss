@@ -140,4 +140,36 @@ button, .button{
 			color:white;
 		}
 	}
+
+	&.preload{
+
+		$size: 25px;
+		height:$size;
+		width:$size;
+		margin:0;
+		background-color:darken($editor-light,15%);
+		border-color:darken($editor-light,25%);
+		color:darken($editor-light,35%);
+		@include border-radius(100%);
+
+		i{
+			
+			font-weight:600;
+			font-size:16px;
+			@include centre;
+		}
+
+		&:hover{
+
+			border-color:darken($editor-light,35%);
+			color:darken($editor-light,55%);
+		}
+
+		&.true{
+
+			background:#65B345;
+			border-color:darken(#65B345,10%);
+			color:white;
+		}
+	}
 }

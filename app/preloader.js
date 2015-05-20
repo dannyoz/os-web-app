@@ -14,17 +14,16 @@ dod.run([
 
             console.log(result);
 
-            //Sluggish
-            //loadImages(result.images, result)
+            loadImages(result.images, result)
             
-            $timeout(function(){
+            // $timeout(function(){
 
-                content.data  = result;
-                content.ready = true;
+            //     content.data  = result;
+            //     content.ready = true;
 
-                $rootScope.$broadcast('appReady', result);
+            //     $rootScope.$broadcast('appReady', result);
 
-            },500);
+            // },500);
 
         });
 
@@ -43,6 +42,8 @@ dod.run([
             });
 
             function get(url){
+
+                console.log(url);
 
                 $http.get(url).success(function (data){
 
