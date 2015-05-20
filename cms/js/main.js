@@ -28642,7 +28642,7 @@ cms.filter('orderObjectBy', function() {
 cms.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('cms/app/global/directives/cms-editable.html',
-    "<input ng-show=\"type == 'text'\" ng-model=\"content\"><div ng-show=\"type == 'list'\"><div class=edit-list ng-repeat=\"item in content track by $index\"><button class=close ng-if=\"currentList != $index\" ng-click=removeListItem($index);><span>x</span></button> <button class=confirm ng-if=\"currentList == $index\" ng-click=changeListItem($index,item);><i class=icon-check></i></button> <input ng-model=item ng-focus=\"currentList = $index\"></div><button ng-click=addListItem(); class=\"rounded-10px green medium\"><span>+</span></button></div>"
+    "<input ng-show=\"type == 'text'\" ng-model=\"content\"><div ng-show=\"type == 'list'\"><div class=edit-list ng-repeat=\"item in content track by $index\"><button class=close ng-if=\"currentList != $index\" ng-click=removeListItem($index);><span>x</span></button> <input ng-model=item ng-focus=\"currentList = $index\" ng-keyup=changeListItem($index,item)></div><button ng-click=addListItem(); class=\"rounded-10px green medium\"><span>+</span></button></div>"
   );
 
 
@@ -29227,6 +29227,7 @@ cms.controller('editor',[
 	    	var dataObj = {path : filePath, index : i};
 	    	api.deleteImg(dataObj).success(function (data){
 	    		$scope.json.images.splice(data.index,1);
+	    		$scope.$broadcast("imageAdded");
 	    		$scope.publish();
 	    	});
 	    };

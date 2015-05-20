@@ -1,4 +1,6 @@
-<div class="centre transition-5" ng-class="{hide:ready,show:!ready}">
+<div class="centre transition-5" ng-class="{hide:ready,show:!ready}" id="loading">
 	<p>{{msg}}</p>
-	<p>{{percent}}%</p>
+	<div class="loading-bar">
+		<div class="bar" ng-attr-style="width:{{percent}}%"></div>
+	</div>
 </div>

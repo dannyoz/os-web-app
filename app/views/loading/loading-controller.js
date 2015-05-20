@@ -6,8 +6,6 @@ dod.controller('loading',['$scope', 'content', function ($scope, content) {
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
 		$scope.ready = content.ready;
-
-		console.log('loaded');
 	});
 
 	$scope.$on('loadingMsg', function (msg,val){

@@ -28067,19 +28067,8 @@ dod.run([
 
         api.getContent('data').success(function (result){
 
-            console.log(result);
-
             loadImages(result.images, result)
             
-            // $timeout(function(){
-
-            //     content.data  = result;
-            //     content.ready = true;
-
-            //     $rootScope.$broadcast('appReady', result);
-
-            // },500);
-
         });
 
         function loadImages(images,result) {
@@ -28097,8 +28086,6 @@ dod.run([
             });
 
             function get(url){
-
-                console.log(url);
 
                 $http.get(url).success(function (data){
 
@@ -28176,7 +28163,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/loading/loading.html',
-    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>{{msg}}</p><p>{{percent}}%</p></div>"
+    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready} id=loading><p>{{msg}}</p><div class=loading-bar><div class=bar ng-attr-style=width:{{percent}}%></div></div></div>"
   );
 
 
@@ -28720,8 +28707,6 @@ dod.controller('loading',['$scope', 'content', function ($scope, content) {
 	//Use event listener for initial api request
 	$scope.$on('appReady', function (data){
 		$scope.ready = content.ready;
-
-		console.log('loaded');
 	});
 
 	$scope.$on('loadingMsg', function (msg,val){

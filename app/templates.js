@@ -46,7 +46,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/loading/loading.html',
-    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready}><p>{{msg}}</p><p>{{percent}}%</p></div>"
+    "<div class=\"centre transition-5\" ng-class={hide:ready,show:!ready} id=loading><p>{{msg}}</p><div class=loading-bar><div class=bar ng-attr-style=width:{{percent}}%></div></div></div>"
   );
 
 

@@ -153,6 +153,7 @@ cms.controller('editor',[
 	    	var dataObj = {path : filePath, index : i};
 	    	api.deleteImg(dataObj).success(function (data){
 	    		$scope.json.images.splice(data.index,1);
+	    		$scope.$broadcast("imageAdded");
 	    		$scope.publish();
 	    	});
 	    };

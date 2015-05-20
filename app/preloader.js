@@ -12,19 +12,8 @@ dod.run([
 
         api.getContent('data').success(function (result){
 
-            console.log(result);
-
             loadImages(result.images, result)
             
-            // $timeout(function(){
-
-            //     content.data  = result;
-            //     content.ready = true;
-
-            //     $rootScope.$broadcast('appReady', result);
-
-            // },500);
-
         });
 
         function loadImages(images,result) {
@@ -42,8 +31,6 @@ dod.run([
             });
 
             function get(url){
-
-                console.log(url);
 
                 $http.get(url).success(function (data){
 
