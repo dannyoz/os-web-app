@@ -109,10 +109,15 @@
 		<p class="label">Carousel</p>
 		<div cms-square class="thumbnail" ng-repeat="image in json[currentView].list[single].carousel track by $index" >
 
-			<button class="close" ng-click="json[currentView].list[single].carousel.splice($index,1);" >
-				<span>x</span>
-			</button>
-			<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image}})"></div>
+			<div class="fit-parent" cms-dragable="{index:$index,list:json.navigation}">
+
+				<button class="close" ng-click="json[currentView].list[single].carousel.splice($index,1);" >
+					<span>x</span>
+				</button>
+				<div class="img" ng-attr-style="background-image:url(http://localhost:3000{{image}})"></div>
+
+			</div>
+
 		</div>
 
 	</div>

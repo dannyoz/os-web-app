@@ -33,7 +33,7 @@ cms.directive('cmsEditable', function(){
 
 			scope.save = function(content){
 				scope.toggleEdit();
-				scope.content = content
+				scope.content = content;
 			};
 
 			scope.removeListItem = function(i){

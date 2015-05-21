@@ -7,6 +7,10 @@
 	overflow:hidden;
 	@include fitParent;
 
+	.fit-parent{
+		@include fitParent;
+	}
+
 	nav{
 
 		background:$editor-dark;
