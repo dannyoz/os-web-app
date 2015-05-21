@@ -33,6 +33,12 @@ p.label{
 		}
 	}
 
+	.close, .confirm{
+
+		right:10px;
+		@include centre(y);
+	}
+
 	p.simple{
 
 		$buttonsize:50px;

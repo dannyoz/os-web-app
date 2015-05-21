@@ -1,4 +1,12 @@
-<input type="text" ng-show="type == 'text'" ng-model="content"/>
+<div ng-show="type == 'text'">
+
+	<input type="text" ng-model="content"/>
+
+	<button class="close" ng-if="delete" ng-click="deleteContent();">
+		<span>x</span>
+	</button>
+
+</div>
 
 <div ng-show="type == 'list'">
 	

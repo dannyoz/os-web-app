@@ -69,10 +69,13 @@
 	     cms-editable="json[currentView].list[single].title">
 	</div>
 
-	<p class="label">Url</p>
-	<div class="editable" 
-	     ng-if="json" 
-	     cms-editable="json[currentView].list[single].url">
+	<div ng-if="json[currentView].list[single].url">
+		<p class="label">Url</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView].list[single].url"
+		     data-delete="true">
+		</div>
 	</div>
 
 	<div class="grid-row">
