@@ -11,6 +11,7 @@ nav{
 	z-index:9999;
 	height:$nav-height;
 	top:-$nav-height;
+	opacity:0;
 	border-bottom:1px solid #050505;
 
 	#hamburger{
@@ -136,7 +137,7 @@ nav{
 
 			}
 
-			@include single-transition(all,0.6s,cubic-bezier(.39,-0.35,.4,1.36));
+			@include single-transition(all,0.6s,$bounce);
 		}
 	}
 
@@ -172,5 +173,9 @@ nav{
 			top: 0;
 			opacity: 1;
 		}
+	}
+
+	&.ready{
+		opacity: 1;
 	}
 }

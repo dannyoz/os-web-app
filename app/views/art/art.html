@@ -14,7 +14,7 @@
 
 		<div id="gallery" class="grid-row" ng-if="page.list">
 
-			<div class="art-thumb" ng-attr-style="background-image:url({{page.list[artwork].media.thumbnail}});" ng-repeat="artwork in page.sequence" ng-click="showWork(artwork)">
+			<div class="art-thumb" ng-attr-style="background-image:url({{page.list[artwork].media.thumbnail}});" ng-repeat="artwork in page.sequence" ng-click="changeRoute('/art/' + artwork,500,'artleave')">
 
 				<img class="first" src="/img/spacer.png">
 				<img class="second" src="/img/spacer.png">

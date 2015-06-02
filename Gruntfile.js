@@ -24,6 +24,7 @@ module.exports = function(grunt) {
                     'app/libs/angular-messages.js',
                     'app/app.js',
                     'app/preloader.js',
+                    'app/route-change.js',
                     'app/templates.js',
                     'app/global/**/*.js',
                     'app/views/**/*.js'
@@ -170,7 +171,7 @@ module.exports = function(grunt) {
                     sassDir: 'app',
                     cssDir: 'build/css',
                     noLineComments : true,
-                    environment: 'development'
+                    environment: 'production'
                 }
             },
             cms: {                

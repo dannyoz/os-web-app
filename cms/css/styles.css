@@ -345,7 +345,7 @@ body {
   transition: all 0.4s ease;
 }
 
-.transition-5 {
+.transition-5, #preview header, #preview header .centred h1, #preview header .centred h2, #preview header .centred p {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -2200,7 +2200,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
-#preview .transition-5 {
+#preview .transition-5, #preview header, #preview header .centred h1, #preview header .centred h2, #preview header .centred p {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -2216,6 +2216,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   padding: 80px 0 50px 0;
   background: #181818;
   border-bottom: 1px solid #2c2c2c;
+  height: auto;
   -moz-box-shadow: inset 0 -3px 10px #111;
   -webkit-box-shadow: inset 0 -3px 10px #111;
   box-shadow: inset 0 -3px 10px #111;
@@ -2230,6 +2231,10 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview header .centred h1 {
   font-size: 3.5em;
+  -moz-transform: scale(1) translateY(0);
+  -ms-transform: scale(1) translateY(0);
+  -webkit-transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
 }
 #preview header .centred h1::first-letter {
   color: #D84025;
@@ -2240,9 +2245,17 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview header .centred h2 {
   color: #626262;
+  -moz-transform: scale(1) translateY(0);
+  -ms-transform: scale(1) translateY(0);
+  -webkit-transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
 }
 #preview header .centred p {
   text-align: justify;
+  -moz-transform: scale(1) translateY(0);
+  -ms-transform: scale(1) translateY(0);
+  -webkit-transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
 }
 @media (max-width: 800px) {
   #preview header .centred {
@@ -2260,6 +2273,41 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   #preview header .centred h1 {
     font-size: 2.5em;
   }
+}
+#preview .enter header {
+  padding: 300px 0;
+}
+#preview .enter header .centred h1, #preview .enter header .centred h2, #preview .enter header .centred p {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+#preview .leave header {
+  padding: 300px 0;
+}
+#preview .leave header .centred h1, #preview .leave header .centred h2, #preview .leave header .centred p {
+  opacity: 0;
+  -moz-transform: scale(0.9) translateY(-50px);
+  -ms-transform: scale(0.9) translateY(-50px);
+  -webkit-transform: scale(0.9) translateY(-50px);
+  transform: scale(0.9) translateY(-50px);
+}
+#preview .leave header .centred h2 {
+  -moz-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+#preview .leave header .centred p {
+  -moz-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 #preview a, #preview button, #preview input {
   cursor: pointer;
@@ -2352,6 +2400,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   z-index: 9999;
   height: 60px;
   top: -60px;
+  opacity: 0;
   border-bottom: 1px solid #050505;
 }
 #preview nav #hamburger {
@@ -2498,6 +2547,9 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   top: 0;
   opacity: 1;
 }
+#preview nav.ready {
+  opacity: 1;
+}
 #preview #home {
   background: #181818;
   position: absolute;
@@ -2514,9 +2566,21 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-size: 4em;
   font-weight: 100;
   font-family: "bistro-script-web", arial, sans-serif;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -moz-transform: scale(1.3) translateY(100px);
+  -ms-transform: scale(1.3) translateY(100px);
+  -webkit-transform: scale(1.3) translateY(100px);
+  transform: scale(1.3) translateY(100px);
 }
-#preview #home .surname {
-  margin-left: 20px;
+#preview #home .name.show {
+  opacity: 1;
+  -moz-transform: scale(1) translateY(0);
+  -ms-transform: scale(1) translateY(0);
+  -webkit-transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
 }
 #preview #home h1 {
   opacity: 0;
@@ -2527,10 +2591,106 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-size: 1.85em;
   font-weight: 100;
   font-family: "prenton-ultra-condensed", arial, sans-serif;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #preview #home h1 span {
   padding: 10px 0;
   border-top: 1px dashed #444;
+}
+#preview #home h1 span b {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-iteration-count: 2;
+  animation-iteration-count: 2;
+}
+#preview #home h1 span b:nth-child(1) {
+  -webkit-animation-delay: 0.02s;
+  animation-delay: 0.02s;
+}
+#preview #home h1 span b:nth-child(2) {
+  -webkit-animation-delay: 0.04s;
+  animation-delay: 0.04s;
+}
+#preview #home h1 span b:nth-child(3) {
+  -webkit-animation-delay: 0.06s;
+  animation-delay: 0.06s;
+}
+#preview #home h1 span b:nth-child(4) {
+  -webkit-animation-delay: 0.08s;
+  animation-delay: 0.08s;
+}
+#preview #home h1 span b:nth-child(5) {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+#preview #home h1 span b:nth-child(6) {
+  -webkit-animation-delay: 0.12s;
+  animation-delay: 0.12s;
+}
+#preview #home h1 span b:nth-child(7) {
+  -webkit-animation-delay: 0.14s;
+  animation-delay: 0.14s;
+}
+#preview #home h1 span b:nth-child(8) {
+  -webkit-animation-delay: 0.16s;
+  animation-delay: 0.16s;
+}
+#preview #home h1 span b:nth-child(9) {
+  -webkit-animation-delay: 0.18s;
+  animation-delay: 0.18s;
+}
+#preview #home h1 span b:nth-child(10) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+#preview #home h1 span b:nth-child(11) {
+  -webkit-animation-delay: 0.22s;
+  animation-delay: 0.22s;
+}
+#preview #home h1 span b:nth-child(12) {
+  -webkit-animation-delay: 0.24s;
+  animation-delay: 0.24s;
+}
+#preview #home h1 span b:nth-child(13) {
+  -webkit-animation-delay: 0.26s;
+  animation-delay: 0.26s;
+}
+#preview #home h1 span b:nth-child(14) {
+  -webkit-animation-delay: 0.28s;
+  animation-delay: 0.28s;
+}
+#preview #home h1 span b:nth-child(15) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+#preview #home h1 span b:nth-child(16) {
+  -webkit-animation-delay: 0.32s;
+  animation-delay: 0.32s;
+}
+#preview #home h1 span b:nth-child(17) {
+  -webkit-animation-delay: 0.34s;
+  animation-delay: 0.34s;
+}
+#preview #home h1 span b:nth-child(18) {
+  -webkit-animation-delay: 0.36s;
+  animation-delay: 0.36s;
+}
+#preview #home h1 span b:nth-child(19) {
+  -webkit-animation-delay: 0.38s;
+  animation-delay: 0.38s;
+}
+#preview #home h1 span b:nth-child(20) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 #preview #home h1.show {
   opacity: 1;
@@ -2548,16 +2708,43 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-family: "museo-slab", sans-serif;
   font-size: 3.8em;
   font-weight: 100;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #preview #home h2 span {
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#preview #home h2 span.top {
   border-top: 1px dashed #444;
   font-size: 1.3em;
+  -moz-transform: translateX(-100px);
+  -ms-transform: translateX(-100px);
+  -webkit-transform: translateX(-100px);
+  transform: translateX(-100px);
+}
+#preview #home h2 span.bottom {
+  font-size: 1em;
+  -moz-transform: translateX(100px);
+  -ms-transform: translateX(100px);
+  -webkit-transform: translateX(100px);
+  transform: translateX(100px);
 }
 #preview #home h2::first-letter {
   color: #D84025;
 }
 #preview #home h2.show {
   opacity: 1;
+}
+#preview #home h2.show span {
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 #preview #home h3 {
   opacity: 0;
@@ -2568,6 +2755,10 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-size: 7em;
   font-weight: 100;
   font-family: "bistro-script-web", arial, sans-serif;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 #preview #home h3.show {
   opacity: 1;
@@ -2580,6 +2771,35 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+#preview .leave #home .name, #preview .leave #home h1, #preview .leave #home h2, #preview .leave #home h3 {
+  opacity: 0;
+  -moz-transform: scale(0.9) translateY(-50px);
+  -ms-transform: scale(0.9) translateY(-50px);
+  -webkit-transform: scale(0.9) translateY(-50px);
+  transform: scale(0.9) translateY(-50px);
+}
+#preview .leave #home h1 {
+  -moz-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+#preview .leave #home h2 {
+  -moz-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+#preview .leave #home h3 {
+  -moz-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+#preview .leave #home button {
+  bottom: 50px;
+  opacity: 0;
 }
 #preview #websites .website {
   padding: 50px 0 80px 0;
@@ -2896,6 +3116,214 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   position: relative;
   width: 24.25%;
   margin-right: 1%;
+  -webkit-animation-name: slideUp;
+  animation-name: slideUp;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+  animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+#preview #art #gallery .art-thumb:nth-child(1) {
+  -webkit-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+#preview #art #gallery .art-thumb:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+#preview #art #gallery .art-thumb:nth-child(3) {
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+#preview #art #gallery .art-thumb:nth-child(4) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+#preview #art #gallery .art-thumb:nth-child(5) {
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+#preview #art #gallery .art-thumb:nth-child(6) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+#preview #art #gallery .art-thumb:nth-child(7) {
+  -webkit-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+#preview #art #gallery .art-thumb:nth-child(8) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+#preview #art #gallery .art-thumb:nth-child(9) {
+  -webkit-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+#preview #art #gallery .art-thumb:nth-child(10) {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+#preview #art #gallery .art-thumb:nth-child(11) {
+  -webkit-animation-delay: 0.55s;
+  animation-delay: 0.55s;
+}
+#preview #art #gallery .art-thumb:nth-child(12) {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+#preview #art #gallery .art-thumb:nth-child(13) {
+  -webkit-animation-delay: 0.65s;
+  animation-delay: 0.65s;
+}
+#preview #art #gallery .art-thumb:nth-child(14) {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+#preview #art #gallery .art-thumb:nth-child(15) {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+#preview #art #gallery .art-thumb:nth-child(16) {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+#preview #art #gallery .art-thumb:nth-child(17) {
+  -webkit-animation-delay: 0.85s;
+  animation-delay: 0.85s;
+}
+#preview #art #gallery .art-thumb:nth-child(18) {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+#preview #art #gallery .art-thumb:nth-child(19) {
+  -webkit-animation-delay: 0.95s;
+  animation-delay: 0.95s;
+}
+#preview #art #gallery .art-thumb:nth-child(20) {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+#preview #art #gallery .art-thumb:nth-child(21) {
+  -webkit-animation-delay: 1.05s;
+  animation-delay: 1.05s;
+}
+#preview #art #gallery .art-thumb:nth-child(22) {
+  -webkit-animation-delay: 1.1s;
+  animation-delay: 1.1s;
+}
+#preview #art #gallery .art-thumb:nth-child(23) {
+  -webkit-animation-delay: 1.15s;
+  animation-delay: 1.15s;
+}
+#preview #art #gallery .art-thumb:nth-child(24) {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+#preview #art #gallery .art-thumb:nth-child(25) {
+  -webkit-animation-delay: 1.25s;
+  animation-delay: 1.25s;
+}
+#preview #art #gallery .art-thumb:nth-child(26) {
+  -webkit-animation-delay: 1.3s;
+  animation-delay: 1.3s;
+}
+#preview #art #gallery .art-thumb:nth-child(27) {
+  -webkit-animation-delay: 1.35s;
+  animation-delay: 1.35s;
+}
+#preview #art #gallery .art-thumb:nth-child(28) {
+  -webkit-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+#preview #art #gallery .art-thumb:nth-child(29) {
+  -webkit-animation-delay: 1.45s;
+  animation-delay: 1.45s;
+}
+#preview #art #gallery .art-thumb:nth-child(30) {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+#preview #art #gallery .art-thumb:nth-child(31) {
+  -webkit-animation-delay: 1.55s;
+  animation-delay: 1.55s;
+}
+#preview #art #gallery .art-thumb:nth-child(32) {
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+#preview #art #gallery .art-thumb:nth-child(33) {
+  -webkit-animation-delay: 1.65s;
+  animation-delay: 1.65s;
+}
+#preview #art #gallery .art-thumb:nth-child(34) {
+  -webkit-animation-delay: 1.7s;
+  animation-delay: 1.7s;
+}
+#preview #art #gallery .art-thumb:nth-child(35) {
+  -webkit-animation-delay: 1.75s;
+  animation-delay: 1.75s;
+}
+#preview #art #gallery .art-thumb:nth-child(36) {
+  -webkit-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+#preview #art #gallery .art-thumb:nth-child(37) {
+  -webkit-animation-delay: 1.85s;
+  animation-delay: 1.85s;
+}
+#preview #art #gallery .art-thumb:nth-child(38) {
+  -webkit-animation-delay: 1.9s;
+  animation-delay: 1.9s;
+}
+#preview #art #gallery .art-thumb:nth-child(39) {
+  -webkit-animation-delay: 1.95s;
+  animation-delay: 1.95s;
+}
+#preview #art #gallery .art-thumb:nth-child(40) {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+#preview #art #gallery .art-thumb:nth-child(41) {
+  -webkit-animation-delay: 2.05s;
+  animation-delay: 2.05s;
+}
+#preview #art #gallery .art-thumb:nth-child(42) {
+  -webkit-animation-delay: 2.1s;
+  animation-delay: 2.1s;
+}
+#preview #art #gallery .art-thumb:nth-child(43) {
+  -webkit-animation-delay: 2.15s;
+  animation-delay: 2.15s;
+}
+#preview #art #gallery .art-thumb:nth-child(44) {
+  -webkit-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+}
+#preview #art #gallery .art-thumb:nth-child(45) {
+  -webkit-animation-delay: 2.25s;
+  animation-delay: 2.25s;
+}
+#preview #art #gallery .art-thumb:nth-child(46) {
+  -webkit-animation-delay: 2.3s;
+  animation-delay: 2.3s;
+}
+#preview #art #gallery .art-thumb:nth-child(47) {
+  -webkit-animation-delay: 2.35s;
+  animation-delay: 2.35s;
+}
+#preview #art #gallery .art-thumb:nth-child(48) {
+  -webkit-animation-delay: 2.4s;
+  animation-delay: 2.4s;
+}
+#preview #art #gallery .art-thumb:nth-child(49) {
+  -webkit-animation-delay: 2.45s;
+  animation-delay: 2.45s;
+}
+#preview #art #gallery .art-thumb:nth-child(50) {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
 }
 #preview #art #gallery .art-thumb img {
   display: block;
@@ -2991,6 +3419,216 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
     width: 48.5%;
     margin-right: 3%;
   }
+}
+#preview .artleave #art #gallery .art-thumb {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+  animation-timing-function: cubic-bezier(0.39, -0.35, 0.4, 1.36);
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(1) {
+  -webkit-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(3) {
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(4) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(5) {
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(6) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(7) {
+  -webkit-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(8) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(9) {
+  -webkit-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(10) {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(11) {
+  -webkit-animation-delay: 0.55s;
+  animation-delay: 0.55s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(12) {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(13) {
+  -webkit-animation-delay: 0.65s;
+  animation-delay: 0.65s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(14) {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(15) {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(16) {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(17) {
+  -webkit-animation-delay: 0.85s;
+  animation-delay: 0.85s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(18) {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(19) {
+  -webkit-animation-delay: 0.95s;
+  animation-delay: 0.95s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(20) {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(21) {
+  -webkit-animation-delay: 1.05s;
+  animation-delay: 1.05s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(22) {
+  -webkit-animation-delay: 1.1s;
+  animation-delay: 1.1s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(23) {
+  -webkit-animation-delay: 1.15s;
+  animation-delay: 1.15s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(24) {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(25) {
+  -webkit-animation-delay: 1.25s;
+  animation-delay: 1.25s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(26) {
+  -webkit-animation-delay: 1.3s;
+  animation-delay: 1.3s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(27) {
+  -webkit-animation-delay: 1.35s;
+  animation-delay: 1.35s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(28) {
+  -webkit-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(29) {
+  -webkit-animation-delay: 1.45s;
+  animation-delay: 1.45s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(30) {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(31) {
+  -webkit-animation-delay: 1.55s;
+  animation-delay: 1.55s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(32) {
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(33) {
+  -webkit-animation-delay: 1.65s;
+  animation-delay: 1.65s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(34) {
+  -webkit-animation-delay: 1.7s;
+  animation-delay: 1.7s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(35) {
+  -webkit-animation-delay: 1.75s;
+  animation-delay: 1.75s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(36) {
+  -webkit-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(37) {
+  -webkit-animation-delay: 1.85s;
+  animation-delay: 1.85s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(38) {
+  -webkit-animation-delay: 1.9s;
+  animation-delay: 1.9s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(39) {
+  -webkit-animation-delay: 1.95s;
+  animation-delay: 1.95s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(40) {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(41) {
+  -webkit-animation-delay: 2.05s;
+  animation-delay: 2.05s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(42) {
+  -webkit-animation-delay: 2.1s;
+  animation-delay: 2.1s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(43) {
+  -webkit-animation-delay: 2.15s;
+  animation-delay: 2.15s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(44) {
+  -webkit-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(45) {
+  -webkit-animation-delay: 2.25s;
+  animation-delay: 2.25s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(46) {
+  -webkit-animation-delay: 2.3s;
+  animation-delay: 2.3s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(47) {
+  -webkit-animation-delay: 2.35s;
+  animation-delay: 2.35s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(48) {
+  -webkit-animation-delay: 2.4s;
+  animation-delay: 2.4s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(49) {
+  -webkit-animation-delay: 2.45s;
+  animation-delay: 2.45s;
+}
+#preview .artleave #art #gallery .art-thumb:nth-child(50) {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
 }
 #preview #art-single {
   background-size: cover;

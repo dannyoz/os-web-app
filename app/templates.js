@@ -6,7 +6,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav,ready:ready}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-click=changeRoute(link.url) ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
 
 
@@ -21,7 +21,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1><span ng-bind=::page.heading></span></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div id=gallery class=grid-row ng-if=page.list><div class=art-thumb ng-attr-style=background-image:url({{page.list[artwork].media.thumbnail}}); ng-repeat=\"artwork in page.sequence\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::page.list[artwork].title></p><button>View</button></div></div></div></div></div></div>"
+    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1><span ng-bind=::page.heading></span></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div id=gallery class=grid-row ng-if=page.list><div class=art-thumb ng-attr-style=background-image:url({{page.list[artwork].media.thumbnail}}); ng-repeat=\"artwork in page.sequence\" ng-click=\"changeRoute('/art/' + artwork,500,'artleave')\"><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::page.list[artwork].title></p><button>View</button></div></div></div></div></div></div>"
   );
 
 
@@ -41,13 +41,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><div ng-if=page dod-intro=page.intro></div></div><!-- \t<button ng-click=\"location.path('/websites')\">\r" +
-    "\n" +
-    "\t\t<span>My Work</span>\r" +
-    "\n" +
-    "\t\t<span class=\"hover\"></span>\r" +
-    "\n" +
-    "\t</button> --></div>"
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><div ng-if=page dod-intro=page.intro></div></div><button ng-click=\"changeRoute('/websites')\"><span>My Work</span> <span class=hover></span></button></div>"
   );
 
 

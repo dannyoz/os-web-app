@@ -18,6 +18,7 @@ $horiz-width : 50% - $grid-padding;
 			background-size:cover;
 			@include grid-col(6,24,$grid-padding);
 			@extend .transition-3;
+			@include animation(slideUp,$bounce,0.3s,50,0.05s);
 
 			img{
 				
@@ -130,6 +131,10 @@ $horiz-width : 50% - $grid-padding;
 			}
 		}
 	}
+}
+
+.artleave #art #gallery .art-thumb{
+	@include animation(fadeOut,$bounce,0.3s,50,0.05s);
 }
 
 #art-single{

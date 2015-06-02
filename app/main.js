@@ -28053,6 +28053,8 @@ dod.run(function(){
     }
 });
 
+
+
 //Loading content
 dod.run([
     '$rootScope',
@@ -28115,6 +28117,35 @@ dod.run([
         }
 
     }]);
+dod.run([
+    '$rootScope',
+    '$location',
+    '$timeout',
+    function ($rootScope, $location, $timeout){
+
+        $rootScope.routeClass = "enter"
+        $timeout(function(){
+            $rootScope.routeClass = "";
+        },1000);
+
+        $rootScope.changeRoute  = function(route,dur,leave,enter){
+
+            var leaveclass = (leave) ? leave : "leave",
+                enterclass = (enter) ? enter : "enter",
+                duration   = (dur) ? dur : 1000;
+
+            $rootScope.routeClass = leaveclass
+
+            $timeout(function(){
+                $location.path(route);
+                $rootScope.routeClass = enterclass;
+                $timeout(function(){
+                    $rootScope.routeClass = "";
+                },duration);
+            },duration);
+        };
+
+    }]);
 dod.run(["$templateCache", function($templateCache) {  'use strict';
 
   $templateCache.put('app/global/directives/dod-carousel.html',
@@ -28123,7 +28154,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/global/navigation/navigation.html',
-    "<nav class=transition-3 ng-class={show:showNav,open:openNav}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-href={{::link.url}} ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
+    "<nav class=transition-3 ng-class={show:showNav,open:openNav,ready:ready}><div id=hamburger class=transition-3 ng-click=toggleNav();><div class=transition-3><span></span></div></div><div id=nav-holder ng-click=hideNav();><ul><li ng-repeat=\"link in nav\" ng-attr-style=transition-delay:{{$index*0.1}}s><a class=transition-2 ng-click=changeRoute(link.url) ng-bind=::link.title ng-class=\"{current:path == link.url}\"></a></li></ul></div></nav>"
   );
 
 
@@ -28138,7 +28169,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/art.html',
-    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1><span ng-bind=::page.heading></span></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div id=gallery class=grid-row ng-if=page.list><div class=art-thumb ng-attr-style=background-image:url({{page.list[artwork].media.thumbnail}}); ng-repeat=\"artwork in page.sequence\" ng-click=showWork(artwork)><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::page.list[artwork].title></p><button>View</button></div></div></div></div></div></div>"
+    "<div id=art class=\"page transition-5\" ng-class={show:ready,hide:!ready}><header class=grid-row><div class=container><div class=centred><h1><span ng-bind=::page.heading></span></h1><h2 ng-bind=::page.subheading ng-if=page.subheading></h2><p ng-bind-html=::page.intro></p></div></div></header><div class=container><div id=gallery class=grid-row ng-if=page.list><div class=art-thumb ng-attr-style=background-image:url({{page.list[artwork].media.thumbnail}}); ng-repeat=\"artwork in page.sequence\" ng-click=\"changeRoute('/art/' + artwork,500,'artleave')\"><img class=first src=/img/spacer.png> <img class=second src=/img/spacer.png><div class=overlay><div class=centre><p ng-bind=::page.list[artwork].title></p><button>View</button></div></div></div></div></div></div>"
   );
 
 
@@ -28158,13 +28189,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/home/home.html',
-    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><div ng-if=page dod-intro=page.intro></div></div><!-- \t<button ng-click=\"location.path('/websites')\">\r" +
-    "\n" +
-    "\t\t<span>My Work</span>\r" +
-    "\n" +
-    "\t\t<span class=\"hover\"></span>\r" +
-    "\n" +
-    "\t</button> --></div>"
+    "<div id=home class=\"page transition-5\" dod-perspective=position ng-class={show:ready,hide:!ready}><div class=\"centre text\"><div ng-if=page dod-intro=page.intro></div></div><button ng-click=\"changeRoute('/websites')\"><span>My Work</span> <span class=hover></span></button></div>"
   );
 
 
@@ -28340,97 +28365,104 @@ dod.directive('dodCarousel',['$timeout', function ($timeout){
 		}
 	}
 }]);
- dod.directive('dodIntro',[ '$timeout', function ($timeout){
+ dod.directive('dodIntro',[
+ 	'$timeout',
+ 	function ($timeout){
 
- 	return {
- 		restrict: "A",
- 		template: '<span ng-class="{show:showName}" class="name transition-4" ng-bind="intro.name"></span>' +
-				  '<h1 ng-class="{show:showRole1}" class="transition-4"><span ng-bind-html="intro.role1"></span></h1>' +
-				  '<h2 ng-class="{show:showRole2}" class="transition-4" ng-bind-html="intro.role2"></h2>' +
-				  '<h3 ng-class="{show:showRole3}" class="transition-4"><span ng-bind="intro.role3"></span></h3>',
- 		scope : {
- 			intro : "=dodIntro"
- 		},
- 		link : function(scope){
+	 	return {
+	 		restrict: "A",
+	 		template: '<p ng-class="{show:showName}" class="name" ng-bind="intro.name"></p>' +
+					  '<h1 ng-class="{show:showRole1}"><span ng-bind-html="intro.role1"></span></h1>' +
+					  '<h2 ng-class="{show:showRole2}" ng-bind-html="intro.role2"></h2>' +
+					  '<h3 ng-class="{show:showRole3}"><span ng-bind="intro.role3"></span></h3>',
+	 		scope : {
+	 			intro : "=dodIntro"
+	 		},
+	 		link : function(scope){
 
- 			scope.showName  = false;
- 			scope.showRole1 = false;
- 			scope.showRole2 = false;
- 			scope.showRole3 = false;
+	 			//Temp hack
+	 			if(scope.intro.role1.indexOf('</b>') > -1){
+	 				scope.intro.role1 = "Front end Developer"
+	 			}
 
- 			//SEQUENCING -------------------------------------------------------
+	 			scope.showName  = false;
+	 			scope.showRole1 = false;
+	 			scope.showRole2 = false;
+	 			scope.showRole3 = false;
 
-	 			var sequence = [{
-	 					"function" : "name",
-	 					"timing"   : 1000
-	 				},{
-	 					"function" : "role1",
-	 					"timing"   : 2000
-	 				},{
-	 					"function" : "role2",
-	 					"timing"   : 3000
-	 				},{
-	 					"function" : "role3",
-	 					"timing"   : 4000
-	 				}];
+	 			//SEQUENCING -------------------------------------------------------
 
-	 			scope.trigger = function(frame){
+		 			var sequence = [{
+		 					"function" : "name",
+		 					"timing"   : 500
+		 				},{
+		 					"function" : "role1",
+		 					"timing"   : 1000
+		 				},{
+		 					"function" : "role2",
+		 					"timing"   : 2000
+		 				},{
+		 					"function" : "role3",
+		 					"timing"   : 3000
+		 				}];
 
-	 				$timeout(function(){
-	 					if(frame.function == "name")  scope.name();
-	 					if(frame.function == "role1") scope.role1(scope.intro.role1);
-	 					if(frame.function == "role2") scope.role2(scope.intro.role2);
-	 					if(frame.function == "role3") scope.role3(scope.intro.role3);
-	 				},frame.timing);
+		 			scope.trigger = function(frame){
+
+		 				$timeout(function(){
+		 					if(frame.function == "name")  scope.name();
+		 					if(frame.function == "role1") scope.role1();
+		 					if(frame.function == "role2") scope.role2();
+		 					if(frame.function == "role3") scope.role3();
+		 				},frame.timing);
+		 			};
+
+		 			for(var i = 0; i < sequence.length; i ++){
+		 				scope.trigger(sequence[i]);
+		 			};
+
+		 		// -------------------------------------------------------------------
+
+	 			// SEQUENCE FRAMES
+
+	 			scope.name = function(){
+	 				scope.showName = true;
 	 			};
 
-	 			for(var i = 0; i < sequence.length; i ++){
-	 				scope.trigger(sequence[i]);
+	 			scope.role1 = function(){
+
+	 				scope.showRole1 = true;
+
+	 				var split     = scope.intro.role1.split(""),
+	 					interval  = 10,
+	 					newString = "";
+
+	 				function typewriter(index){
+
+	 					var span = "<b>" + split[index] + "</b>";
+
+	 					$timeout(function(){
+	 						newString = newString + span;
+	 						scope.intro.role1 = newString;
+	 					},interval*index);
+	 				};
+
+	 				for(var i = 0; i<split.length; i ++){
+	 					typewriter(i);
+	 				};
+
 	 			};
 
-	 		// -------------------------------------------------------------------
+	 			scope.role2 = function(){
+	 				scope.showRole2 = true;
+	 			};
 
- 			// SEQUENCE FRAMES
+	 			scope.role3 = function(){
+	 				scope.showRole3 = true;
+	 			};
+	 		}
+	 	}
 
- 			scope.name = function(){
- 				scope.showName = true;
- 			};
-
- 			scope.role1 = function(role){
-
- 				scope.showRole1 = true;
-
- 				var split     = role.split(""),
- 					interval  = 50,
- 					newString = "";
-
- 				function typewriter(index){
-
- 					var span = "<b>" + split[index] + "</b>";
-
- 					$timeout(function(){
- 						newString = newString + span;
- 						scope.intro.role1 = newString;
- 					},interval*index);
- 				};
-
- 				for(var i = 0; i<split.length; i ++){
- 					typewriter(i);
- 				};
-
- 			};
-
- 			scope.role2 = function(){
- 				scope.showRole2 = true;
- 			};
-
- 			scope.role3 = function(){
- 				scope.showRole3 = true;
- 			};
- 		}
- 	}
-
- }]);
+	 }]);
  dod.directive('dodPerspective', function(){
  	return {
  		restrict: "A",
