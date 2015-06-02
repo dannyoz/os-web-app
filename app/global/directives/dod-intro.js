@@ -1,0 +1,91 @@
+ dod.directive('dodIntro',[ '$timeout', function ($timeout){
+
+ 	return {
+ 		restrict: "A",
+ 		template: '<span ng-class="{show:showName}" class="name transition-4" ng-bind="intro.name"></span>' +
+				  '<h1 ng-class="{show:showRole1}" class="transition-4"><span ng-bind-html="intro.role1"></span></h1>' +
+				  '<h2 ng-class="{show:showRole2}" class="transition-4" ng-bind-html="intro.role2"></h2>' +
+				  '<h3 ng-class="{show:showRole3}" class="transition-4"><span ng-bind="intro.role3"></span></h3>',
+ 		scope : {
+ 			intro : "=dodIntro"
+ 		},
+ 		link : function(scope){
+
+ 			scope.showName  = false;
+ 			scope.showRole1 = false;
+ 			scope.showRole2 = false;
+ 			scope.showRole3 = false;
+
+ 			//SEQUENCING -------------------------------------------------------
+
+	 			var sequence = [{
+	 					"function" : "name",
+	 					"timing"   : 1000
+	 				},{
+	 					"function" : "role1",
+	 					"timing"   : 2000
+	 				},{
+	 					"function" : "role2",
+	 					"timing"   : 3000
+	 				},{
+	 					"function" : "role3",
+	 					"timing"   : 4000
+	 				}];
+
+	 			scope.trigger = function(frame){
+
+	 				$timeout(function(){
+	 					if(frame.function == "name")  scope.name();
+	 					if(frame.function == "role1") scope.role1(scope.intro.role1);
+	 					if(frame.function == "role2") scope.role2(scope.intro.role2);
+	 					if(frame.function == "role3") scope.role3(scope.intro.role3);
+	 				},frame.timing);
+	 			};
+
+	 			for(var i = 0; i < sequence.length; i ++){
+	 				scope.trigger(sequence[i]);
+	 			};
+
+	 		// -------------------------------------------------------------------
+
+ 			// SEQUENCE FRAMES
+
+ 			scope.name = function(){
+ 				scope.showName = true;
+ 			};
+
+ 			scope.role1 = function(role){
+
+ 				scope.showRole1 = true;
+
+ 				var split     = role.split(""),
+ 					interval  = 50,
+ 					newString = "";
+
+ 				function typewriter(index){
+
+ 					var span = "<b>" + split[index] + "</b>";
+
+ 					$timeout(function(){
+ 						newString = newString + span;
+ 						scope.intro.role1 = newString;
+ 					},interval*index);
+ 				};
+
+ 				for(var i = 0; i<split.length; i ++){
+ 					typewriter(i);
+ 				};
+
+ 			};
+
+ 			scope.role2 = function(){
+ 				scope.showRole2 = true;
+ 			};
+
+ 			scope.role3 = function(){
+ 				scope.showRole3 = true;
+ 			};
+ 		}
+ 	}
+
+ }]);

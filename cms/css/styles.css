@@ -1775,6 +1775,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 100%;
 }
 
+#splash {
+  background: #DDD;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 #messages aside {
   background: #222;
   position: absolute;
@@ -2500,7 +2509,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview #home .text {
   text-align: center;
 }
-#preview #home .forename, #preview #home .surname {
+#preview #home .name {
   color: #D84025;
   font-size: 4em;
   font-weight: 100;
@@ -2510,6 +2519,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   margin-left: 20px;
 }
 #preview #home h1 {
+  opacity: 0;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: white;
@@ -2522,7 +2532,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   padding: 10px 0;
   border-top: 1px dashed #444;
 }
+#preview #home h1.show {
+  opacity: 1;
+}
 #preview #home h2 {
+  opacity: 0;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0;
@@ -2542,7 +2556,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview #home h2::first-letter {
   color: #D84025;
 }
+#preview #home h2.show {
+  opacity: 1;
+}
 #preview #home h3 {
+  opacity: 0;
   margin-top: 20px;
   text-transform: none;
   color: #b7b7b7;
@@ -2550,6 +2568,9 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   font-size: 7em;
   font-weight: 100;
   font-family: "bistro-script-web", arial, sans-serif;
+}
+#preview #home h3.show {
+  opacity: 1;
 }
 #preview #home button {
   bottom: 100px;

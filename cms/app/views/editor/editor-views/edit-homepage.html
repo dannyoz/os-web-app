@@ -1,30 +1,62 @@
-<div class="list grid-4">
+<div class="grid-row">
 
-	 <div class="selection" ng-repeat="navItem in json.navigation">
-	 	<div cms-dragable="{index:$index,list:json.navigation}">
-	 		<p ng-bind="navItem.title"></p>
-	 	</div>
+	<div class="list grid-4">
 
-	 	<button class="close" ng-click="json.navigation.splice($index,1)">
-	 		<span>x</span>
-	 	</button>
-	</div>
+		 <div class="selection" ng-repeat="navItem in json.navigation">
+		 	<div cms-dragable="{index:$index,list:json.navigation}">
+		 		<p ng-bind="navItem.title"></p>
+		 	</div>
 
-	<div ng-show="addnav == true">
-
-		<div>
-		 	<input type="text" ng-model="title">
-		 	<input type="text" ng-model="url">
+		 	<button class="close" ng-click="json.navigation.splice($index,1)">
+		 		<span>x</span>
+		 	</button>
 		</div>
 
-		<button ng-click="json.navigation.push({'title':title,'url':url}); addnav = false" class="rounded-10px green medium">
-			<i class="icon-check"></i>
-		</button>
+		<div ng-show="addnav == true">
+
+			<div>
+			 	<input type="text" ng-model="title">
+			 	<input type="text" ng-model="url">
+			</div>
+
+			<button ng-click="json.navigation.push({'title':title,'url':url}); addnav = false" class="rounded-10px green medium">
+				<i class="icon-check"></i>
+			</button>
+
+		</div>
+
+		<button ng-hide="addnav == true" ng-click="addnav = true; url='/url-goes-here'; title='Title'" class="rounded-10px green medium">
+			<span>+Add</span>
+		</button>	 
 
 	</div>
 
-	<button ng-hide="addnav == true" ng-click="addnav = true; url='/url-goes-here'; title='Title'" class="rounded-10px green medium">
-		<span>+Add</span>
-	</button>	 
+	<div class="grid-8">
+	 	
+	 	<p class="label">Name</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView].intro.name">
+		</div>
+
+		<p class="label">Role 1</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView].intro.role1">
+		</div>
+
+		<p class="label">Role 2</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView].intro.role2">
+		</div>
+
+		<p class="label">Role 3</p>
+		<div class="editable" 
+		     ng-if="json" 
+		     cms-editable="json[currentView].intro.role3">
+		</div>
+
+	</div>
 
  </div>

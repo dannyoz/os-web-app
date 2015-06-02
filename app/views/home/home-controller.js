@@ -1,8 +1,9 @@
 dod.controller('home',[
 	'$scope',
-	'$location', 
+	'$location',
+	'$sce', 
 	'content', 
-	function ($scope, $location, content) {
+	function ($scope, $location, $sce, content) {
 		"use strict";
 
 		$scope.location = $location;

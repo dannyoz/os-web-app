@@ -28672,7 +28672,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/editor/editor-views/edit-homepage.html',
-    "<div class=\"list grid-4\"><div class=selection ng-repeat=\"navItem in json.navigation\"><div cms-dragable={index:$index,list:json.navigation}><p ng-bind=navItem.title></p></div><button class=close ng-click=json.navigation.splice($index,1)><span>x</span></button></div><div ng-show=\"addnav == true\"><div><input ng-model=title> <input ng-model=url></div><button ng-click=\"json.navigation.push({'title':title,'url':url}); addnav = false\" class=\"rounded-10px green medium\"><i class=icon-check></i></button></div><button ng-hide=\"addnav == true\" ng-click=\"addnav = true; url='/url-goes-here'; title='Title'\" class=\"rounded-10px green medium\"><span>+Add</span></button></div>"
+    "<div class=grid-row><div class=\"list grid-4\"><div class=selection ng-repeat=\"navItem in json.navigation\"><div cms-dragable={index:$index,list:json.navigation}><p ng-bind=navItem.title></p></div><button class=close ng-click=json.navigation.splice($index,1)><span>x</span></button></div><div ng-show=\"addnav == true\"><div><input ng-model=title> <input ng-model=url></div><button ng-click=\"json.navigation.push({'title':title,'url':url}); addnav = false\" class=\"rounded-10px green medium\"><i class=icon-check></i></button></div><button ng-hide=\"addnav == true\" ng-click=\"addnav = true; url='/url-goes-here'; title='Title'\" class=\"rounded-10px green medium\"><span>+Add</span></button></div><div class=grid-8><p class=label>Name</p><div class=editable ng-if=json cms-editable=json[currentView].intro.name></div><p class=label>Role 1</p><div class=editable ng-if=json cms-editable=json[currentView].intro.role1></div><p class=label>Role 2</p><div class=editable ng-if=json cms-editable=json[currentView].intro.role2></div><p class=label>Role 3</p><div class=editable ng-if=json cms-editable=json[currentView].intro.role3></div></div></div>"
   );
 
 
@@ -28711,7 +28711,7 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/splash/splash.html',
-    "<div class=centre><h1>Edit</h1><button class=\"medium rounded-10px\" ng-click=\"env('dev')\">Edit</button></div>"
+    "<div id=splash><div class=centre><a class=\"button medium green rounded-10px\" href=/editor>Edit</a> <a class=\"button medium green rounded-10px\" href=/messages>Messages</a></div></div>"
   );
 
 
