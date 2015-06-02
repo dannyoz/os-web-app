@@ -74,7 +74,7 @@
 		border-bottom:$border-style;
 		font:{
 			
-			family : "museo-slab", sans-serif;
+			family : "times", sans-serif;
 			size : 3.8em;
 			weight:100;
 		}
@@ -100,10 +100,17 @@
 			}
 		}
 
-		&::first-letter{
-			color: $primary-orange;
+		&.museoslab{
+
+			font-family: "museo-slab", sans-serif;
+
+			&::first-letter{
+				color: $primary-orange;
+			}
+
 		}
 
+		
 		&.show{
 
 			opacity:1;

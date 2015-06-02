@@ -2705,7 +2705,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   color: #c7c7c7;
   line-height: 1em;
   border-bottom: 1px dashed #444;
-  font-family: "museo-slab", sans-serif;
+  font-family: "times", sans-serif;
   font-size: 3.8em;
   font-weight: 100;
   -moz-transition: all 0.5s ease;
@@ -2734,7 +2734,10 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transform: translateX(100px);
   transform: translateX(100px);
 }
-#preview #home h2::first-letter {
+#preview #home h2.museoslab {
+  font-family: "museo-slab", sans-serif;
+}
+#preview #home h2.museoslab::first-letter {
   color: #D84025;
 }
 #preview #home h2.show {

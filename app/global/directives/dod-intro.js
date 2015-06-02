@@ -6,7 +6,7 @@
 	 		restrict: "A",
 	 		template: '<p ng-class="{show:showName}" class="name" ng-bind="intro.name"></p>' +
 					  '<h1 ng-class="{show:showRole1}"><span ng-bind-html="intro.role1"></span></h1>' +
-					  '<h2 ng-class="{show:showRole2}" ng-bind-html="intro.role2"></h2>' +
+					  '<h2 ng-class="{show:showRole2,museoslab:designClass==\'museoslab\'}" ng-bind-html="intro.role2"></h2>' +
 					  '<h3 ng-class="{show:showRole3}"><span ng-bind="intro.role3"></span></h3>',
 	 		scope : {
 	 			intro : "=dodIntro"
@@ -87,6 +87,10 @@
 
 	 			scope.role2 = function(){
 	 				scope.showRole2 = true;
+
+	 				$timeout(function(){
+	 					scope.designClass = "museoslab"
+	 				},10);
 	 			};
 
 	 			scope.role3 = function(){
