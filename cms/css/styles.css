@@ -3759,13 +3759,25 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   animation-delay: 2.5s;
 }
 #preview #art-single {
-  background-size: cover;
-  background-position: center top;
+  overflow: hidden;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+}
+#preview #art-single .main-image {
+  background-size: cover;
+  background-position: center top;
+  opacity: 0;
+  z-index: 5;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+#preview #art-single .main-image.current {
+  opacity: 1;
+  z-index: 10;
 }
 #preview #art-single .control {
   z-index: 9999;
@@ -3868,4 +3880,44 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
+#preview .leaveRight #art-single .main-image.current {
+  -webkit-animation-name: slideRight;
+  animation-name: slideRight;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview .leaveRight #art-single .main-image.prev {
+  -webkit-animation-name: slideRightBehind;
+  animation-name: slideRightBehind;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview .leaveLeft #art-single .main-image.current {
+  -webkit-animation-name: slideLeft;
+  animation-name: slideLeft;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+#preview .leaveLeft #art-single .main-image.next {
+  -webkit-animation-name: slideLeftBehind;
+  animation-name: slideLeftBehind;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }

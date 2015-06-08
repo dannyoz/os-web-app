@@ -32,8 +32,6 @@ dod.controller('artSingle',[
 			if(!$scope.work){
 				$location.path('/404');
 			}
-
-			console.log($scope.artIndex);
 		});
 
 		$scope.getArtwork = function(index){
@@ -41,12 +39,17 @@ dod.controller('artSingle',[
 			return thisObj
 		};
 
-		$scope.getMainImage = function(){
+		$scope.getMainImage = function(index){
 			var width  = window.innerWidth,
 				height = window.innerHeight;
 
-			if(width <= height) return $scope.work.media.portrait;
-			if(width > height) return $scope.work.media.landscape;
+			if(!index){
+				if(width <= height) return $scope.work.media.portrait;
+				if(width > height) return $scope.work.media.landscape;
+			} else {
+				if(width <= height) return $scope.list[$scope.sequence[index]].media.portrait;
+				if(width > height) return $scope.list[$scope.sequence[index]].media.landscape;
+			}
 		};
 
 

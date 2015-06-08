@@ -26,7 +26,7 @@ dod.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('app/views/art/single/art-single.html',
-    "<div id=art-single ng-if=ready ng-attr-style=background-image:url({{getMainImage()}})><a ng-href=/art/{{sequence[artIndex-1]}} class=\"prev-art control transition-2\" ng-if=\"artIndex > 0\"><span ng-bind=getArtwork(artIndex-1).title></span></a> <a ng-href=/art/{{sequence[artIndex+1]}} class=\"next-art control transition-2\" ng-if=\"(artIndex+1) < sequence.length\"><span ng-bind=getArtwork(artIndex+1).title></span></a></div>"
+    "<div id=art-single ng-if=ready><div class=\"main-image current\" ng-attr-style=background-image:url({{getMainImage()}})></div><div class=\"main-image prev\" ng-if=\"artIndex > 0\" ng-attr-style=background-image:url({{getMainImage(artIndex-1)}})></div><div class=\"main-image next\" ng-if=\"(artIndex+1) < sequence.length\" ng-attr-style=background-image:url({{getMainImage(artIndex+1)}})></div><a ng-click=\"changeRoute('/art/' + sequence[artIndex-1],500,'leaveRight', 'enterLeft')\" class=\"prev-art control transition-2\" ng-if=\"artIndex > 0\"><span ng-bind=getArtwork(artIndex-1).title></span></a> <a ng-click=\"changeRoute('/art/' + sequence[artIndex+1],500,'leaveLeft', 'enterRight')\" class=\"next-art control transition-2\" ng-if=\"(artIndex+1) < sequence.length\"><span ng-bind=getArtwork(artIndex+1).title></span></a></div>"
   );
 
 
