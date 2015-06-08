@@ -47,6 +47,12 @@
 			@include border-radius(8px);
 			@include fitParent(25px);
 
+			@media screen and (max-width:$small-screens){
+
+				@include fitParent(8px);
+				@include border-radius(15px);
+			}
+
 			.slide{
 
 				position:absolute;

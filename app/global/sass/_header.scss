@@ -47,19 +47,23 @@ header{
 			@include transform(scale(1) translateY(0));
 		}
 
-		@media(max-width:800px){
+		@media screen and (max-width:$medium-screens){
 			@include grid-col(12);
 			margin:0;
 
 			h1{
-				font-size: 3em;
+				font-size: 2.5em;
 			}
 		}
 
-		@media(max-width:600px){
+		@media screen and (max-width:$small-screens){
 			
 			h1{
-				font-size: 2.5em;
+				font-size: 1.5em;
+			}
+
+			h2{
+				font-size: 0.8em;
 			}
 		}
 	}
@@ -77,6 +81,10 @@ $padding : 300px 0;
 		h1, h2, p{
 			@include animation(fadeIn);
 		}
+	}
+
+	@media screen and (max-width:$small-screens){
+		padding:100px 0;
 	}
 }
 
@@ -98,5 +106,9 @@ $padding : 300px 0;
 		p{
 			@include transition-delay(0.2s);
 		}
+	}
+
+	@media screen and (max-width:$small-screens){
+		padding:100px 0;
 	}
 }

@@ -2257,7 +2257,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-transform: scale(1) translateY(0);
   transform: scale(1) translateY(0);
 }
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   #preview header .centred {
     float: left;
     position: relative;
@@ -2266,12 +2266,15 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
     margin: 0;
   }
   #preview header .centred h1 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 450px) {
   #preview header .centred h1 {
-    font-size: 2.5em;
+    font-size: 1.5em;
+  }
+  #preview header .centred h2 {
+    font-size: 0.8em;
   }
 }
 #preview .enter header {
@@ -2286,6 +2289,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   animation-timing-function: ease;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
+}
+@media screen and (max-width: 450px) {
+  #preview .enter header {
+    padding: 100px 0;
+  }
 }
 #preview .leave header {
   padding: 300px 0;
@@ -2308,6 +2316,16 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
+}
+@media screen and (max-width: 450px) {
+  #preview .leave header {
+    padding: 100px 0;
+  }
+}
+@media screen and (max-width: 450px) {
+  #preview .container {
+    padding: 0 20px;
+  }
 }
 #preview a, #preview button, #preview input {
   cursor: pointer;
@@ -2386,6 +2404,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   margin-bottom: 2em;
   font-family: "museo-sans", sans-serif;
   color: #AAA;
+}
+@media screen and (max-width: 450px) {
+  #preview p {
+    font-size: 0.94em;
+  }
 }
 #preview p:last-of-type {
   margin-bottom: 0;
@@ -2525,6 +2548,16 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
     padding: 0;
   }
 }
+@media screen and (max-width: 450px) {
+  #preview nav #nav-holder {
+    height: 0;
+  }
+  #preview nav #nav-holder li {
+    display: list-item;
+    float: none;
+    width: 100%;
+  }
+}
 #preview nav #hoverbar {
   background: red;
   top: 60px;
@@ -2547,6 +2580,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   top: 0;
   opacity: 1;
 }
+@media screen and (max-width: 450px) {
+  #preview nav.open #nav-holder {
+    height: auto;
+  }
+}
 #preview nav.ready {
   opacity: 1;
 }
@@ -2560,6 +2598,25 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 }
 #preview #home .text {
   text-align: center;
+}
+@media screen and (max-width: 800px) {
+  #preview #home .text {
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 450px) {
+  #preview #home .text {
+    font-size: 0.7em;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }
 #preview #home .name {
   color: #D84025;
@@ -2702,7 +2759,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   margin-bottom: 0;
   margin-top: 30px;
   padding-bottom: 10px;
-  color: #c7c7c7;
+  color: #4F2727;
   line-height: 1em;
   border-bottom: 1px dashed #444;
   font-family: "times", sans-serif;
@@ -2737,9 +2794,6 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview #home h2.museoslab {
   font-family: "museo-slab", sans-serif;
 }
-#preview #home h2.museoslab::first-letter {
-  color: #D84025;
-}
 #preview #home h2.show {
   opacity: 1;
 }
@@ -2753,7 +2807,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   opacity: 0;
   margin-top: 20px;
   text-transform: none;
-  color: #b7b7b7;
+  color: #764242;
   line-height: 0.7em;
   font-size: 7em;
   font-weight: 100;
@@ -2767,13 +2821,18 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   opacity: 1;
 }
 #preview #home button {
-  bottom: 100px;
+  bottom: 60px;
   position: absolute;
   left: 50%;
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+@media screen and (max-width: 800px) {
+  #preview #home button {
+    bottom: 20px;
+  }
 }
 #preview .leave #home .name, #preview .leave #home h1, #preview .leave #home h2, #preview .leave #home h3 {
   opacity: 0;
@@ -2813,6 +2872,11 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   margin-bottom: 40px;
   text-align: center;
   border-bottom: 2px solid #1D1D1D;
+}
+@media screen and (max-width: 450px) {
+  #preview #websites .website h3 {
+    font-size: 1.4em;
+  }
 }
 #preview #websites .website h3 span {
   padding-bottom: 10px;
@@ -2854,6 +2918,14 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
+@media screen and (max-width: 800px) {
+  #preview #websites .website .website-info .tags li {
+    float: none;
+  }
+  #preview #websites .website .website-info .button-holder {
+    text-align: center;
+  }
+}
 #preview #websites .website:nth-of-type(even) {
   background: #222;
   border-top: 1px solid #191919;
@@ -2868,7 +2940,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
 #preview #websites .website:nth-of-type(even) .website-showcase {
   margin-right: 0;
 }
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   #preview #websites .website .website-info, #preview #websites .website .website-showcase {
     float: left;
     position: relative;
@@ -2877,7 +2949,7 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
     margin-right: 0 !important;
   }
   #preview #websites .website .website-showcase {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
   }
 }
 #preview #websites .website .tablet {
@@ -2950,6 +3022,18 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   right: 25px;
   bottom: 25px;
   left: 25px;
+}
+@media screen and (max-width: 450px) {
+  #preview #websites .website .tablet .front .screen {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+  }
 }
 #preview #websites .website .tablet .front .screen .slide {
   position: absolute;
@@ -3419,8 +3503,49 @@ EXAMPLES OF DEFINING KEYFRAMES USING MIXINS -----
   #preview #art #gallery .art-thumb {
     float: left;
     position: relative;
-    width: 48.5%;
-    margin-right: 3%;
+    width: 49%;
+    margin-right: 2%;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+2), #preview #art #gallery .art-thumb:nth-of-type(13n+6), #preview #art #gallery .art-thumb:nth-of-type(13n+10), #preview #art #gallery .art-thumb:nth-of-type(13n+11), #preview #art #gallery .art-thumb:nth-of-type(13n+13) {
+    float: left;
+    float: left;
+    position: relative;
+    width: 49%;
+    margin-right: 2%;
+    margin-right: 0;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+2) .first, #preview #art #gallery .art-thumb:nth-of-type(13n+6) .first, #preview #art #gallery .art-thumb:nth-of-type(13n+10) .first, #preview #art #gallery .art-thumb:nth-of-type(13n+11) .first, #preview #art #gallery .art-thumb:nth-of-type(13n+13) .first {
+    display: block;
+    width: 100%;
+    opacity: 0;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+2) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+6) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+10) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+11) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+13) .second {
+    display: none;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+5), #preview #art #gallery .art-thumb:nth-of-type(13n+12) {
+    float: left;
+    float: left;
+    position: relative;
+    width: 49%;
+    margin-right: 2%;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+5) .first, #preview #art #gallery .art-thumb:nth-of-type(13n+12) .first {
+    display: block;
+    width: 100%;
+    opacity: 0;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+5) .second, #preview #art #gallery .art-thumb:nth-of-type(13n+12) .second {
+    display: none;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+4) {
+    float: left;
+    width: 100%;
+    margin-right: 0;
+  }
+  #preview #art #gallery .art-thumb:nth-of-type(13n+4) img {
+    float: left;
+    width: 49%;
+    margin-top: 0;
   }
 }
 #preview .artleave #art #gallery .art-thumb {

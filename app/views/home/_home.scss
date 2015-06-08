@@ -7,6 +7,20 @@
 	.text{
 
 		text-align: center;
+
+		@media screen and (max-width:$medium-screens){
+
+			font-size: 0.9em;
+		}
+
+		@media screen and (max-width:$small-screens){
+
+			font-size: 0.7em;
+			left:0;
+			overflow: hidden;
+			width:100%;
+			@include centre(y);
+		}
 	}
 
 	.name{
@@ -69,7 +83,7 @@
 		margin-bottom: 0;
 		margin-top: 30px;
 		padding-bottom:10px;
-		color:#c7c7c7;
+		color:#4F2727;
 		line-height: 1em;
 		border-bottom:$border-style;
 		font:{
@@ -104,9 +118,9 @@
 
 			font-family: "museo-slab", sans-serif;
 
-			&::first-letter{
-				color: $primary-orange;
-			}
+			// &::first-letter{
+			// 	color: $primary-orange;
+			// }
 
 		}
 
@@ -126,7 +140,7 @@
 		opacity:0;
 		margin-top: 20px;
 		text-transform:none;
-		color:#b7b7b7;
+		color:#764242;
 		line-height: 0.7em;
 		font: {
 			size : 7em;
@@ -144,8 +158,13 @@
 
 	button{
 
-		bottom:100px;
+		bottom:60px;
 		@include centre(x);
+
+		@media screen and (max-width:$medium-screens){
+
+			bottom:20px;
+		}
 	}
 
 }

@@ -139,6 +139,19 @@ nav{
 
 			@include single-transition(all,0.6s,$bounce);
 		}
+
+		@media screen and (max-width:$small-screens){
+
+			height:0;
+
+			li{
+
+				display: list-item;
+				float:none;
+				width:100%;
+			}
+		}
+
 	}
 
 	#hoverbar{
@@ -172,6 +185,14 @@ nav{
 
 			top: 0;
 			opacity: 1;
+		}
+
+		@media screen and (max-width:$small-screens){
+
+			#nav-holder{
+
+				height:auto;
+			}
 		}
 	}
 

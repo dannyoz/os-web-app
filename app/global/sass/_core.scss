@@ -27,5 +27,13 @@ body{
 
 @import "header";
 
+@media screen and (max-width:$small-screens){
+
+	.container{
+		padding: 0 20px;
+	}
+}
+
+
 
 

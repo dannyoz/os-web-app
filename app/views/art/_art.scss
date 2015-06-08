@@ -127,7 +127,55 @@ $horiz-width : 50% - $grid-padding;
 
 			@media (max-width : 720px){
 
-				@include grid-col(12,24,3%);
+				@include grid-col(12,24,2%);
+
+				&:nth-of-type(13n+2),&:nth-of-type(13n+6),&:nth-of-type(13n+10),&:nth-of-type(13n+11),&:nth-of-type(13n+13){
+					
+					float: left;
+					@include grid-col(12,24,2%);
+					margin-right: 0;
+
+					.first{
+
+						display: block;
+						width:100%;
+						opacity: 0;
+					}
+
+					.second{
+						display: none;
+					}
+				}
+
+				&:nth-of-type(13n+5),&:nth-of-type(13n+12){
+					
+					float: left;
+					@include grid-col(12,24,2%);
+
+					.first{
+
+						display: block;
+						width:100%;
+						opacity: 0;
+					}
+
+					.second{
+						display: none;
+					}
+				}
+
+				&:nth-of-type(13n+4){
+					
+					float: left;
+					width:100%;
+					margin-right: 0;
+
+					img{
+						float: left;
+						width:$horiz-width;
+						margin-top:0;
+					}
+				}
 			}
 		}
 	}

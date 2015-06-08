@@ -38,6 +38,11 @@ p{
 	font-family : "museo-sans", sans-serif;
 	color:#AAA;
 
+	@media screen and (max-width:$small-screens){
+
+		font-size: 0.94em;
+	}
+
 	&:last-of-type{
 
 		margin-bottom: 0;

@@ -15,6 +15,11 @@
 			text-align: center;
 			border-bottom:$border-size solid #1D1D1D;
 
+			@media screen and (max-width:$small-screens){
+
+				font-size: 1.4em;
+			}
+
 			span{
 
 				padding-bottom:10px;
@@ -61,6 +66,18 @@
 					@include border-radius(5px);
 				}
 			}
+
+			@media screen and(max-width:$medium-screens){
+
+				.tags li{
+					float: none;
+				}
+
+				.button-holder{
+
+					text-align: center;
+				}
+			}
 		}
 
 		&:nth-of-type(even){
@@ -82,7 +99,7 @@
 			}
 		}
 
-		@media(max-width:800px){
+		@media screen and(max-width:$medium-screens){
 			
 			.website-info, .website-showcase{
 				@include grid-col(12,12,4%);
@@ -90,7 +107,7 @@
 			}
 
 			.website-showcase{
-				margin-bottom: 30px;
+				margin-bottom: 60px;
 			}
 		}
 
