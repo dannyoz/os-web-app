@@ -61,10 +61,8 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/publish/publish.html',
-    "<section class=page><div class=container><textarea ng-model=data>\r" +
-    "\n" +
-    "\t\t\t\r" +
-    "\n" +
+    "<section class=page><div class=container><textarea ng-model=data>\n" +
+    "\t\t\t\n" +
     "\t\t</textarea><button ng-click=api.post(data);>Post</button> <button ng-click=getData();>Get</button></div></section>"
   );
 
@@ -120,48 +118,27 @@ cms.run(["$templateCache", function($templateCache) {  'use strict';
 
 
   $templateCache.put('cms/app/views/styleguide/partials/text-elements.html',
-    "<h1 id=monospace>Monospace / Preformatted</h1><p>Code block wrapped in \"pre\" and \"code\" tags</p><pre>\r" +
+    "<h1 id=monospace>Monospace / Preformatted</h1><p>Code block wrapped in \"pre\" and \"code\" tags</p><pre>\n" +
+    "\t<code>\n" +
+    "\t\tbody{\n" +
     "\n" +
-    "\t<code>\r" +
+    "\t\t\tbackground:$APPlight;\n" +
+    "\t\t\tcolor:$APPdark;\n" +
+    "\t\t\tfont-family:$font1;\n" +
+    "\t\t\toverflow:hidden;\n" +
     "\n" +
-    "\t\tbody{\r" +
+    "\t\t\tfooter{\n" +
     "\n" +
-    "\r" +
+    "\t\t\t\theight:0;\n" +
+    "\t\t\t\tbackground-color:lighten($APPdark,10%);\n" +
+    "\t\t\t\t@include fitParent(\"\",auto,0,0,0);\n" +
     "\n" +
-    "\t\t\tbackground:$APPlight;\r" +
-    "\n" +
-    "\t\t\tcolor:$APPdark;\r" +
-    "\n" +
-    "\t\t\tfont-family:$font1;\r" +
-    "\n" +
-    "\t\t\toverflow:hidden;\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t\tfooter{\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t\t\theight:0;\r" +
-    "\n" +
-    "\t\t\t\tbackground-color:lighten($APPdark,10%);\r" +
-    "\n" +
-    "\t\t\t\t@include fitParent(\"\",auto,0,0,0);\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\t\t\t\t&.show{\r" +
-    "\n" +
-    "\t\t\t\t\theight: $footerHeight;\r" +
-    "\n" +
-    "\t\t\t\t}\r" +
-    "\n" +
-    "\t\t\t}\r" +
-    "\n" +
-    "\t\t}\r" +
-    "\n" +
-    "\t</code>\r" +
-    "\n" +
+    "\t\t\t\t&.show{\n" +
+    "\t\t\t\t\theight: $footerHeight;\n" +
+    "\t\t\t\t}\n" +
+    "\t\t\t}\n" +
+    "\t\t}\n" +
+    "\t</code>\n" +
     "</pre><p>Monospace Text wrapped in \"pre\" tags</p><pre><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p></pre><hr>"
   );
 }])
