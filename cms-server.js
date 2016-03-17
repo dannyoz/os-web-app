@@ -4,8 +4,6 @@ var express = require('express'),
 var app = express();
 var server = app.listen(2000);
 
-
-
 app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.static(__dirname + '/cms'));
