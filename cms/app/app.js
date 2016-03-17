@@ -1,6 +1,5 @@
 var cms = angular.module('cms', ['ngRoute','ngSanitize','textAngular', 'ngFileUpload']);
 
-
 cms.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
  	
  	$routeProvider
